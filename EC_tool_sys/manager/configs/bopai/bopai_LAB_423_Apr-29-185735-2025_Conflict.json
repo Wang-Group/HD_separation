@@ -1,0 +1,47 @@
+{
+    "bopai_controller":{
+        "connection_param":{
+            "port": "COM6",
+            "baudrate": 115200,
+            "parity": "N",
+            "timeout": 0.1
+        }, 
+        "axis":{
+            "cell1": 1, 
+            "cell2": 2
+        }, 
+        "axis_list": [1, 2], 
+
+        "ip": {
+
+        }, 
+
+        "op":{
+            "cell_cat3_peristaltic_pump": 0, 
+            "electrodeposition_cell_peristaltic_pump": 1
+            }, 
+        "dac":{
+
+        }, 
+
+        "motor_param": {
+            "1": [6400, 60], 
+            "2": [6400, 60]
+        }, 
+        "trap_param":{
+            "1": [5, 5, 0, 0], 
+            "2": [40, 100, 0, 0]
+        }, 
+        "jog_param": {
+            "1": [150, 450, 0], 
+            "2": [150, 450, 0]
+        }, 
+        "home_param": {
+            "1": [1, 0, 0, 10, 1, 0, 100], 
+            "2": [1, 0, 0, 10, 1, 0, 100]
+        }, 
+        "safe_coordiniate":{
+            "z": 0
+        }
+    }
+}

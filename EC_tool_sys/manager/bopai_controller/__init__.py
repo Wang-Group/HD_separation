@@ -1,0 +1,1 @@
+from .bopai_use_wx import Bopai

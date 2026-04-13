@@ -1,0 +1,2 @@
+from .robotic_platform import RoboticPlatformMass
+from .robotic_platform_no_mass import RoboticPlatform
