@@ -33,7 +33,7 @@ class GASAxis(ATCommand):
     def __init__(self, motion_prm, logger):
         super().__init__(serial.Serial(**motion_prm['connection_param']))
         self.logger = logger
-        # 初始化运动控制器参数
+        # Initialize motion-controller parameters
         self.op = motion_prm['op']
         self.ip = motion_prm['ip']
         self.dac = motion_prm['dac']
@@ -42,9 +42,9 @@ class GASAxis(ATCommand):
         self.trap_param = motion_prm['trap_param']
         self.jog_param = motion_prm['jog_param']
         self.home_param = motion_prm['home_param']
-        # 初始化电机位置
+        # Initialize motor positions
         self.position = {}
-        # 初始化运行参数
+        # Initialize runtime parameters
         self.motor_param = motion_prm['motor_param']
         self.pls_per_mm = {}
         for key, value in self.motor_param.items():
@@ -75,7 +75,7 @@ class GASAxis(ATCommand):
             self.home_param[key][5] = round(value[5] * self.pls_per_mm[key] / 1000, 3)
             # dHomeAcc
             self.home_param[key][6] = round(value[6] * self.pls_per_mm[key] / 1000 / 1000, 3)
-        # # 初始化电机正限位信号
+        # # Initialize positive hard-limit signals for each motor
         # for key, value in self.ip.items():
         #     ret = self.GA_LmtsOn(key, 0)
         #     if ret == b'AT+Error':

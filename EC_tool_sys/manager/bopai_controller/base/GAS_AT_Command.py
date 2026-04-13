@@ -91,12 +91,12 @@ class ATCommand:
 
     def GA_SetHardLimN(self, iAxisNum, nIOIndex, nCardIndex=0):
         """
-        设置轴的负向限位传感器
+        Set the negative limit sensor for the axis.
 
         Args:
-            iAxisNum: 轴号
-            nIOIndex: 设置的输入口编号。
-            nCardIndex: 板号
+            iAxisNum: Axis number
+            nIOIndex: Configured input channel index
+            nCardIndex: Card index
         """
         AT_command = f"AT+SetHardLimN+{iAxisNum}+1+{nCardIndex}+{nIOIndex}"
         flag = self.send_message(AT_command)
@@ -104,12 +104,12 @@ class ATCommand:
     
     def GA_SetHardLimP(self, iAxisNum, nIOIndex, nCardIndex=0):
         """
-        设置轴的正向限位传感器
+        Set the positive limit sensor for the axis.
 
         Args:
-            iAxisNum: 轴号
-            nIOIndex: 设置的输入口编号。
-            nCardIndex: 板号
+            iAxisNum: Axis number
+            nIOIndex: Configured input channel index
+            nCardIndex: Card index
         """
         AT_command = f"AT+SetHardLimP+{iAxisNum}+1+{nCardIndex}+{nIOIndex}"
         flag = self.send_message(AT_command)

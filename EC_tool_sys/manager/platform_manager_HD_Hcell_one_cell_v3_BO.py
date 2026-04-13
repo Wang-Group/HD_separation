@@ -791,7 +791,7 @@ class PlatformManager:
                                  test_time = 1200,  # s
                                  iR_comp = False,
                                  iR_comp_coef = 0.85,
-                                 frq  = 5  # Hz, 1秒采集5个点
+                                            frq  = 5  # Hz, collect 5 points per second
                                  )
         channel_port.save_result(exp_index = exp_index,
                                  save_path = self.syn_file_name)

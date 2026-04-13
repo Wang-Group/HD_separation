@@ -129,7 +129,7 @@ class BaseDevice:
 
             # time.sleep(0.1)
             if feedback[2] == 0:
-                # self.logger.info('电机正常')
+                # self.logger.info('Motor is running normally')
                 break
             # time.sleep(0.2)
 

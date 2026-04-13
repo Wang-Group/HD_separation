@@ -220,7 +220,7 @@ class ElectroStation:
                                   fInitE = initial_potential,
                                   fFinalE = final_potential,
                                   fScanRate = scan_rate / 1000,
-                                  fFrq = scan_rate / 1000 * 500)  # 2mV采样一次
+                                  fFrq = scan_rate / 1000 * 500)  # Sample once every 2 mV
         time.sleep(2)
 
         self.client.DeviceStart()
@@ -314,7 +314,7 @@ class ElectroStation:
                     test_time,  # s
                     iR_comp = False,
                     iR_comp_coef = 0.9,
-                    frq  = 5  # Hz, 1秒采集5个点
+                    frq  = 5  # Hz, collect 5 points per second
                     ):
         """
         Run IT test.
@@ -369,7 +369,7 @@ class ElectroStation:
                     test_time: float,  # s
                     iR_comp = False,
                     iR_comp_coef = 0.9,
-                    frq  = 5,  # Hz, 1秒采集5个点
+                    frq  = 5,  # Hz, collect 5 points per second
                     ):
         """
         Run Et test.

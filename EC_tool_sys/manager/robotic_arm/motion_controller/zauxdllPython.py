@@ -2,7 +2,7 @@ import ctypes
 import platform
 import os 
 
-# 运行环境判断
+# Detect the runtime environment
 
 systype = platform.system()
 if systype == 'Windows':
@@ -30,11 +30,11 @@ class ZAUXDLL:
 
     def ZAux_OpenEth(self, ipaddr):
         '''
-        :Description:与控制器建立链接。
+        :Description:Establish a connection to the controller.
 
-        :param ipaddress:IP地址,字符串的方式输入。  
+        :param ipaddress: IP address provided as a string.
 
-        :Return:错误码。                            
+        :Return: Error code.
 
        '''
         ip_bytes = ipaddr.encode('utf-8')
@@ -44,9 +44,9 @@ class ZAUXDLL:
 
     def ZAux_Close(self):
         '''
-        :Description:关闭控制器链接。
+        :Description:Close the controller connection.
 
-        :Return:错误码。
+        :Return: Error code.
 
        '''
         ret = zauxdll.ZAux_Close(self.handle)
@@ -54,13 +54,13 @@ class ZAUXDLL:
 
     def ZAux_Direct_SetOp(self, ionum, iValue):
         '''
-        :Description:操作输出信号。
+        :Description:Set an output signal.
 
-        :param ionum:输出口编号。  
+        :param ionum: Output channel index.
 
-        :param iValue:输出口状态。 
+        :param iValue: Output channel state.
 
-        :Return:错误码。 
+        :Return: Error code.
 
        '''
 
@@ -69,13 +69,13 @@ class ZAUXDLL:
 
     def ZAux_Direct_GetIn(self, ionum):
         '''
-        :Description:读取输入信号。
+        :Description:Read an input signal.
 
-        :param ionum:输入口编号。
+        :param ionum: Input channel index.
 
-        :param iValue:输入口状态。
+        :param iValue: Input channel state.
 
-        :Return:错误码。
+        :Return: Error code.
 
        '''
 
@@ -85,13 +85,13 @@ class ZAUXDLL:
 
     def ZAux_Direct_SetAtype(self, iaxis, iValue):
         '''
-        :Description:设置轴类型。
+        :Description:Set the axis type.
 
-        :param iaxis:轴号。
+        :param iaxis: Axis number.
 
-        :param iValue:轴类型。   
+        :param iValue: Axis type.
 
-        :Return:错误码。 
+        :Return: Error code.
         '''
 
         ret = zauxdll.ZAux_Direct_SetAtype(
@@ -100,13 +100,13 @@ class ZAUXDLL:
 
     def ZAux_Direct_SetAccel(self, iaxis, fValue):
         '''
-        :Description:设置加速度。
+        :Description:Set acceleration.
 
-        :param iaxis:轴号 
+        :param iaxis: Axis number.
 
-        :param fValue:设定值   
+        :param fValue: Configured value.
 
-        :Return:错误码。 
+        :Return: Error code.
 
         '''
         ret = zauxdll.ZAux_Direct_SetAccel(
@@ -115,13 +115,13 @@ class ZAUXDLL:
 
     def ZAux_Direct_SetDpos(self, iaxis, fValue):
         '''
-        :Description:设置轴位置。
+        :Description:Set the axis position.
 
-        :param iaxis:轴号。        
+        :param iaxis: Axis number.
 
-        :param fValue:设置的坐标值。  
+        :param fValue: Position value to set.
 
-        :Return:错误码。  
+        :Return: Error code.
 
         '''
 
@@ -131,13 +131,13 @@ class ZAUXDLL:
 
     def ZAux_Direct_SetMpos(self, iaxis, fValue):
         '''
-        :Description:设置轴位置。
+        :Description:Set the machine position of the axis.
 
-        :param iaxis:轴号。
+        :param iaxis: Axis number.
 
-        :param fValue:设置的坐标值。
+        :param fValue: Position value to set.
 
-        :Return:错误码。
+        :Return: Error code.
 
         '''
 
@@ -147,13 +147,13 @@ class ZAUXDLL:
 
     def ZAux_Direct_SetUnits(self, iaxis, fValue):
         '''
-        :Description:设置 脉冲当量。
+        :Description:Set the pulse equivalent.
 
-        :param iaxis:轴号。       
+        :param iaxis: Axis number.
 
-        :param fValue:设置的当量值。     
+        :param fValue: Pulse-equivalent value to set.
 
-        :Return:错误码。 
+        :Return: Error code.
 
         '''
 
@@ -163,13 +163,13 @@ class ZAUXDLL:
 
     def ZAux_Direct_SetDecel(self, iaxis, fValue):
         '''
-        :Description:设置减速度。
+        :Description:Set deceleration.
 
-        :param iaxis:轴号。  
+        :param iaxis: Axis number.
 
-        :param fValue:设置的减速度值。 
+        :param fValue: Deceleration value to set.
 
-        :Return:错误码。 
+        :Return: Error code.
         '''
 
         ret = zauxdll.ZAux_Direct_SetDecel(
@@ -178,13 +178,13 @@ class ZAUXDLL:
 
     def ZAux_Direct_SetSpeed(self, iaxis, fValue):
         '''
-        :Description:设置轴速度,单位为units/s,当多轴运动时,作为插补运动的速度。
+        :Description:Set axis speed in units/s; for multi-axis motion this is used as the interpolation speed.
 
-        :param iaxis:轴号。     
+        :param iaxis: Axis number.
 
-        :param fValue:设置的速度值。      
+        :param fValue: Speed value to set.
 
-        :Return:错误码。 
+        :Return: Error code.
 
         '''
 
@@ -195,13 +195,13 @@ class ZAUXDLL:
 
     def ZAux_Direct_SetSramp(self, iaxis, fValue):
         '''
-        :Description:设置 S曲线设置。 0-梯形加减速。
+        :Description:Set the S-curve profile. A value of 0 means trapezoidal acceleration/deceleration.
 
-        :param iaxis:轴号。       
+        :param iaxis: Axis number.
 
-        :param fValue:S曲线平滑时间MS。      
+        :param fValue: S-curve smoothing time in ms.
 
-        :Return:错误码。 
+        :Return: Error code.
 
         '''
         ret = zauxdll.ZAux_Direct_SetSramp(
@@ -210,13 +210,13 @@ class ZAUXDLL:
 
     def ZAux_Direct_SetDatumIn(self, iaxis, iValue):
         '''
-        :Description:设置原点信号   设定-1为取消原点设置。
+        :Description:Set the home signal. A value of -1 cancels the home-signal setting.
 
-        :param iaxis:轴号。  
+        :param iaxis: Axis number.
 
-        :param iValue: 设置的原点信号输入口编号。  
+        :param iValue: Input channel index for the home signal.
 
-        :Return:错误码。  
+        :Return: Error code.
 
         '''
 
@@ -226,13 +226,13 @@ class ZAUXDLL:
 
     def ZAux_Direct_SetCreep(self, iaxis, fValue):
         '''
-        :Description:设置回零爬行速度。
+        :Description:Set the homing creep speed.
 
-        :param iaxis:轴号。       
+        :param iaxis: Axis number.
 
-        :param fValue: 设置的速度值。
+        :param fValue: Speed value to set.
 
-        :Return:错误码。 
+        :Return: Error code.
 
         '''
         value = ctypes.c_float()
@@ -242,13 +242,13 @@ class ZAUXDLL:
 
     def ZAux_Direct_Single_Datum(self, iaxis, imode):
         '''
-        :Description:控制器方式回零。
+        :Description:Run controller-based homing.
 
-        :param iaxis:轴号。
+        :param iaxis: Axis number.
 
-        :param imode:模式。  
+        :param imode: Homing mode.
 
-        :Return:错误码。
+        :Return: Error code.
 
         '''
 
@@ -258,11 +258,11 @@ class ZAUXDLL:
 
     def ZAux_Direct_GetHomeStatus(self, iaxis):
         '''
-        :Description:回零完成状态。
+        :Description:Get the homing completion status.
 
-        :param iaxis:轴号。  
+        :param iaxis: Axis number.
 
-        :Return:错误码,回零完成标志 0-回零异常 1回零成功。
+        :Return: Error code and homing status flag; 0 means homing error and 1 means success.
 
         '''
         value = (ctypes.c_int)()
@@ -272,11 +272,11 @@ class ZAUXDLL:
 
     def ZAux_Direct_GetIfIdle(self, iaxis):
         '''
-        :Description:读取轴是否运动结束。
+        :Description:Read whether axis motion has finished.
 
-        :param iaxis:轴号。        
+        :param iaxis: Axis number.
 
-        :Return:错误码,返回运行状态 0-运动中 -1 停止。 
+        :Return: Error code and motion state; 0 means moving and -1 means stopped.
 
         '''
         value = ctypes.c_int()
@@ -286,11 +286,11 @@ class ZAUXDLL:
 
     def ZAux_Direct_GetDpos(self, iaxis):
         '''
-        :Description: 读取轴当前位置或称控制器发送的需求位置，单位 units。
+        :Description:Read the current axis position, or the requested position sent by the controller, in units.
 
-        :param iaxis:轴号。
+        :param iaxis: Axis number.
 
-        :Return:错误码,返回运行状态 0-运动中 -1 停止。
+        :Return: Error code and position value.
 
         '''
         value = ctypes.c_float()
@@ -301,11 +301,11 @@ class ZAUXDLL:
 
     def ZAux_Direct_GetSpeed(self, iaxis):
         '''
-        :Description:读取轴速度。
+        :Description:Read the axis speed.
 
-        :param iaxis:轴号。
+        :param iaxis: Axis number.
 
-        :Return:错误码,返回运行状态 0-运动中 -1 停止。
+        :Return: Error code and speed value.
 
         '''
         value = ctypes.c_float()
@@ -315,13 +315,13 @@ class ZAUXDLL:
 
     def ZAux_Direct_GetParam(self, sParam, iaxis):
         '''
-        :Description:通参数 通用的参数读取函数, sParam:填写参数名称。
+        :Description:Generic parameter-reading function; fill in the parameter name in sParam.
 
-        :param sParam:轴参数名称 "DPOS" ...   
+        :param sParam: Axis parameter name, such as "DPOS".
 
-        :param iaxis:轴号   
+        :param iaxis: Axis number.
 
-        :Return:错误码,读取的返回值。,float
+        :Return: Error code and the retrieved float value.
 
         '''
         value = ctypes.c_float()
@@ -332,15 +332,15 @@ class ZAUXDLL:
 
     def ZAux_Direct_Move(self, imaxaxises, piAxislist, pfDisancelist):
         '''
-        :Description:多轴相对直线插补  20130901 以后的控制器版本支持。
+        :Description:Multi-axis relative linear interpolation, supported by controller versions after 20130901.
 
-        :param imaxaxises:参与轴数。 
+        :param imaxaxises: Number of participating axes.
 
-        :param piAxislist:轴列表。 
+        :param piAxislist: Axis list.
 
-        :param pfDisancelist:距离列表。  
+        :param pfDisancelist: Distance list.
 
-        :Return:错误码。
+        :Return: Error code.
 
         '''
         Axislistarray = (ctypes.c_int * len(piAxislist))(*piAxislist)
@@ -352,13 +352,13 @@ class ZAUXDLL:
 
     def ZAux_Direct_SetInvertStep(self, iaxis, iValue):
         '''
-        :Description:设置脉冲输出模式。
+        :Description:Set the pulse output mode.
 
-        :param iaxis:轴号。        
+        :param iaxis: Axis number.
 
-        :param iValue:设定的脉冲输出模式 脉冲+方向/双脉冲。        
+        :param iValue: Pulse output mode, such as pulse+direction or dual-pulse.
 
-        :Return:错误码。 
+        :Return: Error code.
         '''
 
         ret = zauxdll.ZAux_Direct_SetInvertStep(
@@ -367,15 +367,15 @@ class ZAUXDLL:
 
     def ZAux_Direct_SetParam(self, sParam, iaxis, fset):
         '''
-        :Description:通用的参数修改函数 sParam: 填写参数名称。
+        :Description:Generic parameter-setting function; fill in the parameter name in sParam.
 
-        :param sParam:轴参数名称 "DPOS" ...   
+        :param sParam: Axis parameter name, such as "DPOS".
 
-        :param iaxis:轴号   
+        :param iaxis: Axis number.
 
-        :param fset:设定值  
+        :param fset: Value to set.
 
-        :Return:错误码。
+        :Return: Error code.
 
         '''
         _str = sParam.encode('utf-8')
@@ -385,13 +385,13 @@ class ZAUXDLL:
 
     def ZAux_Direct_Single_MoveAbs(self, iaxis, fdistance):
         '''
-        :Description:单轴绝对运动。
+        :Description:Single-axis absolute motion.
 
-        :param iaxis:轴号。  
+        :param iaxis: Axis number.
 
-        :param fdistance:距离。   
+        :param fdistance: Distance value.
 
-        :Return:错误码。
+        :Return: Error code.
 
         '''
 
@@ -401,15 +401,15 @@ class ZAUXDLL:
 
     def ZAux_Direct_MoveAbs(self, imaxaxises, piAxislist, pfDisancelist):
         '''
-        :Description:绝对多轴直线插补  20130901 以后的控制器版本支持。
+        :Description:Absolute multi-axis linear interpolation, supported by controller versions after 20130901.
 
-        :param imaxaxises:参与轴数。 
+        :param imaxaxises: Number of participating axes.
 
-        :param piAxislist:轴列表。 
+        :param piAxislist: Axis list.
 
-        :param pfDisancelist:距离列表。  
+        :param pfDisancelist: Distance list.
 
-        :Return:错误码。
+        :Return: Error code.
 
         '''
         Axislistarray = (ctypes.c_int * len(piAxislist))(*piAxislist)

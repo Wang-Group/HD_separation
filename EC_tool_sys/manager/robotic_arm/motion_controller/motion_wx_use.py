@@ -13,7 +13,7 @@ class MyError(Exception):
 class MotionController:
     def __init__(self, param, logger: logging.Logger):
         
-        # 初始化运动控制器
+        # Initialize the motion controller
         self.ipaddr = param['controller_ipaddr']
         self.controller_axis = param['controller_axis']
         self.param_x = param['param_x']
@@ -29,7 +29,7 @@ class MotionController:
             if ret != 0:
                 raise MyError('fail to connect to the ethernet', ret)
         except MyError as e:
-            # 处理自定义异常
+            # Handle the custom exception
             self.logger.error(f'error: {e}, code = {e.code}')
             raise e
 
@@ -38,7 +38,7 @@ class MotionController:
             if ret != 0:
                 raise MyError("output error", code=ret)
         except MyError as e:
-            # 处理自定义异常
+            # Handle the custom exception
             self.logger.error(f'error: {e}, code = {e.code}')
             raise e
         
@@ -54,7 +54,7 @@ class MotionController:
             raise e
 
     def home(self):
-        # x轴回零
+        # Home the x axis
         ret = self.zaux.ZAux_Direct_SetOp(self.op2, 0)
         time.sleep(0.2)
         self.zaux.ZAux_Direct_SetOp(self.op2, 1)
@@ -70,7 +70,7 @@ class MotionController:
         #         if ret[1].value == 1:
         #             i = i + 1
         #             if i >= 1000:
-        #                 print('回零点成功')
+        #                 print('Homing point reached successfully')
         #                 break
         #         else:
         #             i = 0
@@ -81,10 +81,10 @@ class MotionController:
         self.reset_ports()
 
     def reset_ports(self):
-        # 关闭回零输出口
+        # Disable the homing output port
         self.zaux.ZAux_Direct_SetOp(self.op2, 0)
         time.sleep(0.1)
-        # 回零成功之后清零X的Mpos和Dpos
+        # Reset X-axis Mpos and Dpos after homing succeeds
         self.zaux.ZAux_Direct_SetDpos(self.controller_axis, 0)
         time.sleep(0.1)
         self.zaux.ZAux_Direct_SetMpos(self.controller_axis, 0)
@@ -101,7 +101,7 @@ class MotionController:
                 break
 
     def set_motion_params(self):
-        # 设置运动参数
+        # Set motion parameters
         self.zaux.ZAux_Direct_SetAtype(self.controller_axis, int(self.param_x[0]))
         time.sleep(0.1)
         self.zaux.ZAux_Direct_SetInvertStep(self.controller_axis, int(self.param_x[1]))
@@ -116,7 +116,7 @@ class MotionController:
         time.sleep(0.1)
 
     def single_move_abs(self, position: float):
-        # 单轴绝对运动
+        # Single-axis absolute motion
         ret = self.zaux.ZAux_Direct_Single_MoveAbs(
             self.controller_axis, position)
         self.check_command(ret)
@@ -137,7 +137,7 @@ class MotionController:
             if mpos != position:
                 raise MyError(f'{self.controller_axis} does not move to the position', ret)
         except Exception as e:
-            # 处理其他异常
+            # Handle other exceptions
             self.logger.error('error：', e)
-            # 抛出异常停止程序继续往下执行
+            # Re-raise the exception to stop further execution
             raise e

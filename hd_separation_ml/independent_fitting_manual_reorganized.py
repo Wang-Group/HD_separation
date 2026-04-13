@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-独立拟合脚本 - 重新组织版本
-将A, B, C, C_dl, R_s对每个样本都视为独立变量进行拟合
+Independent fitting script - reorganized version.
+Treat A, B, C, C_dl, and R_s as independent variables for each sample.
 """
 
 import os
@@ -10,7 +10,7 @@ import json
 import numpy as np
 import pandas as pd
 
-# 确保工作目录在脚本所在目录
+# Ensure the working directory is the script directory
 script_dir = os.path.dirname(os.path.abspath(__file__))
 os.chdir(script_dir)
 print(f"工作目录: {os.getcwd()}")
@@ -20,25 +20,25 @@ import matplotlib.pyplot as plt
 import warnings
 warnings.filterwarnings('ignore')
 
-# 设置matplotlib字体，使用系统中常见的字体
+# Configure matplotlib fonts using common system fonts
 plt.rcParams["font.family"] = ["Arial", "Microsoft YaHei", "SimHei", "sans-serif"]
-plt.rcParams['axes.unicode_minus'] = False  # 确保负号正确显示
+plt.rcParams['axes.unicode_minus'] = False  # Ensure minus signs render correctly
 
-# 导入模块化组件
+# Import modular components
 from improved_eis_data_loader import ImprovedEISDataLoader
 from starting_point_generator import StartingPointGenerator
 
-# 目录配置
-DATA_DIR = "data_extraction/all_data/EIS"  # 更新为新的数据路径
+# Directory configuration
+DATA_DIR = "data_extraction/all_data/EIS"  # Updated to the new data path
 CSV_PATH = 'independent_fitting_results.csv'
 # HISTORICAL_RESULTS_PATH = 'historical_fitting_results.csv'
 # RS_JSON_PATH = 'data_extraction/overpotentials.json'
 
 class IndependentFitter:
-    """独立拟合器，将所有参数视为独立变量"""
+    """Independent fitter that treats all parameters as independent variables."""
     
     # ============================================================================
-    # 1. 初始化方法
+    # 1. Initialization methods
     # ============================================================================
     
     def __init__(self, aggregated_json_dir='aggregated_json', debug_mass_transport=False):
@@ -47,41 +47,41 @@ class IndependentFitter:
         self.F = 96487
         self.debug_mass_transport = debug_mass_transport
         
-        # 初始化组件
+        # Initialize components
         self.data_loader = ImprovedEISDataLoader(DATA_DIR, json_dir=None)
         self.point_generator = StartingPointGenerator()
         
-        # 历史结果存储（用于主动学习）
+        # Historical result storage (for active learning)
         self.historical_results = []
         
-        # 目录路径
+        # Directory path
         self.aggregated_json_dir = aggregated_json_dir
-        # 工作电极面积（假设为1 cm2）
+        # Working-electrode area (assumed to be 1 cm2)
         self.working_electrode_area = 1.0
         
-        # 加载固定的Rs值
+        # Load fixed Rs values
         self.rs_values = self.load_rs_values()
     
     
     # ============================================================================
-    # 2. 数据加载和验证方法
+    # 2. Data loading and validation methods
     # ============================================================================
     
     def load_rs_values(self):
-        """从ML-20250930(1)的all_substances.json加载固定的Rs值"""
+        """Load fixed Rs values from all_substances.json in ML-20250930(1)."""
         try:
             import json
             with open("data_extraction/all_substances.json" , 'r', encoding='utf-8') as f:
                 data = json.load(f)
             
-            # 创建正向和反向映射
+            # Create forward and reverse mappings
             rs_mapping = {}
             for entry in data:
                 substance1 = entry['substance1']
                 substance2 = entry['substance2']
                 ir_value = entry['ir_value']
                 
-                # 同时存储正向和反向
+                # Store both forward and reverse mappings
                 forward_name = f"{substance1}-{substance2}"
                 reverse_name = f"{substance2}-{substance1}"
                 rs_mapping[forward_name] = ir_value
@@ -96,13 +96,13 @@ class IndependentFitter:
             return {}
     
     def get_fixed_rs(self, sample_name):
-        """获取样本的固定Rs值，如果没有则返回None"""
+        """Get the fixed Rs value for a sample, or return None if unavailable."""
         if sample_name in self.rs_values:
             return self.rs_values[sample_name]
         return None
     
     def validate_eis_data(self, freq, Z_exp):
-        """验证EIS数据的有效性"""
+        """Validate whether the EIS data are usable."""
         if freq is None:
             return False, "无有效数据"
         
@@ -115,25 +115,25 @@ class IndependentFitter:
         return True, "数据有效"
     
     # def load_historical_results(self):
-    #     """加载历史拟合结果用于主动学习"""
+    #     """Load historical fitting results for active learning."""
     #     if os.path.exists(HISTORICAL_RESULTS_PATH):
     #         try:
     #             df = pd.read_csv(HISTORICAL_RESULTS_PATH)
     #             self.historical_results = df.to_dict('records')
-    #             print(f"加载了 {len(self.historical_results)} 条历史结果")
+    #             print(f"Loaded {len(self.historical_results)} historical results")
     #         except Exception as e:
-    #             print(f"无法加载历史结果: {e}")
+    #             print(f"Failed to load historical results: {e}")
     #             self.historical_results = []
     #     else:
     #         self.historical_results = []
     
     # ============================================================================
-    # 3. 参数估计和初始化方法
+    # 3. Parameter estimation and initialization methods
     # ============================================================================
         
     def get_initial_parameters_from_generator(self, freq, Z_exp, sample_name=None):
-        """使用starting_point_generator生成初始参数"""
-        # 从频率最高的imag(Z)<=0的点估算Rs
+        """Generate initial parameters with starting_point_generator."""
+        # Estimate Rs from the highest-frequency point with imag(Z) <= 0
         mask_neg_imag = Z_exp.imag <= 0
         if np.any(mask_neg_imag):
             freq_neg_imag = freq[mask_neg_imag]
@@ -141,10 +141,10 @@ class IndependentFitter:
             max_freq_idx = np.argmax(freq_neg_imag)
             R_s_est = Z_neg_imag[max_freq_idx].real
         else:
-            R_s_est = max(np.real(Z_exp[0]), 0.1)  # 备用方法
-        C_dl_est = 400e-6  # 400 uF/cm2 (按用户要求)
+            R_s_est = max(np.real(Z_exp[0]), 0.1)  # Fallback method
+        C_dl_est = 400e-6  # 400 uF/cm2 (per user request)
         
-        # 使用starting_point_generator生成多样化的初始参数
+        # Use starting_point_generator to create diverse initial parameters
         print(f"  使用starting_point_generator生成初始参数")
         diverse_points = self.point_generator.generate_diverse_points(
             n_points=50, 
@@ -152,45 +152,45 @@ class IndependentFitter:
             estimated_R_s=R_s_est
         )
         
-        # 返回所有生成的starting points，让调用者决定如何处理
+        # Return all generated starting points and let the caller decide how to use them
         print(f"  生成了 {len(diverse_points)} 个初始参数点")
         return diverse_points
     
     # ============================================================================
-    # 4. 核心拟合算法方法
+    # 4. Core fitting algorithm methods
     # ============================================================================
     
     def unified_objective_function(self, params, freq, Z_exp, debug=False):
-        """目标函数：考虑EIS拟合误差，高频区域增加权重
+        """Objective function that considers EIS fitting error and adds weight to the high-frequency region.
         
-        参数:
-            params: 拟合参数 [A, B, C, C_dl, R_s] 或 [A, B, C, C_dl, R_s, W_sigma]
-            freq: 频率数组 (已经过滤过虚部<=0的点)
-            Z_exp: 实验阻抗数据 (已经过滤过虚部<=0的点)
-            debug: 是否输出调试信息
+        Args:
+            params: Fitting parameters [A, B, C, C_dl, R_s] or [A, B, C, C_dl, R_s, W_sigma]
+            freq: Frequency array (already filtered to imag <= 0 points)
+            Z_exp: Experimental impedance data (already filtered to imag <= 0 points)
+            debug: Whether to print debug information
         """
         try:
-            # 直接使用传入的数据，不需要再次过滤
+            # Use the input data directly; no need to filter again
             Z_model = self.impedance_from_ABC(freq, params)
             
-            # 计算加权误差
-            # 只对1000Hz以上的高频区域增加权重
+            # Calculate weighted error
+            # Only increase weights in the high-frequency region above 1000 Hz
             weights = np.ones_like(freq)
-            weights[freq > 1000] = 10.0  # 高频区域(>1kHz)权重×10（提高以更好拟合小半圆）
+            weights[freq > 1000] = 10.0  # Apply 10x weight above 1 kHz to better fit the small semicircle
             
-            # 计算加权残差
+            # Calculate weighted residuals
             residual_real = np.abs(Z_exp.real - Z_model.real)
             residual_imag = np.abs(Z_exp.imag - Z_model.imag)
             
             weighted_error = np.sum(weights * (residual_real**2 + residual_imag**2))
             
-            # 计算标准R2用于显示（不加权）
+            # Compute the standard R2 for reporting (unweighted)
             r_squared = self.calculate_r_squared(Z_exp, Z_model)
             
             if debug:
                 print(f"    调试: R2={r_squared:.4f}, 加权误差={weighted_error:.4e}")
             
-            # 返回原始R2值用于显示
+            # Store the raw R2 value for reporting
             self._last_r_squared = r_squared
             
             return weighted_error
@@ -201,65 +201,65 @@ class IndependentFitter:
             return 1e10
 
     def calculate_r_squared(self, Z_exp, Z_fit):
-        """计算拟合优度R2值 - 分别计算实部和虚部的R2"""
-        # 分别计算实部和虚部的R2
+        """Calculate fit quality R2 by averaging the real-part and imaginary-part R2 values."""
+        # Compute R2 separately for the real and imaginary parts
         Z_exp_real = np.real(Z_exp)
         Z_exp_imag = np.imag(Z_exp)
         Z_fit_real = np.real(Z_fit)
         Z_fit_imag = np.imag(Z_fit)
         
-        # 计算实部R2
+        # Compute real-part R2
         ss_res_real = np.sum((Z_exp_real - Z_fit_real)**2)
         ss_tot_real = np.sum((Z_exp_real - np.mean(Z_exp_real))**2)
         r2_real = 1 - (ss_res_real / ss_tot_real) if ss_tot_real > 0 else 0
         
-        # 计算虚部R2
+        # Compute imaginary-part R2
         ss_res_imag = np.sum((Z_exp_imag - Z_fit_imag)**2)
         ss_tot_imag = np.sum((Z_exp_imag - np.mean(Z_exp_imag))**2)
         r2_imag = 1 - (ss_res_imag / ss_tot_imag) if ss_tot_imag > 0 else 0
         
-        # 返回平均值
+        # Return the average value
         return (r2_real + r2_imag) / 2
 
     def fit_single_optimization(self, freq, Z_exp, initial_params, rs_initial=None):
         """
-        单次优化拟合参数（包含Warburg扩散）
+        Fit parameters with a single optimization pass, including Warburg diffusion.
         
         Args:
-            freq: 频率数组
-            Z_exp: 实验阻抗数据
-            initial_params: 初始参数 [A, B, C, C_dl, R_s] (基础模型)
-            rs_initial: Rs初始值（从all_substances.json），用于设置Rs优化范围
+            freq: Frequency array
+            Z_exp: Experimental impedance data
+            initial_params: Initial parameters [A, B, C, C_dl, R_s] for the base model
+            rs_initial: Initial Rs value from all_substances.json, used when setting the Rs optimization range
         
         Returns:
-            拟合参数数组 [A, B, C, C_dl, R_s, W_sigma] (6参数)
+            Fitted parameter array [A, B, C, C_dl, R_s, W_sigma] (6 parameters)
         """
         
-        # 使用Warburg模型（6参数：去掉高频RC）
+        # Use the Warburg model (6 parameters, without the high-frequency RC term)
         bounds = self.point_generator.get_parameter_bounds(
             include_extended=True, 
             rs_initial=rs_initial
         )
         
-        # 初始参数：基础5个 + Warburg
+        # Initial parameters: base 5 parameters plus Warburg
         if len(initial_params) == 5:
-            # 扩展初始参数
+            # Extend the initial parameter list
             A, B, C, C_dl, R_s = initial_params
-            # 初始猜测：中等的W_sigma
+            # Initial guess: moderate W_sigma
             initial_params_extended = [A, B, C, C_dl, R_s, 10.0]
         else:
             initial_params_extended = initial_params
         
-        # 确保初始参数在边界内
+        # Ensure the initial parameters stay within bounds
         initial_params_extended = np.array(initial_params_extended)
         for i, (low, high) in enumerate(bounds):
             initial_params_extended[i] = np.clip(initial_params_extended[i], low, high)
         
-        # 定义目标函数（6参数）
+        # Define the objective function for the 6-parameter model
         def objective_extended(params_6):
             return self.unified_objective_function(params_6, freq, Z_exp)
         
-        # 优化策略：先用L-BFGS-B快速优化，失败则用differential_evolution
+        # Optimization strategy: try fast L-BFGS-B first, then fall back to differential_evolution
         from scipy.optimize import minimize
         result = minimize(
             objective_extended,
@@ -272,7 +272,7 @@ class IndependentFitter:
         if result.success:
             params = result.x
         else:
-            # 如果L-BFGS-B失败，回退到differential_evolution
+            # If L-BFGS-B fails, fall back to differential_evolution
             print(f"    L-BFGS-B失败，回退到differential_evolution")
             result_de = differential_evolution(
                 objective_extended,
@@ -281,18 +281,18 @@ class IndependentFitter:
             )
             params = result_de.x
         
-        # 计算拟合质量
+        # Evaluate fit quality
         Z_fit = self.impedance_from_ABC(freq, params)
         r_squared = self.calculate_r_squared(Z_exp, Z_fit)
         
-        # 计算roughness因子（基于C_dl）
-        A, B, C, C_dl, R_s = params[:5]  # 取前5个参数
+        # Estimate the roughness factor from C_dl
+        A, B, C, C_dl, R_s = params[:5]  # Use the first five parameters
         standard_c_dl = 25e-6  # 25 uF/cm2
         if C_dl > 1e-12:
             estimated_roughness = C_dl / standard_c_dl
             estimated_roughness = max(0.1, min(estimated_roughness, 1000.0))
         else:
-            estimated_roughness = 25.0  # 默认值
+            estimated_roughness = 25.0  # Default value
         
         return {
             'params': params,
@@ -302,23 +302,23 @@ class IndependentFitter:
         }
     
     def fit_single_sample(self, freq, Z_exp, file_name, use_fixed_eta=True, use_unified_fitting=True):
-        """处理单个样本的完整拟合流程
+        """Run the full fitting workflow for a single sample.
         
-        参数:
-            freq: 频率数组
-            Z_exp: 实验阻抗数据
-            file_name: 文件名
-            use_fixed_eta: 是否使用固定过电位（保留参数以兼容性）
-            use_unified_fitting: 是否使用统一目标函数拟合（保留参数以兼容性）
+        Args:
+            freq: Frequency array
+            Z_exp: Experimental impedance data
+            file_name: File name
+            use_fixed_eta: Whether to use fixed overpotential (retained for compatibility)
+            use_unified_fitting: Whether to use the unified objective function (retained for compatibility)
         """
-        # 数据验证
+        # Validate the input data
         is_valid, message = self.validate_eis_data(freq, Z_exp)
         if not is_valid:
             print(f"  跳过: {message}")
             return None
         
-        # 过滤掉高频(>100Hz)且虚部大于0的数据点
-        # 这些点通常是仪器噪声或测量误差（电感效应）
+        # Filter out high-frequency (>100 Hz) points with positive imaginary parts
+        # These points are usually instrument noise or measurement error (inductive effects)
         mask_valid = ~((freq > 100) & (Z_exp.imag > 0))
         freq_filtered = freq[mask_valid]
         Z_exp_filtered = Z_exp[mask_valid]
@@ -328,15 +328,15 @@ class IndependentFitter:
             print(f"  过滤掉 {n_removed} 个高频(>100Hz)且虚部>0的点")
         print(f"  过滤后数据点数: {len(freq_filtered)} (原始: {len(freq)})")
         
-        # 获取Rs初始值（如果有）作为初始猜测
+        # Use the fixed Rs value as the initial guess when available
         rs_initial = self.get_fixed_rs(file_name)
         if rs_initial is not None:
             print(f"  Rs初始值: {rs_initial:.2f} Ohm (优化范围: 0.0001-10 Ohm)")
         
-        # 使用starting_point_generator生成初始参数
+        # Generate initial parameters with starting_point_generator
         initial_params_list = self.get_initial_parameters_from_generator(freq_filtered, Z_exp_filtered, file_name)
         
-        # 尝试所有starting points，选择最佳结果
+        # Try all starting points and keep the best result
         best_fit_result = None
         best_r_squared = -float('inf')
         
@@ -344,14 +344,14 @@ class IndependentFitter:
         print(f"  尝试 {n_initial_tries} 个不同的初始参数点...")
         
         for i, initial_params in enumerate(initial_params_list):
-            # 使用单次优化拟合（传递Rs初始值作为约束）
+            # Run single-pass optimization, passing the Rs initial value as a constraint hint
             fit_result = self.fit_single_optimization(freq_filtered, Z_exp_filtered, initial_params, rs_initial=rs_initial)
             
             if fit_result is not None and fit_result['r_squared'] > best_r_squared:
                 best_r_squared = fit_result['r_squared']
                 best_fit_result = fit_result
         
-        # 如果R2 < 0.99，再尝试100次随机初始化
+        # If R2 < 0.99, try 100 additional random initializations
         if best_r_squared < 0.99:
             print(f"  R2={best_r_squared:.4f} < 0.99, 再尝试100次随机初始化...")
             additional_params = self.point_generator.generate_diverse_points(
@@ -375,7 +375,7 @@ class IndependentFitter:
             print("  跳过: 拟合失败")
             return None
         
-        # 输出最佳拟合结果
+        # Report the best fit result
         params = fit_result['params']
         if len(params) == 6:
             A, B, C, C_dl, R_s, W_sigma = params
@@ -397,7 +397,7 @@ class IndependentFitter:
             else:
                 print(f"    W_sigma = {W_sigma:.6e} Ohm*s**(-1/2) (无扩散限制)")
         
-        # 检查参数是否到达边界
+        # Check whether any parameter has reached its bound
         bounds = self.point_generator.get_parameter_bounds(include_extended=has_warburg, rs_initial=rs_initial)
         param_names = ['A', 'B', 'C', 'C_dl', 'R_s']
         if has_warburg:
@@ -417,7 +417,7 @@ class IndependentFitter:
         
         print(f"    估算roughness因子: {fit_result['roughness_factor']:.2f}")
         
-        # 打印拟合质量
+        # Print fit quality
         r_squared = fit_result['r_squared']
         if r_squared >= 0.99:
             quality = "优秀"
@@ -430,11 +430,11 @@ class IndependentFitter:
         print(f"  最终R^2值: {r_squared:.4f}")
         print(f"  拟合质量: {quality}")
     
-        # 绘制拟合图（使用原始数据）
+        # Plot the fitting result using the original data
         Z_fit = self.impedance_from_ABC(freq, fit_result['params'])
         self.plot_fit_result(freq, Z_exp, Z_fit, file_name, fit_result['r_squared'])
         
-        # 构建结果字典（支持6参数Warburg模型）
+        # Build the result dictionary (supports the 6-parameter Warburg model)
         params = fit_result['params']
         result_dict = {
             'sample': file_name,
@@ -448,7 +448,7 @@ class IndependentFitter:
             'roughness_factor': fit_result['roughness_factor']
         }
         
-        # 如果有Warburg参数，添加到结果中
+        # Add the Warburg parameter when present
         if len(params) == 6:
             result_dict['W_sigma'] = params[5]
         else:
@@ -457,47 +457,47 @@ class IndependentFitter:
         return result_dict
 
     # ============================================================================
-    # 5. 阻抗和模型计算方法
+    # 5. Impedance and model calculation methods
     # ============================================================================
     
     def impedance_from_ABC(self, freq, params):
         """
-        计算阻抗，包含Warburg扩散项
+        Calculate impedance, including the Warburg diffusion term.
         
-        模型: Z = Rs + [Zf || Cdl] + Z_warburg
+        Model: Z = Rs + [Zf || Cdl] + Z_warburg
         
-        参数顺序: A, B, C, C_dl, R_s, W_sigma (6参数)
+        Parameter order: A, B, C, C_dl, R_s, W_sigma (6 parameters)
         """
         if len(params) == 5:
-            # 基础模型（向后兼容）
+            # Base model (backward compatible)
             A, B, C, C_dl, R_s = params
             W_sigma = 0
         elif len(params) == 6:
-            # Warburg模型
+            # Warburg model
             A, B, C, C_dl, R_s, W_sigma = params
         else:
             raise ValueError(f"参数数量错误: {len(params)}, 应为5或6")
         
         omega = 2 * np.pi * freq
         
-        # 1. Faradaic导纳和阻抗
+        # 1. Faradaic admittance and impedance
         Yf = A + B / (1j * omega + C)
         Zf = 1 / Yf
         
-        # 2. 双电层电容阻抗
+        # 2. Double-layer capacitance impedance
         Zdl = 1 / (1j * omega * C_dl)
         
-        # 3. Zf和Cdl并联
+        # 3. Parallel combination of Zf and Cdl
         Z_parallel = (Zf * Zdl) / (Zf + Zdl)
         
-        # 4. Warburg扩散阻抗 (无限扩散，OH-积累)
-        # W_sigma = 0 表示无扩散限制
+        # 4. Warburg diffusion impedance (semi-infinite diffusion, OH- accumulation)
+        # W_sigma = 0 means no diffusion limitation
         if W_sigma > 1e-6:
             Z_warburg = W_sigma / np.sqrt(omega) * (1 - 1j)
         else:
             Z_warburg = 0
         
-        # 总阻抗
+        # Total impedance
         Z_total = R_s + Z_parallel + Z_warburg
         
         return Z_total
@@ -505,14 +505,14 @@ class IndependentFitter:
 
     
     # ============================================================================
-    # 6. 辅助计算函数
+    # 6. Helper calculation functions
     # ============================================================================
 
     def calculate_abc_from_kinetic_params(self, k1_0, k2_0, k3_0, m, eta, roughness):
-        """从动力学参数计算A, B, C参数"""
+        """Calculate A, B, and C from kinetic parameters."""
         from scipy.optimize import fsolve
         
-        # 物理常数
+        # Physical constants
         RT_F = self.R * self.T / self.F
         gamma_max = 2e-9
         g = 2.0
@@ -525,12 +525,12 @@ class IndependentFitter:
         C_OH_surface_ratio = 1
         C_H2_surface_ratio = 1
         
-        # 调整后的反向速率常数
+        # Adjusted reverse rate constants
         k_1_0 = k1_0 / m
         k_2_0 = k2_0 * (m ** 2)
         k_3_0 = k3_0 * m
         
-        # 计算与电位相关的速率常数
+        # Calculate rate constants related to potential
         k1 = k1_0 * np.exp(-beta1 * eta / RT_F)
         k_1 = k_1_0 * np.exp((1 - beta1) * eta / RT_F)
         k2 = k2_0
@@ -551,7 +551,7 @@ class IndependentFitter:
         except:
             theta = 0.5
         
-        # 计算偏导数
+        # Calculate partial derivatives
         dk1_dE = -k1 * beta1 / RT_F
         dk_1_dE = k_1 * (1 - beta1) / RT_F
         dk3_dE = -k3 * beta3 / RT_F
@@ -583,7 +583,7 @@ class IndependentFitter:
                     - dk_3_dE * (1 - theta) * np.exp((1-lambda_) * g * theta) * C_H2_surface_ratio * C_OH_surface_ratio
         )
         
-        # 计算A, B, C参数
+        # Calculate the A, B, and C parameters
         A = -self.F * (dv1_dE + dv3_dE) * gamma_max * roughness
         B = -self.F * (dv1_dtheta + dv3_dtheta) * (dv1_dE - 2*dv2_dE - dv3_dE) * gamma_max * roughness
         C = -(dv1_dtheta - 2*dv2_dtheta - dv3_dtheta)
@@ -592,11 +592,11 @@ class IndependentFitter:
 
 
     def get_fixed_overpotential_from_lsv(self, sample_name):
-        """从LSV曲线读取固定过电位，在-10mA cm-2时的电位(vs Ag/AgCl)"""
-        # 处理样本名称
+        """Read fixed overpotential from the LSV curve at -10 mA cm-2 (vs Ag/AgCl)."""
+        # Normalize the sample name
         base_name = sample_name.replace('.json', '')
         
-        # 查找对应的JSON文件
+        # Find the matching JSON file
         json_files = os.listdir(self.aggregated_json_dir)
         matching_file = None
         
@@ -610,7 +610,7 @@ class IndependentFitter:
             return None
         
         try:
-            # 加载JSON数据
+            # Load the JSON data
             file_path = os.path.join(self.aggregated_json_dir, matching_file)
             with open(file_path, 'r') as f:
                 data = json.load(f)
@@ -619,20 +619,20 @@ class IndependentFitter:
                 print(f"  警告: 文件 {matching_file} 中没有LSV数据")
                 return None
             
-            # 提取LSV数据
+            # Extract LSV data
             lsv = data['LSV']
             E = np.array([pt['E(V)'] for pt in lsv])
             I = np.array([pt['i(A)'] for pt in lsv])
             
-            # 转换为电流密度 (mA/cm2)
+            # Convert to current density (mA/cm2)
             current_density = I * 1000 / self.working_electrode_area
-            target_current = -10.0  # mA/cm2 (HER阴极电流为负值)
+            target_current = -10.0  # mA/cm2 (HER cathodic current is negative)
             
-            # 找到第一个比目标电流更负的值
+            # Find the first value more negative than the target current
             for i, current in enumerate(current_density):
                 if current <= target_current:
                     E_at_target = E[i]
-                    # 计算过电位：过电位 = E + 0.098 + 0.0592*14
+                    # Calculate overpotential: overpotential = E + 0.098 + 0.0592*14
                     overpotential = E_at_target + 0.098 + 0.0592*14
                     
                     print(f"  从LSV获取过电位: {overpotential:.4f} V (电流: {current:.2f} mA/cm2)")
@@ -646,65 +646,65 @@ class IndependentFitter:
             return None
 
     def calculate_local_ph_correction(self, current_density, diffusion_layer_thickness=30e-6):
-        """计算传质限制导致的局部pH变化和过电位修正
+        """Calculate local pH change and overpotential correction caused by mass-transfer limitation.
         
-        参数:
-            current_density: 电流密度 (mA/cm2)
-            diffusion_layer_thickness: 扩散层厚度 (m)，默认30微米
+        Args:
+            current_density: Current density (mA/cm2)
+            diffusion_layer_thickness: Diffusion-layer thickness in meters, default 30 microns
             
-        返回:
-            ph_correction: pH变化量
-            eta_correction: 过电位修正量 (V)
+        Returns:
+            ph_correction: Change in pH
+            eta_correction: Overpotential correction (V)
         """
-        # 物理常数
-        F = self.F  # 法拉第常数 (C/mol)
-        R = self.R  # 气体常数 (J/(mol·K))
-        T = self.T  # 温度 (K)
+        # Physical constants
+        F = self.F  # Faraday constant (C/mol)
+        R = self.R  # Gas constant (J/(mol?K))
+        T = self.T  # Temperature (K)
         
-        # 氢氧根扩散系数 (m2/s)
-        D_OH = 5.3e-9  # 25°C下OH-的扩散系数
+        # Hydroxide diffusion coefficient (m2/s)
+        D_OH = 5.3e-9  # Diffusion coefficient of OH- at 25?C
         
-        # 体相pH (假设为14，即[OH-] = 1 M)
+        # Bulk-phase pH (assumed to be 14, i.e. [OH-] = 1 M)
         bulk_ph = 14.0
         bulk_oh_concentration = 10**(bulk_ph - 14)  # mol/L = 1 M
         
-        # 电流密度转换为A/m2
+        # Convert current density to A/m2
         current_density_A_m2 = current_density * 10  # mA/cm2 -> A/m2
         
-        # 计算OH-的表面浓度变化
-        # 根据Fick第一定律: J = -D * dC/dx
-        # 在稳态下: J = D * (C_surface - C_bulk) / δ
-        # 其中J = I/(n*F)，对于OH-，n=1
-        # 注意：HER反应中OH-是产物，所以表面浓度应该高于体相浓度
+        # Calculate the change in surface OH- concentration
+        # From Fick's first law: J = -D * dC/dx
+        # At steady state: J = D * (C_surface - C_bulk) / ?
+        # Here J = I/(n*F), and for OH- we use n = 1
+        # In HER, OH- is a product, so the surface concentration should exceed the bulk concentration
         oh_flux = abs(current_density_A_m2) / F  # mol/(m2·s)
         
-        # 计算表面OH-浓度（HER反应中OH-是产物，表面浓度升高）
-        # 注意单位换算：oh_flux是mol/(m2·s)，diffusion_layer_thickness是m，D_OH是m2/s
-        # 所以 oh_flux * diffusion_layer_thickness / D_OH 的单位是 mol/m3
-        # 需要转换为 mol/L，即除以1000
+        # Calculate surface OH- concentration (OH- is a HER product, so the surface concentration rises)
+        # Unit conversion note: oh_flux is mol/(m2?s), diffusion_layer_thickness is m, and D_OH is m2/s
+        # Therefore oh_flux * diffusion_layer_thickness / D_OH has units of mol/m3
+        # Convert to mol/L by dividing by 1000
         concentration_change = (oh_flux * diffusion_layer_thickness / D_OH) / 1000  # mol/L
         surface_oh_concentration = bulk_oh_concentration + concentration_change
-        surface_oh_concentration = max(surface_oh_concentration, 1e-10)  # 避免负值
+        surface_oh_concentration = max(surface_oh_concentration, 1e-10)  # Avoid negative values
         
-        # 计算局部pH
+        # Calculate local pH
         surface_ph = 14 + np.log10(surface_oh_concentration)
         ph_correction = surface_ph - bulk_ph
         
-        # 计算过电位修正
-        # 在HER反应中，OH-是产物，表面OH-浓度增加会促进反应
-        # 根据Nernst方程: E = E° - (RT/F) * ln([OH-])
-        # 当OH-浓度增加时，过电位应该减小（变得更负）
-        # 由于过电位为负值，要使其更负，传质修正应该是正值
+        # Calculate the overpotential correction
+        # In HER, OH- is a product, so an increased surface OH- concentration promotes the reaction
+        # From the Nernst equation: E = E? - (RT/F) * ln([OH-])
+        # As OH- concentration increases, the overpotential should decrease (become more negative)
+        # Because overpotential is negative here, making it more negative means the mass-transfer correction should be positive
         eta_correction = (R * T / F) * np.log(surface_oh_concentration / bulk_oh_concentration)
         
         return ph_correction, eta_correction
 
     # ============================================================================
-    # 9. 历史结果管理
+    # 9. Historical result management
     # ============================================================================
     
     # def save_historical_result(self, sample_name, params, r_squared, features):
-    #     """将拟合结果保存到历史数据库"""
+    #     """Save fitting results to the historical database."""
     #     result = {
     #         'sample': sample_name,
     #         'A': params[0],
@@ -718,27 +718,27 @@ class IndependentFitter:
         
     #     self.historical_results.append(result)
         
-    #     # 保存到CSV
+    #     # Save to CSV
     #     df = pd.DataFrame(self.historical_results)
     #     df.to_csv(HISTORICAL_RESULTS_PATH, index=False)
     
     def find_similar_samples(self, features, n_similar=5):
-        """基于特征从历史结果中查找相似样本"""
+        """Find similar samples from historical results based on features."""
         if not self.historical_results:
             return []
         
-        # 简单的基于关键特征的相似度计算
+        # Simple similarity calculation using key features
         similarities = []
         
         for hist_result in self.historical_results:
-            # 从历史结果中提取特征
+            # Extract features from historical results
             try:
                 hist_features = {
-                    'mean_Z_mag': hist_result.get('R_s', 1.0) * 10,  # 近似值
-                    'log_freq_range': 4.0  # 典型范围
+                    'mean_Z_mag': hist_result.get('R_s', 1.0) * 10,  # Approximate value
+                    'log_freq_range': 4.0  # Typical range
                 }
                 
-                # 计算相似度得分
+                # Calculate similarity score
                 score = 0
                 for key in ['mean_Z_mag', 'log_freq_range']:
                     if key in features and key in hist_features:
@@ -748,26 +748,26 @@ class IndependentFitter:
             except:
                 continue
         
-        # 按相似度排序并返回最佳匹配
+        # Sort by similarity and return the best matches
         similarities.sort(key=lambda x: x[0])
         return [result for _, result in similarities[:n_similar]]
     
     # ============================================================================
-    # 10. 可视化和绘图
+    # 10. Visualization and plotting
     # ============================================================================
     
     def plot_fit_result(self, freq, Z_exp, Z_fit, sample_name, r_squared):
-        """绘制EIS拟合结果"""
+        """Plot the EIS fitting result."""
         try:
-            # 确保绘图目录存在
+            # Ensure the plot directory exists
             plot_dir = getattr(self, 'plot_dir', 'eis_fit_plots')
             if not os.path.exists(plot_dir):
                 os.makedirs(plot_dir)
             
-            # 创建新图形
+            # Create a new figure
             plt.figure(figsize=(12, 10))
         
-            # 绘制Nyquist图 (使用负虚部，传统方法)
+            # Plot the Nyquist diagram (using negative imaginary part, the conventional approach)
             plt.subplot(2, 1, 1)
             plt.scatter(np.real(Z_exp), -np.imag(Z_exp), marker='o', color='blue', label='Experimental Data')
             plt.plot(np.real(Z_fit), -np.imag(Z_fit), 'r-', label=f'Fitting Result (R^2 = {r_squared:.4f})')
@@ -777,7 +777,7 @@ class IndependentFitter:
             plt.legend()
             plt.grid(True)
             
-            # 绘制Bode图 (幅频特性)
+            # Plot the Bode magnitude diagram
             plt.subplot(2, 2, 3)
             plt.loglog(freq, np.abs(Z_exp), 'bo', label='Experimental Data')
             plt.loglog(freq, np.abs(Z_fit), 'r-', label=f'Fitting Result')
@@ -787,7 +787,7 @@ class IndependentFitter:
             plt.legend()
             plt.grid(True)
             
-            # 绘制Bode图 (相频特性)
+            # Plot the Bode phase diagram
             plt.subplot(2, 2, 4)
             plt.semilogx(freq, np.angle(Z_exp, deg=True), 'bo', label='Experimental Data')
             plt.semilogx(freq, np.angle(Z_fit, deg=True), 'r-', label=f'Fitting Result')
@@ -797,15 +797,15 @@ class IndependentFitter:
             plt.legend()
             plt.grid(True)
             
-            # 调整布局
+            # Adjust the layout
             plt.tight_layout()
             
-            # 保存图像
-            # 确保plot_dir目录存在
+            # Save the figure
+            # Ensure the plot_dir directory exists
             if not os.path.exists(plot_dir):
                 os.makedirs(plot_dir, exist_ok=True)
             
-            # 替换非法字符和扩展名
+            # Replace illegal characters and normalize the extension
             safe_file_name = sample_name.replace('.', '_').replace('\\', '_').replace('/', '_')
             plot_path = os.path.join(plot_dir, f'{safe_file_name}_fit.png')
             plt.savefig(plot_path, dpi=300, bbox_inches='tight')
@@ -814,11 +814,11 @@ class IndependentFitter:
             print(f"  拟合图已保存到: {plot_path}")
         except Exception as e:
             print(f"  [WARNING] 绘图失败: {e}")
-            # 确保关闭图形
+            # Ensure figures are closed
             plt.close('all')
     
     def plot_iteration_results(self, r_squared_history, sample_name):
-        """绘制迭代结果图"""
+        """Plot the iteration history."""
         try:
             import matplotlib.pyplot as plt
             import os
@@ -830,7 +830,7 @@ class IndependentFitter:
             
             fig, ax1 = plt.subplots(1, 1, figsize=(10, 6))
             
-            # R2值变化
+            # R2 evolution
             ax1.plot(range(1, len(r_squared_history) + 1), r_squared_history, 'o-', color='blue', label='R^2值')
             ax1.axhline(y=0.99, color='r', linestyle='--', label='优秀拟合阈值(0.99)')
             ax1.set_xlabel('迭代次数')
@@ -849,11 +849,11 @@ class IndependentFitter:
             print(f"  生成迭代过程可视化图时出错: {str(e)}")
     
     # ============================================================================
-    # 11. 分析和统计
+    # 11. Analysis and statistics
     # ============================================================================
 
     def print_final_summary(self, r_squared):
-        """打印最终总结"""
+        """Print the final summary."""
         print("\n拟合总结:")
         print(f"  最终R^2值: {r_squared:.4f}")
         if r_squared > 0.99:
@@ -864,7 +864,7 @@ class IndependentFitter:
             print("  拟合质量: 需要改进")
     
     def print_fitting_summary(self, results, files):
-        """打印拟合结果总结"""
+        """Print the fitting-results summary."""
         if not results:
             print("没有成功的拟合结果可保存。")
             return
@@ -882,16 +882,16 @@ class IndependentFitter:
         
     
     # ============================================================================
-    # 12. 主要接口方法
+    # 12. Main interface methods
     # ============================================================================
     
     
     def run_fitting(self, use_fixed_eta=False, use_unified_fitting=True):
-        """在所有样本上运行独立拟合（重构版本）
+        """Run independent fitting across all samples (refactored version).
         
-        参数:
-            use_fixed_eta: 是否使用从LSV获取的固定过电位
-            use_unified_fitting: 是否使用统一目标函数拟合（True）或迭代拟合（False）
+        Args:
+            use_fixed_eta: Whether to use fixed overpotential from LSV
+            use_unified_fitting: Whether to use unified-objective fitting (True) or iterative fitting (False)
         """
         fitting_method = "统一目标函数拟合" if use_unified_fitting else "迭代拟合"
         print(f"独立拟合策略 (重构版 - {fitting_method})")
@@ -911,7 +911,7 @@ class IndependentFitter:
         print(f"• 使用固定过电位: {'是' if use_fixed_eta else '否'}")
         print("=" * 80)
         
-        # 初始化数据加载器
+        # Initialize the data loader
         standardized_json_dir = 'standardized_json'
         if not os.path.exists(standardized_json_dir):
             print(f"错误: standardized_json目录 '{standardized_json_dir}' 不存在！")
@@ -919,10 +919,10 @@ class IndependentFitter:
             return
         
         self.data_loader = ImprovedEISDataLoader(data_dir=DATA_DIR, json_dir=standardized_json_dir)
-        # 完全禁用历史数据加载，确保使用纯初始参数
+        # Completely disable historical-data loading to ensure pure initial parameters
         # self.load_historical_results()
         
-        # 获取文件列表
+        # Get the file list
         try:
             files = self.data_loader.get_all_json_files()
             if not files:
@@ -932,13 +932,13 @@ class IndependentFitter:
             print(f"错误: 无法获取JSON数据文件列表！错误: {str(e)}")
             return
         
-        # 处理所有样本
+        # Process all samples
         results = []
         for i, fname in enumerate(files, 1):
             print(f"\n处理 {i}/{len(files)}: {fname}")
             
             try:
-                # 加载数据
+                # Load the data
                 file_name = os.path.basename(fname)
                 data = self.data_loader.load_eis_data_from_json(fname)
                 if data is None:
@@ -948,7 +948,7 @@ class IndependentFitter:
                 freq = data['frequency']
                 Z_exp = data['z_complex']
                 
-                # 处理单个样本
+                # Process a single sample
                 result = self.fit_single_sample(freq, Z_exp, file_name, use_fixed_eta, use_unified_fitting)
                 if result is not None:
                     results.append(result)
@@ -960,7 +960,7 @@ class IndependentFitter:
                 print(f"  跳过: 处理错误: {str(e)}")
                 continue
         
-        # 保存结果并打印总结
+        # Save results and print the summary
         if results:
             df = pd.DataFrame(results)
             df.to_csv(CSV_PATH, index=False)
@@ -972,7 +972,7 @@ class IndependentFitter:
 if __name__ == "__main__":
     import argparse
     
-    # 创建命令行参数解析器
+    # Create the command-line argument parser
     parser = argparse.ArgumentParser(description='独立拟合EIS数据')
     parser.add_argument('--fixed-eta', action='store_true', 
                         help='使用从LSV曲线获取的固定过电位, 而不是拟合过电位')
@@ -989,30 +989,30 @@ if __name__ == "__main__":
     parser.add_argument('--debug-mass-transport', action='store_true', 
                         help='启用传质修正调试输出')
     
-    # 解析命令行参数
+    # Parse command-line arguments
     args = parser.parse_args()
     
-    # 初始化拟合器
+    # Initialize the fitter
     fitter = IndependentFitter(debug_mass_transport=args.debug_mass_transport)
     
-    # 如果启用了过电位测试
+    # If overpotential testing is enabled
     if args.test_overpotential:
         print("\n===== 测试get_fixed_overpotential_from_lsv方法 =====")
         
-        # 测试一个具体的样本名称（带.json扩展名）
+        # Test a specific sample name that includes the .json extension
         sample_name = "Co-Co.json"
         print(f"\n测试1: 样本名称 = {sample_name}")
         overpotential = fitter.get_fixed_overpotential_from_lsv(sample_name)
         print(f"  测试结果: 过电位 = {overpotential} V")
         
-        # 测试另一个样本名称格式（没有.json扩展名）
+        # Test another sample-name format without the .json extension
         sample_name2 = "Co-Cr"
         print(f"\n测试2: 样本名称 = {sample_name2}")
         overpotential2 = fitter.get_fixed_overpotential_from_lsv(sample_name2)
         print(f"  测试结果: 过电位 = {overpotential2} V")
         
         print("\n===== 测试完成 =====")
-        exit()  # 测试结束后退出程序
+        exit()  # Exit after the test is complete
     
     # Fit all samples
     print("===== Fitting All Samples =====")
@@ -1094,33 +1094,33 @@ if __name__ == "__main__":
     print("\n===== Done =====")
 
 # ============================================================================
-# 测试小半圆样品的拟合（仅在直接运行时执行）
+# Test fitting for small-semicircle samples (only when run directly)
 # ============================================================================
 if __name__ == "__main__":
     import sys
     
-    # 检查是否要运行小半圆测试
+    # Check whether the small-semicircle test should run
     if len(sys.argv) > 1 and sys.argv[1] == '--test-semicircle':
         print("\n" + "="*80)
         print("测试小半圆样品拟合（权重×20）")
         print("="*80)
         
-        # 有高频小半圆未拟合的样品
+        # Samples whose high-frequency small semicircle was not fitted well
         semicircle_samples = [
             'Y-Y', 'Y-Sc', 'Y-Mn', 'W-V', 'Sc-Y', 'Sc-Cd', 'Mn-Sc', 'Mn-Cr', 
             'La-V', 'Ga-Mn', 'Cr-Zn', 'Cr-Mn', 'Ce-Zn', 'Ce-La', 'Ce-Cr', 'Cd-La',
             'Co-Mo0', 'Co-Mo3', 'Co-Ni12', 'Eu-Cr', 'Ga-Cd', 'La-Ni', 'V-Ce', 'Zn-Mn'
         ]
         
-        # 创建测试输出目录
+        # Create the test output directory
         test_plot_dir = 'semicircle_samples_refit_plots'
         os.makedirs(test_plot_dir, exist_ok=True)
         
-        # 创建拟合器并修改plot_dir
+        # Create the fitter and update plot_dir
         fitter = IndependentFitter()
         fitter.plot_dir = test_plot_dir
         
-        # 拟合指定样品
+        # Fit the selected samples
         test_results = []
         for i, sample in enumerate(semicircle_samples, 1):
             print(f"\n[{i}/{len(semicircle_samples)}] 拟合: {sample}")
@@ -1131,7 +1131,7 @@ if __name__ == "__main__":
                 continue
             
             try:
-                # 读取数据
+                # Read the data
                 import pandas as pd
                 df = pd.read_csv(file_path)
                 freq = df['freq(Hz)'].values
@@ -1139,7 +1139,7 @@ if __name__ == "__main__":
                 Z_imag = df['Z_im(Ohm)'].values
                 Z_exp = Z_real + 1j * Z_imag
                 
-                # 拟合
+                # Fit the model
                 result = fitter.fit_single_sample(freq, Z_exp, file_path)
                 
                 if result:

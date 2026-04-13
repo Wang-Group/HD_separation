@@ -91,12 +91,12 @@ class ImprovedEISDataLoader:
             return None
             
     def load_eis_data_from_json(self, file_path):
-        """从JSON文件加载EIS数据"""
+        """Load EIS data from a JSON file."""
         try:
             with open(file_path, 'r', encoding='utf-8') as f:
                 data = json.load(f)
             
-            # 检查是否包含EIS数据
+            # Check whether the file contains EIS data
             if 'EIS' not in data:
                 return None
             
@@ -104,14 +104,14 @@ class ImprovedEISDataLoader:
             if not eis_data:
                 return None
             
-            # 检查数据格式并提取频率和阻抗数据
+            # Check the data format and extract frequency and impedance
             if isinstance(eis_data, list):
-                # 旧格式：数组格式
+                # Old format: array-based structure
                 freq = np.array([pt['Frequency(Hz)'] for pt in eis_data])
                 z_prime = np.array([pt["Z'(Ohm)"] for pt in eis_data])
                 z_double_prime = np.array([pt["Z''(Ohm)"] for pt in eis_data])
             elif isinstance(eis_data, dict):
-                # 新格式：对象格式
+                # New format: object-based structure
                 freq = np.array(eis_data['frequency'])
                 z_prime = np.array(eis_data['z_real'])
                 z_double_prime = np.array(eis_data['z_imag'])
@@ -119,13 +119,14 @@ class ImprovedEISDataLoader:
                 print(f"未知的EIS数据格式: {type(eis_data)}")
                 return None
             
-            # 数据验证
+            # Validate the data
             valid = (freq > 0) & np.isfinite(freq) & np.isfinite(z_prime) & np.isfinite(z_double_prime)
             freq = freq[valid]
             z_prime = z_prime[valid]
             z_double_prime = z_double_prime[valid]
             
-            # 计算复数阻抗（不反转虚部符号，因为绘图时会使用传统的负虚部显示）
+            # Build complex impedance without flipping the imaginary sign;
+            # plotting uses the conventional negative-imaginary display later
             z_complex = z_prime + 1j * z_double_prime
             
             return {
@@ -145,14 +146,14 @@ class ImprovedEISDataLoader:
         return [os.path.join(directory, f) for f in os.listdir(directory) if f.lower().endswith('.txt')]
         
     def get_all_json_files(self, directory=None):
-        """获取指定目录下的所有JSON文件"""
+        """Get all JSON files under the specified directory."""
         directory = directory or self.json_dir
         if not directory or not os.path.exists(directory):
             return []
         return [os.path.join(directory, f) for f in os.listdir(directory) if f.lower().endswith('.json')]
     
     def load_all_samples(self, max_samples=None, directory=None, from_json=False):
-        """加载所有样本数据，可以选择从TXT或JSON文件加载"""
+        """Load all sample data from TXT or JSON files."""
         if from_json:
             files = self.get_all_json_files(directory)
             load_func = self.load_eis_data_from_json
@@ -175,22 +176,22 @@ class ImprovedEISDataLoader:
         return samples
         
     def load_eis_data_from_csv(self, file_path):
-        """从CSV文件加载EIS数据（新格式）"""
+        """Load EIS data from a CSV file (new format)."""
         try:
             df = pd.read_csv(file_path)
             
-            # 检查列名是否正确
+            # Check whether the required columns are present
             expected_cols = ['freq(Hz)', 'Z_re(Ohm)', 'Z_im(Ohm)']
             if not all(col in df.columns for col in expected_cols):
                 print(f"CSV文件缺少必要列: {file_path}")
                 return None
             
-            # 提取数据
+            # Extract the data
             frequency = df['freq(Hz)'].values
             z_prime = df['Z_re(Ohm)'].values
             z_double_prime = df['Z_im(Ohm)'].values
             
-            # 数据验证
+            # Validate the data
             valid = (frequency > 0) & np.isfinite(frequency) & np.isfinite(z_prime) & np.isfinite(z_double_prime)
             frequency = frequency[valid]
             z_prime = z_prime[valid]
@@ -200,8 +201,9 @@ class ImprovedEISDataLoader:
                 print(f"CSV文件数据点不足: {file_path}")
                 return None
             
-            # 创建复数阻抗
-            # 新CSV数据中Z_im已经是正确的物理符号（容性为正）
+            # Create complex impedance
+            # In the new CSV format, Z_im already uses the correct physical sign
+            # convention (capacitive values are positive)
             z_complex = z_prime + 1j * z_double_prime
             
             return {
@@ -215,14 +217,14 @@ class ImprovedEISDataLoader:
             return None
     
     def load_sample_by_name(self, sample_name, from_json=False):
-        """通过样本名称加载单个样本数据，优先使用CSV格式"""
-        # 优先尝试CSV文件（新格式）
+        """Load a single sample by name, preferring CSV format first."""
+        # Try the CSV file first (new format)
         csv_file = os.path.join(self.data_dir, f"{sample_name}.csv")
         if os.path.exists(csv_file):
             return self.load_eis_data_from_csv(csv_file)
         
         if from_json and self.json_dir:
-            # 从JSON文件加载
+            # Load from the JSON file
             json_file = os.path.join(self.json_dir, f"{sample_name}.json")
             if os.path.exists(json_file):
                 return self.load_eis_data_from_json(json_file)
@@ -230,7 +232,7 @@ class ImprovedEISDataLoader:
                 print(f"JSON文件不存在: {json_file}")
                 return None
         else:
-            # 从TXT文件加载
+            # Load from the TXT file
             txt_file = os.path.join(self.data_dir, f"{sample_name}.txt")
             if os.path.exists(txt_file):
                 return self.load_eis_data_from_txt(txt_file)

@@ -10,21 +10,21 @@ class StartingPointGenerator:
     """Generates diverse starting points for HER kinetic parameters"""
     
     def __init__(self):
-        # Parameter bounds for A, B, C parameters - 直接拟合ABC参数
-        # 进一步扩大容易到达边界的参数范围
+        # Parameter bounds for directly fitting the A, B, and C parameters
+        # The ranges are widened further for parameters that often hit bounds
         self.param_bounds = {
-            'A': (1e-12, 1e7),       # A parameter - 导纳常数项
-            'B': (-1e7, 1e7),        # B parameter - 导纳频率相关项
-            'C': (1e-10, 1e8),       # C parameter - 频率常数
-            'R_hf': (0.0, 100.0),    # 高频电阻 (表面膜/氧化层，0表示无表面膜)
-            'C_hf': (1e-6, 1e-4),    # 高频电容 (表面膜/氧化层)
-            'W_sigma': (0.0, 1000.0), # Warburg系数 (Ohm*s^(-1/2)，0表示无扩散限制)
+            'A': (1e-12, 1e7),       # A parameter - admittance constant term
+            'B': (-1e7, 1e7),        # B parameter - frequency-dependent admittance term
+            'C': (1e-10, 1e8),       # C parameter - frequency constant
+            'R_hf': (0.0, 100.0),    # High-frequency resistance (surface film / oxide layer, 0 means none)
+            'C_hf': (1e-6, 1e-4),    # High-frequency capacitance (surface film / oxide layer)
+            'W_sigma': (0.0, 1000.0), # Warburg coefficient (Ohm*s^(-1/2), 0 means no diffusion limitation)
         }
         
     def generate_diverse_points(self, n_points=50, estimated_C_dl=None, estimated_R_s=None):
         """
         Generate diverse starting points covering the parameter space
-        改进：生成量级差异很大的初始点
+        Improvement: generate initial points that differ strongly in magnitude
         
         Args:
             n_points: Number of starting points to generate
@@ -36,14 +36,14 @@ class StartingPointGenerator:
         """
         points = []
         
-        # 1. 生成量级差异很大的初始点
+        # 1. Generate initial points with large magnitude differences
         points.extend(self._generate_magnitude_diverse_points(n_points))
         
-        # 2. 添加边界情况点
+        # 2. Add edge-case points
         edge_cases = self._edge_case_points()
         points.extend(edge_cases)
         
-        # 3. 如果还需要更多点，生成随机点
+        # 3. If more points are still needed, generate random ones
         while len(points) < n_points:
             points.append(self._random_point())
         
@@ -63,59 +63,60 @@ class StartingPointGenerator:
     
     def _generate_magnitude_diverse_points(self, n_points):
         """
-        生成量级差异很大的初始点
-        确保A和C为正，B可正可负，且不同点之间有量级差异
+        Generate initial points with large magnitude differences.
+        Keep A and C positive, allow B to be positive or negative,
+        and enforce clear scale differences between points.
         """
         points = []
         
-        # 定义不同的量级组合
+        # Define combinations with different magnitudes
         magnitude_combinations = [
-            # 极小量级组合
+            # Extremely small-scale combinations
             {'A_mag': -6, 'B_mag': -3, 'C_mag': -4},  # A=1e-6, B=±1e-3, C=1e-4
             {'A_mag': -5, 'B_mag': -2, 'C_mag': -3},  # A=1e-5, B=±1e-2, C=1e-3
             {'A_mag': -4, 'B_mag': -1, 'C_mag': -2},  # A=1e-4, B=±1e-1, C=1e-2
             
-            # 小量级组合
+            # Small-scale combinations
             {'A_mag': -3, 'B_mag': 0, 'C_mag': -1},   # A=1e-3, B=±1e0, C=1e-1
             {'A_mag': -2, 'B_mag': 1, 'C_mag': 0},   # A=1e-2, B=±1e1, C=1e0
             {'A_mag': -1, 'B_mag': 2, 'C_mag': 1},   # A=1e-1, B=±1e2, C=1e1
             
-            # 中量级组合
+            # Medium-scale combinations
             {'A_mag': 0, 'B_mag': 0, 'C_mag': 2},    # A=1e0, B=±1e0, C=1e2
             {'A_mag': 1, 'B_mag': 1, 'C_mag': 3},    # A=1e1, B=±1e1, C=1e3
             {'A_mag': 2, 'B_mag': 2, 'C_mag': 1},    # A=1e2, B=±1e2, C=1e1
             
-            # 大量级组合
+            # Large-scale combinations
             {'A_mag': 3, 'B_mag': 3, 'C_mag': 4},    # A=1e3, B=±1e3, C=1e4
             {'A_mag': 2, 'B_mag': 0, 'C_mag': 0},    # A=1e2, B=±1e0, C=1e0
             {'A_mag': 1, 'B_mag': -1, 'C_mag': 2},   # A=1e1, B=±1e-1, C=1e2
             
-            # 极端组合
+            # Extreme combinations
             {'A_mag': -6, 'B_mag': 3, 'C_mag': 4},   # A=1e-6, B=±1e3, C=1e4
             {'A_mag': 3, 'B_mag': -3, 'C_mag': -4},  # A=1e3, B=±1e-3, C=1e-4
             {'A_mag': -6, 'B_mag': -3, 'C_mag': 4},  # A=1e-6, B=±1e-3, C=1e4
             {'A_mag': 3, 'B_mag': 3, 'C_mag': -4},   # A=1e3, B=±1e3, C=1e-4
         ]
         
-        # 为每个量级组合生成多个变体
+        # Generate multiple variants for each magnitude combination
         for i in range(n_points):
             if i < len(magnitude_combinations):
                 combo = magnitude_combinations[i]
             else:
-                # 随机选择量级组合
+                # Select a magnitude combination in a repeating pattern
                 combo = magnitude_combinations[i % len(magnitude_combinations)]
             
-            # 生成A值（总是正）
+            # Generate A (always positive)
             A = 10 ** np.random.uniform(combo['A_mag'], combo['A_mag'] + 1)
             
-            # 生成B值（可正可负）
+            # Generate B (can be positive or negative)
             B_mag = 10 ** np.random.uniform(combo['B_mag'], combo['B_mag'] + 1)
             B = B_mag if np.random.random() > 0.5 else -B_mag
             
-            # 生成C值（总是正）
+            # Generate C (always positive)
             C = 10 ** np.random.uniform(combo['C_mag'], combo['C_mag'] + 1)
             
-            # 确保在边界内
+            # Clip the values to the configured bounds
             A = np.clip(A, *self.param_bounds['A'])
             B = np.clip(B, *self.param_bounds['B'])
             C = np.clip(C, *self.param_bounds['C'])
@@ -151,35 +152,35 @@ class StartingPointGenerator:
     def _edge_case_points(self):
         """Generate edge case points for A, B, C parameters with magnitude diversity"""
         edge_cases = [
-            # 极小量级组合
-            {'A': 1e-6, 'B': 1e-4, 'C': 1e-3},    # 极小值
-            {'A': 1e-6, 'B': -1e-4, 'C': 1e-3},   # 极小值，B为负
-            {'A': 1e-5, 'B': 1e-3, 'C': 1e-2},    # 小值
-            {'A': 1e-5, 'B': -1e-3, 'C': 1e-2},   # 小值，B为负
+            # Extremely small-scale combinations
+            {'A': 1e-6, 'B': 1e-4, 'C': 1e-3},    # Extremely small values
+            {'A': 1e-6, 'B': -1e-4, 'C': 1e-3},   # Extremely small values, negative B
+            {'A': 1e-5, 'B': 1e-3, 'C': 1e-2},    # Small values
+            {'A': 1e-5, 'B': -1e-3, 'C': 1e-2},   # Small values, negative B
             
-            # 小量级组合
-            {'A': 1e-4, 'B': 1e-2, 'C': 1e-1},    # 小导纳值
-            {'A': 1e-4, 'B': -1e-2, 'C': 1e-1},   # 小导纳值，B为负
-            {'A': 1e-3, 'B': 1e-1, 'C': 1e0},     # 中等导纳值
-            {'A': 1e-3, 'B': -1e-1, 'C': 1e0},    # 中等导纳值，B为负
+            # Small-scale combinations
+            {'A': 1e-4, 'B': 1e-2, 'C': 1e-1},    # Small admittance values
+            {'A': 1e-4, 'B': -1e-2, 'C': 1e-1},   # Small admittance values, negative B
+            {'A': 1e-3, 'B': 1e-1, 'C': 1e0},     # Moderate admittance values
+            {'A': 1e-3, 'B': -1e-1, 'C': 1e0},    # Moderate admittance values, negative B
             
-            # 中量级组合
-            {'A': 1e-2, 'B': 1e0, 'C': 1e1},      # 中等导纳值
-            {'A': 1e-2, 'B': -1e0, 'C': 1e1},     # 中等导纳值，B为负
-            {'A': 1e-1, 'B': 1e1, 'C': 1e2},      # 大导纳值
-            {'A': 1e-1, 'B': -1e1, 'C': 1e2},     # 大导纳值，B为负
+            # Medium-scale combinations
+            {'A': 1e-2, 'B': 1e0, 'C': 1e1},      # Moderate admittance values
+            {'A': 1e-2, 'B': -1e0, 'C': 1e1},     # Moderate admittance values, negative B
+            {'A': 1e-1, 'B': 1e1, 'C': 1e2},      # Large admittance values
+            {'A': 1e-1, 'B': -1e1, 'C': 1e2},     # Large admittance values, negative B
             
-            # 大量级组合
-            {'A': 1e0, 'B': 1e2, 'C': 1e3},      # 大导纳值
-            {'A': 1e0, 'B': -1e2, 'C': 1e3},     # 大导纳值，B为负
-            {'A': 1e1, 'B': 1e1, 'C': 1e2},      # 极大导纳值
-            {'A': 1e1, 'B': -1e1, 'C': 1e2},     # 极大导纳值，B为负
+            # Large-scale combinations
+            {'A': 1e0, 'B': 1e2, 'C': 1e3},      # Large admittance values
+            {'A': 1e0, 'B': -1e2, 'C': 1e3},     # Large admittance values, negative B
+            {'A': 1e1, 'B': 1e1, 'C': 1e2},      # Very large admittance values
+            {'A': 1e1, 'B': -1e1, 'C': 1e2},     # Very large admittance values, negative B
             
-            # 极端组合
-            {'A': 1e-6, 'B': 1e2, 'C': 1e3},     # A极小，B极大
-            {'A': 1e2, 'B': 1e-4, 'C': 1e-3},    # A极大，B极小
-            {'A': 1e-6, 'B': -1e2, 'C': 1e3},    # A极小，B极大负值
-            {'A': 1e2, 'B': -1e-4, 'C': 1e-3},   # A极大，B极小负值
+            # Extreme combinations
+            {'A': 1e-6, 'B': 1e2, 'C': 1e3},     # Extremely small A, extremely large B
+            {'A': 1e2, 'B': 1e-4, 'C': 1e-3},    # Extremely large A, extremely small B
+            {'A': 1e-6, 'B': -1e2, 'C': 1e3},    # Extremely small A, large negative B
+            {'A': 1e2, 'B': -1e-4, 'C': 1e-3},   # Extremely large A, small negative B
         ]
         return edge_cases
     
@@ -188,10 +189,10 @@ class StartingPointGenerator:
         point = {}
         for param, (low, high) in self.param_bounds.items():
             if param == 'B' and low < 0:
-                # B参数可以为负，使用线性分布
+                # B can be negative, so use a linear distribution
                 value = np.random.uniform(low, high)
             else:
-                # 其他参数使用对数分布
+                # Other parameters use a log-uniform distribution
                 value = 10 ** np.random.uniform(np.log10(low), np.log10(high))
             point[param] = value
         return point
@@ -210,7 +211,7 @@ class StartingPointGenerator:
             List of starting points
         """
         points = []
-        A, B, C, C_dl, R_s = best_params[:5]  # 只取前5个参数
+        A, B, C, C_dl, R_s = best_params[:5]  # Only use the first five parameters
         
         # Define specific spread factors for each parameter to balance exploration and speed
         spreads = {
@@ -238,7 +239,7 @@ class StartingPointGenerator:
             else:
                 # For additional points if needed, use controlled random variation
                 A_new = A * (10 ** np.random.uniform(-spreads['A'], spreads['A']))
-                # B参数可以为负，使用线性变化
+                # B can be negative, so vary it linearly
                 B_new = B + np.random.uniform(-spreads['B'] * abs(B), spreads['B'] * abs(B))
                 C_new = C * (10 ** np.random.uniform(-spreads['C'], spreads['C']))
                 
@@ -256,29 +257,29 @@ class StartingPointGenerator:
         Return parameter bounds for optimization
         
         Args:
-            include_extended: 是否包含Warburg扩散项
-            rs_initial: Rs初始值，如果提供则使用±30%范围
+            include_extended: Whether to include the Warburg diffusion term
+            rs_initial: Initial Rs value; if provided, use a ±30% range
         
         Returns:
-            参数边界列表
+            List of parameter bounds
         """
-        # Rs边界 - 完全放开，不受rs_initial限制
-        # Rs初始值仅用于生成初始参数点，不限制优化范围
+        # Rs bounds are left fully open and are not constrained by rs_initial
+        # rs_initial is only used to generate starting points, not to limit optimization
         rs_bounds = (0.0001, 10.0)
         
-        # 基础参数边界
+        # Base parameter bounds
         base_bounds = [
             self.param_bounds['A'],
             self.param_bounds['B'],
             self.param_bounds['C'],
             (1e-12, 1e-1),    # C_dl bounds
-            rs_bounds,        # R_s bounds (可优化，带约束)
+            rs_bounds,        # R_s bounds (optimizable, with bounds)
         ]
         
         if include_extended:
-            # 只添加Warburg扩散项（去掉高频RC）
+            # Only add the Warburg diffusion term (without the high-frequency RC term)
             extended_bounds = [
-                self.param_bounds['W_sigma'],  # Warburg系数
+                self.param_bounds['W_sigma'],  # Warburg coefficient
             ]
             return base_bounds + extended_bounds
         else:
