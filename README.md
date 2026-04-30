@@ -1,116 +1,160 @@
-# HD Separation Repository
+# Data and Code for H/D Separation by Water Electrolysis
 
-This repository combines two related but distinct codebases:
+This repository contains the data, analysis notebooks, machine-learning
+workflows, Bayesian-optimization code, and hardware-control provenance used for
+the accompanying H/D separation manuscript.
 
-- `EC_tool_sys/`: a Windows-based electrochemical lab automation stack for synthesis, testing, robotic handling, and active-learning-assisted experiment execution.
-- `hd_separation_ml/`: data extraction, EIS fitting, descriptor engineering, and machine-learning analysis for H/D separation coefficient modeling.
+The repository is organized for manuscript review and reproducibility rather
+than as a standalone installable software package. Most figure/data analyses can
+be inspected from notebooks and checked output files. The hardware-control code
+is included for provenance and should not be run casually because it can control
+real pumps, potentiostats, mass spectrometry, and robotic hardware.
 
-At a high level, the repo captures both sides of the workflow:
-
-1. Run or coordinate electrochemical experiments on the hardware platform.
-2. Extract and clean electrochemistry data.
-3. Fit EIS-derived parameters and assemble sample-level datasets.
-4. Train or analyze ML models for H/D separation behavior.
-
-## Top-Level Structure
+## Quick Map
 
 ```text
 .
-|-- README.md
-|-- .gitignore
-|-- EC_tool_sys/
-|   |-- README.md
-|   |-- tool.py
-|   |-- botorch_test/
-|   `-- manager/
-`-- hd_separation_ml/
-    |-- README.md
-    |-- SUPPLEMENTARY_INFORMATION.md
-    |-- data_extraction/
-    |-- 1-ML_for_features/
-    |-- 0-noble_no_BO_seed42/
-    |-- extract_overpotential_separation_rs.py
-    |-- improved_eis_data_loader.py
-    |-- independent_fitting_manual_reorganized.py
-    `-- starting_point_generator.py
+|-- all_samples_708_corrected.csv        # corrected full sample-level table
+|-- DATA_MANIFEST.md                     # figure/data mapping
+|-- 0-Figures/                           # figure notebooks, data, outputs
+|   |-- Figure1/
+|   |-- Figure3/
+|   `-- Figure4/
+|-- hd_separation_ml/                    # ML data curation and model notebooks
+|   |-- datasets/
+|   |-- notebooks/
+|   |-- outputs/
+|   |-- data_extraction/
+|   `-- archive/
+`-- EC_tool_sys/                         # automation and BO provenance
+    |-- BO_PROVENANCE.md
+    |-- botorch_test/
+    `-- manager/
 ```
 
-## `EC_tool_sys/`
+## Canonical Data Tables
 
-`EC_tool_sys` is the lab automation side of the repository. It contains instrument control, pump and valve drivers, motion control, workflow managers, and a BoTorch-based experiment suggestion package.
+- `all_samples_708_corrected.csv`
+  - Full corrected sample-level table used for manuscript-level figure updates.
+  - 708 rows total: 560 initial-screening samples and 148 digit-suffixed
+    BO/follow-up samples.
+- `hd_separation_ml/datasets/final_no_BO_560.csv`
+  - Corrected no-BO initial-screening dataset used by the final fixed-feature ML
+    model.
+- `0-Figures/Figure4/1-data/curated/figure4_bo_complete_112.csv`
+  - Curated Figure 4 BO table: four systems, 28 completed datapoints each,
+    112 rows total.
 
-### Main folders
+See `DATA_MANIFEST.md` for the detailed figure/data mapping.
 
-- `manager/`: core hardware orchestration code.
-- `manager/configs/`: machine-specific JSON configuration files for pumps, controllers, instruments, and robotic hardware.
-- `manager/pumps/`: syringe pump, switch valve, and peristaltic pump drivers.
-- `manager/robotic_arm/`: MG400 and motion-controller helpers.
-- `manager/instrument/`: Corrtest and MASsoft-related instrument wrappers.
-- `manager/bopai_controller/`: motion/output controller integration.
-- `botorch_test/`: active learning and Bayesian optimization utilities, plus notebooks and test assets.
-- `tool.py`: general electrochemistry / signal-processing helpers.
+## Reproducing Manuscript Figures
 
-### Important entry points
+### Figure 1
 
-- `EC_tool_sys/manager/platform_manager_HD_Hcell_one_cell_v3_BO.py`
-- `EC_tool_sys/manager/platform_manager_HD_Hcell_two_cell.py`
+- Notebook: `0-Figures/Figure1/notebooks/v4.ipynb`
+- Main data:
+  - `all_samples_708_corrected.csv`
+  - `0-Figures/Figure1/data/all_data_corrected.xlsx`
+- Output: `0-Figures/Figure1/outputs/pareto_plot_v2.png`
+
+### Figure 3
+
+Top panel:
+
+- Notebook: `0-Figures/Figure3/notebooks/visualizewithcolors.ipynb`
+- Main data: `all_samples_708_corrected.csv`
+- Output: `0-Figures/Figure3/outputs/before_BO_Fe_Co_Others.png`
+
+Machine-learning panels:
+
+- Final notebook: `hd_separation_ml/notebooks/03_final_model_fixed12_560.ipynb`
+- Final outputs: `hd_separation_ml/outputs/final_model_fixed12_560/`
+- Figure-local copies: `0-Figures/Figure3/outputs/ml/`
+
+The legacy 558-sample feature-selection workflow is retained in
+`hd_separation_ml/archive/legacy_558_reference/` and is documented in
+`hd_separation_ml/DATA_CURATION_LOG.md`.
+
+### Figure 4
+
+- Main folder: `0-Figures/Figure4/1-data/`
+- BO/Pareto notebook: `0-Figures/Figure4/1-data/pareto_polygon_enclosure_code.ipynb`
+- Descriptor-map notebook: `0-Figures/Figure4/1-data/BO_analysis -2D_symbolic.ipynb`
+- Curated BO table: `0-Figures/Figure4/1-data/curated/figure4_bo_complete_112.csv`
+- Outputs: `0-Figures/Figure4/1-data/outputs/`
+
+## Machine-Learning Workflow
+
+The ML workflow is documented in `hd_separation_ml/README.md`.
+
+The intended notebook order is:
+
+1. `hd_separation_ml/notebooks/01_feature_selection_558.ipynb`
+   - Reproduces the legacy 558-sample feature-selection reference.
+2. `hd_separation_ml/notebooks/02_final_model_fixed12_558.ipynb`
+   - Reproduces the fixed 12-feature model on the 558-sample reference matrix.
+3. `hd_separation_ml/notebooks/03_final_model_fixed12_560.ipynb`
+   - Runs the final corrected 560-sample fixed-feature model.
+
+Current checked summary:
+
+- final corrected model: 560 samples;
+- fixed 12-feature descriptor set;
+- Extra Trees regressor;
+- test R2 = 0.6726;
+- test RMSE = 0.9109.
+
+## Bayesian Optimization and Automation Code
+
+The BO workflow is documented in:
+
+- `EC_tool_sys/BO_PROVENANCE.md`
+- `EC_tool_sys/manager/platform_manager_HD_Hcell.py`
 - `EC_tool_sys/botorch_test/botorch_tool/active_learning.py`
 
-### Notes
+The relevant function is:
 
-- This code is tightly coupled to a specific Windows lab environment.
-- Config files include machine-specific COM ports, IP addresses, and vendor software paths.
-- Some imports appear to expect the package name `EC_tool`, while this checkout is named `EC_tool_sys`.
+```python
+generate_new_exp_MO_one_system_V2
+```
 
-## `hd_separation_ml/`
+It uses:
 
-`hd_separation_ml` is the analysis and modeling side of the repository. It contains raw-data extraction assets, EIS fitting scripts, descriptor tables, notebooks for final figures, and supporting ML pipelines.
+- recipe variables: metal 1 volume, metal 2 volume, sodium citrate volume;
+- objectives: HER activity from `lsv_overpotential_-0.01` and
+  `separation_coefficient`;
+- acquisition function: BoTorch `qNoisyExpectedHypervolumeImprovement`.
 
-### Main folders
+The hardware manager writes completed experimental results back to the
+experiment table, calls the BO helper after each completed batch, appends new
+candidate recipes, and then continues with the appended rows. The runtime loop
+uses a preset experiment count rather than hypervolume-based stopping.
 
-- `data_extraction/`: raw data archive, extraction notebook, summary spreadsheets, and assembled metadata.
-- `1-ML_for_features/`: auxiliary ML pipeline for element-level descriptors such as PZC and related outputs.
-- `0-noble_no_BO_seed42/`: result artifacts from the main selected-feature no-BO workflow.
+## Hardware Code Warning
 
-### Main scripts
+`EC_tool_sys/manager/` contains hardware-facing automation code. It assumes a
+specific Windows lab environment with configured COM ports, instrument drivers,
+vendor software, robotic hardware, and mass-spectrometry control. Do not run
+these scripts unless the hardware setup and safety procedures have been
+verified.
 
-- `hd_separation_ml/extract_overpotential_separation_rs.py`: assembles overpotential, separation coefficient, and Rs values into a sample-level table.
-- `hd_separation_ml/improved_eis_data_loader.py`: loads EIS data from TXT, CSV, or JSON formats.
-- `hd_separation_ml/starting_point_generator.py`: creates diverse starting points for EIS fitting.
-- `hd_separation_ml/independent_fitting_manual_reorganized.py`: fits EIS spectra sample-by-sample and writes fitting summaries.
+## Archive Folders
 
-### Main notebooks and docs
+Archive folders preserve historical notebooks, old outputs, backup files, and
+legacy data snapshots. They are retained for traceability but are not the
+recommended entry points for reproducing the current manuscript figures.
 
-- `hd_separation_ml/0-noble_no_BO_seed42_plot.ipynb`: final plotting / analysis notebook referenced by the supplementary notes.
-- `hd_separation_ml/SUPPLEMENTARY_INFORMATION.md`: detailed explanation of dataset assembly, feature engineering, and the final ML workflow.
-- `hd_separation_ml/README.md`: currently a placeholder GitLab template rather than project-specific documentation.
+## Recommended Reading Order
 
-## Data And Artifacts
+For manuscript review:
 
-The repository includes a large amount of experiment data and generated outputs:
+1. `DATA_MANIFEST.md`
+2. `hd_separation_ml/README.md`
+3. `EC_tool_sys/BO_PROVENANCE.md`
+4. figure-specific READMEs under `0-Figures/`
 
-- raw LSV / EIS text files under `hd_separation_ml/data_extraction/all_data/`
-- CSV, XLSX, PNG, and notebook artifacts in `hd_separation_ml/`
-- experiment tables, notebooks, and serialized optimization outputs in `EC_tool_sys/botorch_test/test/`
+## Contact
 
-This means the repo is better understood as a working research snapshot than as a minimal clean software package.
+For questions about the data, code, or manuscript context, please contact:
 
-## Getting Started
-
-There is no single root-level environment file. A practical way to approach the repository is:
-
-1. Start by reading the subproject you care about:
-   - `EC_tool_sys/README.md`
-   - `hd_separation_ml/SUPPLEMENTARY_INFORMATION.md`
-2. If you are working on hardware automation, validate all configs under `EC_tool_sys/manager/configs/` before running anything.
-3. If you are working on the ML side, begin with:
-   - `hd_separation_ml/0-noble_no_BO_seed42_plot.ipynb`
-   - `hd_separation_ml/extract_overpotential_separation_rs.py`
-   - `hd_separation_ml/independent_fitting_manual_reorganized.py`
-
-## Caution
-
-- `EC_tool_sys/` can drive real hardware and should be treated as non-sandboxed lab-control code.
-- The repository contains machine-specific paths, ports, and device assumptions.
-- Several subfolders contain generated artifacts, backup/conflict files, and experimental notebooks.
-- This README describes the current structure only; it does not attempt to standardize the package layout.
+- Yibin Jiang: `yibinjiang@xmu.edu.cn`

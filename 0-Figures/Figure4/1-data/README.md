@@ -23,6 +23,10 @@ subfolders.
     28-point system sheets in `BO_data.xlsx`.
 - `curated/figure4_bo_complete_summary.csv`
   - Per-system count summary for the completed and incomplete rows.
+- `curated/figure4_validation_summary.csv`
+  - Cross-validation summary for the final four-system BO panels.
+- `curated/figure4_final_pareto_points.csv`
+  - Final Pareto-front points used by the Figure 4 BO panels.
 - `weighted_BO.xlsx`
   - One sheet with 128 rows.
   - Adds weighted descriptor columns, including weighted electronegativity,
@@ -73,19 +77,22 @@ The completed Figure 4 BO dataset is therefore:
 
 ## Cross-check with ML Digit-suffixed Samples
 
-The ML table at `hd_separation_ml/sample_overpotentials_new_corrected_verison.csv`
-contains 147 digit-suffixed samples that are excluded from the no-BO model:
+The repo-level table `../../../all_samples_708_corrected.csv` contains 148
+digit-suffixed samples:
 
 - `Co-Fe`: 36
 - `Co-Mo`: 28
-- `Co-Ni`: 27
+- `Co-Ni`: 28
 - `Co-V`: 28
 - `Fe-Ni`: 28
 
-This means the ML digit-suffixed set and the current Figure 4 folder are related
-but not identical. In particular, the ML table includes `Co-Fe` follow-up samples,
-while this Figure 4 folder contains the complete four-system BO figure dataset:
-`Co-Mo`, `Co-Ni`, `Co-V`, and `Fe-Ni`, 28 completed datapoints each.
+The complete Figure 4 BO figure dataset is the four-system subset:
+`Co-Mo`, `Co-Ni`, `Co-V`, and `Fe-Ni`, 28 completed datapoints each, for 112
+points total. The `Co-Fe` follow-up samples are present in the repo-level 708
+table but are not part of Figure 4.
 
-Before finalizing the manuscript, align the Figure 4 data description with the
-specific systems and row counts actually plotted.
+Cross-validation found and corrected two stale/low-precision Figure 4 source
+values: `Fe-Ni6` separation coefficient was updated from `3.16` to
+`3.950333367`, and `Co-Mo7` was updated from `10.5` to `10.39096773`. The
+Figure 4 JSON, `BO_data.xlsx`, `weighted_BO.xlsx`, curated 112-row table, and
+regenerated BO panel outputs now agree with the repo-level 708 table.

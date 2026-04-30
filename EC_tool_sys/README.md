@@ -27,6 +27,8 @@ At a high level, the workflow implemented here is:
 |-- README.md
 |-- tool.py
 |-- manager/
+|   |-- README.md
+|   |-- platform_manager_HD_Hcell.py
 |   |-- platform_manager_HD_Hcell_one_cell_v3_BO.py
 |   |-- platform_manager_HD_Hcell_two_cell.py
 |   |-- bopai_controller/
@@ -48,6 +50,8 @@ At a high level, the workflow implemented here is:
 
 The `manager` package contains the lab automation layer:
 
+- `README.md`: concise map of the platform-manager files and active-learning code path.
+- `platform_manager_HD_Hcell.py`: H-cell workflow manager that imports and calls `generate_new_exp_MO_one_system_V2`.
 - `platform_manager_HD_Hcell_one_cell_v3_BO.py`: one-cell workflow manager with BoTorch active learning integration.
 - `platform_manager_HD_Hcell_two_cell.py`: two-cell workflow manager.
 - `pumps/`: liquid handling logic built on syringe pumps, switch valves, and peristaltic pump drivers.
@@ -61,7 +65,7 @@ The `manager` package contains the lab automation layer:
 
 `botorch_test` is a separate BoTorch-focused package used for experiment suggestion and benchmarking:
 
-- `botorch_tool/active_learning.py`: candidate generation logic such as `generate_new_exp_SO_one_system_V3`.
+- `botorch_tool/active_learning.py`: candidate generation logic. The qNEHVI function is `generate_new_exp_MO_one_system_V2`, which performs two-objective optimization over metal 1, metal 2, and sodium citrate volumes. Older development variants such as `generate_new_exp_SO_one_system_V3` are retained in the same file.
 - `botorch_tool/tools.py`: GP model initialization and acquisition optimization helpers.
 - `test/`: notebooks, datasets, and serialized experiment results used during model development.
 
@@ -161,16 +165,19 @@ Update these before running on another workstation.
 
 ## Running the platform managers
 
-There is no single polished CLI entry point. The main orchestration objects are the two `PlatformManager` classes:
+There is no single polished CLI entry point. The main orchestration objects are the hardware-facing `PlatformManager` classes:
 
+- `manager/platform_manager_HD_Hcell.py`
 - `manager/platform_manager_HD_Hcell_one_cell_v3_BO.py`
 - `manager/platform_manager_HD_Hcell_two_cell.py`
 
-The one-cell manager is the version that imports BoTorch active learning:
+`platform_manager_HD_Hcell.py` imports `generate_new_exp_MO_one_system_V2` from
+`botorch_tool.active_learning`. The snippet below is an orientation example
+only:
 
 ```python
 import logging
-from manager.platform_manager_HD_Hcell_one_cell_v3_BO import PlatformManager
+from manager.platform_manager_HD_Hcell import PlatformManager
 
 logger = logging.getLogger("ec_tool")
 logger.setLevel(logging.INFO)
@@ -180,9 +187,6 @@ pm = PlatformManager(
     config_folder="manager/configs",
     exp_path="path/to/experiment_table.json",
     mass_save_path="path/to/mass_output.csv",
-    cat_file_name="path/to/catalysis_results.json",
-    syn_file_name="path/to/synthesis_results.json",
-    mass_calibration_save_path="path/to/mass_calibration.csv",
     logger=logger,
     active_learning=True,
 )
@@ -191,7 +195,8 @@ pm.initialize_devices(refill_cat_cell_flag=False)
 pm.run_exp_in_parallel(terminate_num=[12, 12])
 ```
 
-The two-cell manager takes a slightly different constructor signature and does not pull in the BoTorch helper by default.
+Other managers may take different constructor signatures and may use different
+active-learning helpers.
 
 Treat the snippet above as an orientation example, not a guaranteed drop-in script. Before running it, you will likely need to:
 
@@ -230,12 +235,26 @@ The BoTorch package in `botorch_test/` is used to suggest follow-up experiments 
 
 Key points:
 
-- `generate_new_exp_SO_one_system_V3(...)` builds new candidates for a specific reactant combination.
+- The active-learning code path is documented in `BO_PROVENANCE.md`.
+- `manager/platform_manager_HD_Hcell.py` calls `generate_new_exp_MO_one_system_V2(...)` from `botorch_test/botorch_tool/active_learning.py`.
+- `generate_new_exp_MO_one_system_V2(...)` builds new candidates for a specific bimetallic reactant combination.
 - The optimization code uses Gaussian process models from BoTorch / GPyTorch.
-- Candidate generation is constrained to the composition simplex by inequality constraints.
+- The two objectives are HER activity from `lsv_overpotential_-0.01` and the H/D separation coefficient.
+- Candidate generation uses BoTorch `qNoisyExpectedHypervolumeImprovement` and is constrained to the composition simplex by inequality constraints.
 - The notebooks in `botorch_test/test/` appear to be the primary experimentation and validation surface for this part of the repo.
 
 If you only want the optimization utilities, you can often work within `botorch_test/` independently of the full hardware stack.
+
+### Platform feedback loop
+
+When started from a seeded experiment table, `platform_manager_HD_Hcell.py`
+writes synthesis results and catalysis objectives back to the same JSON table,
+calls the qNEHVI candidate generator after each batch of four catalysis results,
+appends three new candidates plus one reference row, and then the main loop
+picks up the appended rows for synthesis/testing.
+
+The current runtime loop uses a preset `terminate_num` count. Hypervolume-based
+stopping is not enabled in the code path.
 
 ## Known caveats in this snapshot
 

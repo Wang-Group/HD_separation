@@ -7,10 +7,11 @@ that notebook depends on the ML directory's descriptor, EIS, and LSV files.
 ## Top Panel: Initial Screening Scatter
 
 - Notebook: `notebooks/visualizewithcolors.ipynb`
-- Main input: `data/sample_overpotentials_new_corrected_verison.csv`
+- Main input: `../../all_samples_708_corrected.csv`
 - Output: `outputs/before_BO_Fe_Co_Others.png`
 
-The notebook is patched to read from `../data/` and save to `../outputs/`.
+The notebook is patched to read the repo-level corrected 708-sample table and
+save to `../outputs/`.
 
 ### Filtering Rule
 
@@ -22,16 +23,16 @@ The notebook:
 
 Current count:
 
-- 706 rows before filtering
-- 559 rows after filtering
+- 708 rows before filtering
+- 560 rows after filtering
 
 ## CSV Variants
 
 - `data/sample_overpotentials_new.csv`
   - 706 rows, clean five-column metric table.
 - `data/sample_overpotentials_new_corrected_verison.csv`
-  - Active notebook input.
-  - 706 rows; first five columns match the canonical ML CSV for the same rows.
+  - Historical figure-local input retained for comparison.
+  - 706 rows; this file predates recovery of the final two no-BO points.
   - Includes extra unnamed columns in this figure-local copy.
 - `data/sample_overpotentials_new_corrected_v2.csv`
   - Larger figure-local variant with many extra columns.
@@ -39,8 +40,8 @@ Current count:
 
 ## Middle/Bottom Panels: Machine Learning
 
-- Notebook: `../../hd_separation_ml/0-noble_no_BO_seed42.ipynb`
-- Output folder: `../../hd_separation_ml/0-noble_no_BO_seed42/`
+- Notebook: `../../hd_separation_ml/notebooks/03_final_model_fixed12_560.ipynb`
+- Output folder: `../../hd_separation_ml/outputs/final_model_fixed12_560/`
 - Figure-local copies:
   - `outputs/ml/section3_interpretable_ml_composite.png`
   - `outputs/ml/final_prediction_I_raw.png`
@@ -49,10 +50,11 @@ Current count:
   - `outputs/ml/shap_swarm.png`
   - `data/ml/final_ml_I_raw_results.csv`
 - Data flow:
-  - 706 source rows
-  - 147 digit-suffixed rows removed
-  - 559 no-BO initial-screening rows remain
-  - 558 rows enter ML after EIS/LSV merge because `Mg-Mg` lacks valid LSV data
+  - 708 repo-level source rows
+  - 148 digit-suffixed BO/follow-up rows removed
+  - 560 no-BO initial-screening rows remain
+  - 560 rows enter the final corrected fixed-feature ML run
 
-So the ML panels are based on the 559 initial-screening set conceptually, but the
-actual trained ML model uses 558 merged samples.
+So the current ML panels should be based on the corrected 560-sample no-BO
+dataset. The earlier 558-sample workflow is retained only as a legacy feature
+selection reference in `hd_separation_ml/archive/legacy_558_reference/`.

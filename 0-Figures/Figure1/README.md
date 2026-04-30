@@ -11,8 +11,8 @@ drafts.
   - The first row repeats semantic headers such as `Potential (V)`,
     `Overpotential`, and `Separation Coefficient`.
 - `data/figure1_bottom_plot_points.csv`
-  - Long-format extraction of the exact plotted points from
-    `all_data_corrected.xlsx`.
+  - Long-format extraction retained for auditing the earlier workbook-derived
+    plotted points.
   - Columns: `source_type`, `source_label`, `reference_label`, `x_raw`,
     `plot_x_overpotential_mV`, `separation_coefficient`.
   - For `This work`, `x_raw` is the original potential in V and
@@ -21,6 +21,8 @@ drafts.
 - `notebooks/v4.ipynb`
   - Active notebook for the bottom panel.
   - Patched to read `../data/all_data_corrected.xlsx`.
+  - Patched to rebuild all `This work` points from
+    `../../../all_samples_708_corrected.csv`.
   - Patched to save current outputs to `../outputs/`.
 - `outputs/pareto_plot_v2.png`
   - Current English output.
@@ -29,15 +31,16 @@ drafts.
 
 ## Data Count
 
-The current `v4.ipynb` output reports:
+The active notebook rebuilds the this-work series from the repo-level corrected
+table:
 
-- 706 "This work" points
+- 708 "This work" points
 - 76 literature-reference points
 - 2 benchmark points: `Ni foam` and `Pt sheet`
-- 784 total plotted points
+- 786 total plotted points
 
 So the Figure 1 bottom panel includes all this-work data in the comparison
-workbook, not only the 559 initial-screening samples.
+workbook, not only the 560 initial-screening samples.
 
 ## Raw Materials
 

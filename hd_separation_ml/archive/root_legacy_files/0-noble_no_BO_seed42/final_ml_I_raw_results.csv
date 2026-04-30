@@ -1,0 +1,4 @@
+model_name,best_params,best_cv_score,train_r2,test_r2,train_rmse,test_rmse,overfitting
+Extra Trees,"{'max_depth': 15, 'min_samples_leaf': 2, 'min_samples_split': 5, 'n_estimators': 200}",0.5328379795079832,0.9222056986723339,0.6725914003509285,0.46744869264511657,0.9108976719655993,0.24961429832140547
+Random Forest,"{'max_depth': None, 'min_samples_leaf': 2, 'min_samples_split': 5, 'n_estimators': 200}",0.52850464472023,0.8872606765875614,0.6603920712315063,0.5627270204812573,0.9277126136188277,0.22686860535605502
+XGBoost,"{'learning_rate': 0.05, 'max_depth': 5, 'n_estimators': 100, 'subsample': 0.8}",0.5385435965991114,0.9159007998156807,0.6376012014141934,0.4860220689738592,0.958336271005385,0.2782995984014873

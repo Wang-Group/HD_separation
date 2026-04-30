@@ -4,6 +4,8 @@ This folder contains the metric table, descriptor sources, EIS fitting outputs,
 raw LSV files, and notebooks used for the H/D separation coefficient model.
 Auxiliary or older files have been moved to `archive/`.
 
+See `DATA_CURATION_LOG.md` for the data-recovery and feature-selection log.
+
 ## Active Scope
 
 The manuscript-facing ML analysis in this folder is the no-BO initial-screening
@@ -11,16 +13,31 @@ model. The BO-inclusive ML notebook, `0-noble_BO_seed42.ipynb`, is intentionally
 not part of the active folder contents because it is not used for the manuscript
 Figure 3 ML panel.
 
+## Stable Structure
+
+- `datasets/`
+  - Stable dataset snapshots, including the final no-BO 560-sample dataset and
+    the legacy reference table before the missing `Mo-Mg` data were added.
+- `notebooks/`
+  - Stable notebook entry points.
+- `outputs/`
+  - Workflow-specific outputs. These folders prevent feature-selection and
+    final-model runs from overwriting each other.
+- `archive/legacy_558_reference/`
+  - Self-contained legacy reference run for the older 558-sample workflow.
+
 ## No-BO Model
 
-- Notebook: `0-noble_no_BO_seed42.ipynb`
-- Output folder: `0-noble_no_BO_seed42/`
+- 558-sample feature-selection notebook: `notebooks/01_feature_selection_558.ipynb`
+- 558-sample fixed-feature result notebook: `notebooks/02_final_model_fixed12_558.ipynb`
+- Final 560-sample notebook: `notebooks/03_final_model_fixed12_560.ipynb`
+- Final output folder: `outputs/final_model_fixed12_560/`
 
 ### Inputs
 
 - `sample_overpotentials_new_corrected_verison.csv`
-  - 706 total rows
-  - 559 initial-screening rows after removing digit-suffixed samples
+  - 707 total rows
+  - 560 initial-screening rows after removing digit-suffixed samples
   - 147 digit-suffixed BO/follow-up rows
 - `independent_fitting_results.csv`
   - EIS fitting-derived features.
@@ -40,22 +57,22 @@ if sample[-1].isdigit():
 
 Count progression:
 
-- 706 total rows in the source table
+- 707 total rows in the source table
 - 147 digit-suffixed rows removed
-- 559 no-BO rows remain
-- 558 rows enter the final ML matrix after EIS/LSV merge
+- 560 no-BO rows remain
+- 560 rows enter the final ML matrix after EIS/LSV merge
 
-The one no-BO sample that drops during the EIS/LSV merge is `Mg-Mg`, because it
-is missing from the valid LSV-current set.
+The earlier 558-sample workflow did not include `Mg-Mg` and `Mo-Mg` because
+their electrochemical test data were incomplete at that time. These data were
+added later, so both samples are included in the corrected 560-sample workflow.
 
 ### Model Outputs
 
 The executed notebook outputs show:
 
-- Train/test split: 446 train, 112 test
-- Best executed model in the final no-BO run: Extra Trees
-- Test R2: 0.6691
-- Test RMSE: 0.9238
+- Best executed model with the fixed 12-feature descriptor set: Extra Trees
+- Test R2: 0.6726
+- Test RMSE: 0.9109
 
 Important selected descriptors in the final executed run include:
 

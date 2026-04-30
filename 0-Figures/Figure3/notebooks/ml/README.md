@@ -2,7 +2,7 @@
 
 The runnable machine-learning notebook remains here:
 
-`../../../hd_separation_ml/0-noble_no_BO_seed42.ipynb`
+`../../../hd_separation_ml/notebooks/03_final_model_fixed12_560.ipynb`
 
 It depends on files in `hd_separation_ml`, including descriptor tables, EIS fitting
 results, and raw LSV files. For that reason, the notebook itself is not duplicated
@@ -19,10 +19,12 @@ Current Figure 3 copies of the final ML outputs are stored in:
 
 Data count:
 
-- 706 source rows in `hd_separation_ml/sample_overpotentials_new_corrected_verison.csv`
+- 707 source rows in `hd_separation_ml/sample_overpotentials_new_corrected_verison.csv`
 - 147 digit-suffixed BO/follow-up rows removed
-- 559 initial-screening rows remain
-- 558 rows enter ML after EIS/LSV merge because `Mg-Mg` lacks valid LSV data
+- 560 initial-screening rows remain
+- 560 rows enter the final corrected fixed-feature ML model
 
-So the ML panel is based on the 559 initial-screening set conceptually, but the
-actual trained model uses 558 merged samples.
+So the current ML panel should be based on the corrected 560-sample no-BO
+model. The earlier 558-sample workflow is retained in
+`../../../hd_separation_ml/archive/legacy_558_reference/` as feature-selection
+provenance.

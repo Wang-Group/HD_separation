@@ -1,93 +1,131 @@
-# HD_separation_ML
+# H/D Separation Machine Learning
 
+This directory contains the no-BO machine-learning workflows used to model the
+H/D separation coefficient from electrochemical measurements and metal
+descriptors.
 
+The repository is organized around three reproducible notebook runs:
 
-## Getting started
+1. Legacy 558-sample feature selection.
+2. Legacy 558-sample fixed-feature model result.
+3. Corrected 560-sample fixed-feature final model result.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+The final manuscript-facing model is the corrected 560-sample run.
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+## What To Run
 
-## Add your files
+Run the notebooks in this order:
 
-* [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-* [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
+| Step | Notebook | Purpose | Output folder |
+| --- | --- | --- | --- |
+| 1 | `notebooks/01_feature_selection_558.ipynb` | Reproduce the legacy 558-sample feature-selection workflow. | `outputs/feature_selection_558/` |
+| 2 | `notebooks/02_final_model_fixed12_558.ipynb` | Reproduce the 558-sample result using the fixed 12-feature descriptor set. | `outputs/final_model_fixed12_558/` |
+| 3 | `notebooks/03_final_model_fixed12_560.ipynb` | Train/evaluate the final corrected 560-sample model using the same fixed 12-feature descriptor set. | `outputs/final_model_fixed12_560/` |
 
+Do not run the archived root-level notebooks unless you are intentionally
+inspecting historical intermediate files.
+
+## Current Result Summary
+
+The compact run summary is saved at:
+
+```text
+outputs/model_run_summary.csv
 ```
-cd existing_repo
-git remote add origin https://git.xmu.edu.cn/ai4catalysis/ai4ec/hd_separation_ml.git
-git branch -M main
-git push -uf origin main
+
+Current checked results:
+
+| Run | Samples | Feature set | Best model | Test R2 | Test RMSE |
+| --- | ---: | --- | --- | ---: | ---: |
+| 558 feature-selection reference | 558 | fixed 12-feature set | Extra Trees | 0.6691 | 0.9238 |
+| 558 fixed-feature result | 558 | fixed 12-feature set | Extra Trees | 0.6691 | 0.9238 |
+| 560 final corrected result | 560 | fixed 12-feature set | Extra Trees | 0.6726 | 0.9109 |
+
+## Final Descriptor Set
+
+The final model uses this fixed 12-feature descriptor set:
+
+```text
+I_raw
+work_function_element2
+MM_bond_element1
+MM_bond_element2
+E_std_element1
+E_std_element2
+FE_ads_avg_element1
+delta_EOH_element2
+electronegativity_element1
+electronegativity_element2
+MH_bond_kJ_element2
+MD_bond_kJ_element1
 ```
 
-## Integrate with your tools
+This set combines electrochemical response, metal electronic properties,
+metal-metal bonding, and H/D adsorption/bonding descriptors.
 
-* [Set up project integrations](https://git.xmu.edu.cn/ai4catalysis/ai4ec/hd_separation_ml/-/settings/integrations)
+## Active Inputs
 
-## Collaborate with your team
+The active notebooks load these root-level inputs:
 
-* [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-* [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-* [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-* [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-* [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
+```text
+sample_overpotentials_new_corrected_verison.csv
+independent_fitting_results.csv
+EH_extra.xlsx
+data_extraction/all_data/LSV/*.txt
+```
 
-## Test and Deploy
+The final corrected no-BO dataset snapshot is also saved as:
 
-Use the built-in continuous integration in GitLab.
+```text
+datasets/final_no_BO_560.csv
+```
 
-* [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-* [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-* [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-* [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-* [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+The full corrected label table contains 707 total rows:
 
-***
+- 560 no-BO initial-screening rows.
+- 147 digit-suffixed BO/follow-up rows.
 
-# Editing this README
+The earlier 558-sample workflow did not include `Mg-Mg` and `Mo-Mg` because
+their electrochemical test data were incomplete at that time. These data were
+added later, giving the corrected 560-sample dataset.
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
 
-## Suggestions for a good README
+## Directory Guide
 
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+```text
+hd_separation_ml/
+|-- notebooks/       stable notebook entry points
+|-- outputs/         separated outputs for each notebook workflow
+|-- datasets/        stable CSV snapshots
+|-- data_extraction/ raw and intermediate extracted data
+|-- archive/         historical notebooks, old outputs, backups, and legacy data
+|-- DATA_README.md   active data notes
+`-- DATA_CURATION_LOG.md
+```
 
-## Name
-Choose a self-explaining name for your project.
+Important archive locations:
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+- `archive/legacy_558_reference/`
+  - Self-contained legacy data snapshot used by the two 558-sample notebooks.
+- `archive/root_legacy_files/`
+  - Old root-level notebooks, old root output folder, backup CSVs, and previous
+    descriptor-table artifacts moved out of the active workspace.
+- `archive/feature_selection_560_alternative/`
+  - Earlier 560-sample greedy feature-selection alternative retained for
+    reference, not used as the final model.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+## Reproducibility Notes
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+- The two 558-sample notebooks automatically switch into
+  `archive/legacy_558_reference/` and use its local input snapshot.
+- The 560-sample notebook uses the current corrected root-level input files.
+- Notebook outputs are separated by workflow so rerunning one notebook does not
+  overwrite the outputs from another.
+- Data recovery and feature-selection decisions are documented in
+  `DATA_CURATION_LOG.md`.
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+## Contact
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+For questions about the machine-learning data or workflow, please contact:
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
-
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
-
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
-
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+- Yibin Jiang: `yibinjiang@xmu.edu.cn`
