@@ -1,131 +1,92 @@
 # H/D Separation Machine Learning
 
-This directory contains the no-BO machine-learning workflows used to model the
-H/D separation coefficient from electrochemical measurements and metal
-descriptors.
+This folder contains the current machine-learning data extraction, feature
+selection, model training notebooks, and checked outputs for the no-BO
+initial-screening dataset.
 
-The repository is organized around three reproducible notebook runs:
+## Current Scope
 
-1. Legacy 558-sample feature selection.
-2. Legacy 558-sample fixed-feature model result.
-3. Corrected 560-sample fixed-feature final model result.
+- Dataset: 561 no-BO initial-screening samples.
+- Target: `separation_coefficient`.
+- Electrochemical input: current and potential information extracted from the
+  raw files in `data_extraction/all_data/`.
+- Rs handling: Rs is estimated directly from EIS raw curves for the current
+  workflow; precomputed EIS fitting tables are not required.
+- Final model: 8-feature Extra Trees model with random seed 17.
 
-The final manuscript-facing model is the corrected 560-sample run.
+## Active Notebooks
 
-## What To Run
+Run notebooks from this folder's parent repository root or from the notebook
+folder so relative paths resolve.
 
-Run the notebooks in this order:
+1. `notebooks/01_feature_selection_561_rs_from_eis_no_eis_fitting.ipynb`
+   - Builds the 561-sample feature matrix.
+   - Estimates Rs from EIS.
+   - Performs feature selection without EIS-fitting descriptors.
+   - Writes outputs to
+     `outputs/feature_selection_561_rs_from_eis_no_eis_fitting/`.
+2. `notebooks/02_final_model_8features_561_seed17_rs_from_eis.ipynb`
+   - Trains the final fixed 8-feature model with random seed 17.
+   - Writes outputs to
+     `outputs/final_model_8features_561_seed17_rs_from_eis/`.
 
-| Step | Notebook | Purpose | Output folder |
-| --- | --- | --- | --- |
-| 1 | `notebooks/01_feature_selection_558.ipynb` | Reproduce the legacy 558-sample feature-selection workflow. | `outputs/feature_selection_558/` |
-| 2 | `notebooks/02_final_model_fixed12_558.ipynb` | Reproduce the 558-sample result using the fixed 12-feature descriptor set. | `outputs/final_model_fixed12_558/` |
-| 3 | `notebooks/03_final_model_fixed12_560.ipynb` | Train/evaluate the final corrected 560-sample model using the same fixed 12-feature descriptor set. | `outputs/final_model_fixed12_560/` |
+## Final Feature Set
 
-Do not run the archived root-level notebooks unless you are intentionally
-inspecting historical intermediate files.
+The final model uses:
 
-## Current Result Summary
+- `I_raw`
+- `work_function_element2`
+- `MM_bond_element2`
+- `FE_ads_avg_element1`
+- `delta_EOH_element1`
+- `delta_EOH_element2`
+- `electronegativity_element1`
+- `electronegativity_element2`
 
-The compact run summary is saved at:
+Descriptor display names are saved with the model outputs where applicable,
+for example in
+`outputs/final_model_8features_561_seed17_rs_from_eis/feature_importance.csv`.
 
-```text
-outputs/model_run_summary.csv
-```
+## Current Final Model Output
 
-Current checked results:
+Main output folder:
 
-| Run | Samples | Feature set | Best model | Test R2 | Test RMSE |
-| --- | ---: | --- | --- | ---: | ---: |
-| 558 feature-selection reference | 558 | fixed 12-feature set | Extra Trees | 0.6691 | 0.9238 |
-| 558 fixed-feature result | 558 | fixed 12-feature set | Extra Trees | 0.6691 | 0.9238 |
-| 560 final corrected result | 560 | fixed 12-feature set | Extra Trees | 0.6726 | 0.9109 |
+`outputs/final_model_8features_561_seed17_rs_from_eis/`
 
-## Final Descriptor Set
+Important files:
 
-The final model uses this fixed 12-feature descriptor set:
+- `feature_matrix_8features.csv`: final 561-sample feature matrix.
+- `selected_features.csv`: final descriptor list.
+- `final_ml_I_raw_results.csv`: model metrics and tuned parameters.
+- `final_prediction_I_raw.png`: predicted-vs-observed plot.
+- `feature_importance.csv` and `feature_importance.png`: model feature
+  importance.
+- `final_shap_I_raw/`: SHAP plots for test-set and all-sample views.
 
-```text
-I_raw
-work_function_element2
-MM_bond_element1
-MM_bond_element2
-E_std_element1
-E_std_element2
-FE_ads_avg_element1
-delta_EOH_element2
-electronegativity_element1
-electronegativity_element2
-MH_bond_kJ_element2
-MD_bond_kJ_element1
-```
+Current checked Extra Trees performance:
 
-This set combines electrochemical response, metal electronic properties,
-metal-metal bonding, and H/D adsorption/bonding descriptors.
+- CV R2: 0.5661
+- test R2: 0.6676
+- test RMSE: 0.9758
 
-## Active Inputs
+## Data Extraction Inputs
 
-The active notebooks load these root-level inputs:
+- `data_extraction/all_data/LSV/`: LSV raw curves.
+- `data_extraction/all_data/EIS/`: EIS raw curves used for Rs estimation.
+- `data_extraction/all_data/CV20/`: CV raw curves retained for provenance.
+- `data_extraction/all_data/Et/`: chrono/potential traces retained for
+  electrochemical provenance.
+- `data_extraction/separation_coefficient.xlsx`: separation-coefficient labels.
 
-```text
-sample_overpotentials_new_corrected_verison.csv
-independent_fitting_results.csv
-EH_extra.xlsx
-data_extraction/all_data/LSV/*.txt
-```
+The LSV folder contains `lsv_geometry_area_metadata.csv`, which records the
+initial-screening samples measured with 2 cm^2 geometry.
 
-The final corrected no-BO dataset snapshot is also saved as:
+## Output Folders
 
-```text
-datasets/final_no_BO_560.csv
-```
-
-The full corrected label table contains 707 total rows:
-
-- 560 no-BO initial-screening rows.
-- 147 digit-suffixed BO/follow-up rows.
-
-The earlier 558-sample workflow did not include `Mg-Mg` and `Mo-Mg` because
-their electrochemical test data were incomplete at that time. These data were
-added later, giving the corrected 560-sample dataset.
-
-
-## Directory Guide
-
-```text
-hd_separation_ml/
-|-- notebooks/       stable notebook entry points
-|-- outputs/         separated outputs for each notebook workflow
-|-- datasets/        stable CSV snapshots
-|-- data_extraction/ raw and intermediate extracted data
-|-- archive/         historical notebooks, old outputs, backups, and legacy data
-|-- DATA_README.md   active data notes
-`-- DATA_CURATION_LOG.md
-```
-
-Important archive locations:
-
-- `archive/legacy_558_reference/`
-  - Self-contained legacy data snapshot used by the two 558-sample notebooks.
-- `archive/root_legacy_files/`
-  - Old root-level notebooks, old root output folder, backup CSVs, and previous
-    descriptor-table artifacts moved out of the active workspace.
-- `archive/feature_selection_560_alternative/`
-  - Earlier 560-sample greedy feature-selection alternative retained for
-    reference, not used as the final model.
-
-## Reproducibility Notes
-
-- The two 558-sample notebooks automatically switch into
-  `archive/legacy_558_reference/` and use its local input snapshot.
-- The 560-sample notebook uses the current corrected root-level input files.
-- Notebook outputs are separated by workflow so rerunning one notebook does not
-  overwrite the outputs from another.
-- Data recovery and feature-selection decisions are documented in
-  `DATA_CURATION_LOG.md`.
-
-## Contact
-
-For questions about the machine-learning data or workflow, please contact:
-
-- Yibin Jiang: `yibinjiang@xmu.edu.cn`
+- `outputs/data_audit/`: notebook rerun logs and data-audit helpers.
+- `outputs/feature_selection_561_rs_from_eis_no_eis_fitting/`: feature
+  selection results.
+- `outputs/final_model_8features_561_seed17_rs_from_eis/`: final model
+  results.
+- `outputs/md_bond_ablation_561_seed17/`: descriptor-ablation checks involving
+  M-D bond features.

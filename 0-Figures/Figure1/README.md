@@ -1,60 +1,50 @@
 # Figure 1
 
-This folder now separates the active Figure 1 files from raw materials and old
-drafts.
+This folder contains only the active files needed to regenerate the Figure 1
+bottom comparison/Pareto panel.
 
 ## Active Files
 
-- `data/all_data_corrected.xlsx`
-  - Source workbook for the bottom comparison/Pareto panel.
-  - `Sheet1` stores x/y pairs as adjacent columns.
-  - The first row repeats semantic headers such as `Potential (V)`,
-    `Overpotential`, and `Separation Coefficient`.
+- `data/figure1_bottom_literature_benchmarks.csv`
+  - Literature and benchmark comparison points extracted from the legacy
+    workbook into an explicit active CSV.
+  - Columns: `source_type`, `source_label`, `reference_label`,
+    `plot_x_overpotential_mV`, `separation_coefficient`.
+- `data/figure1_bottom_this_work_from_all_data.csv`
+  - Full this-work extraction table from the current trusted electrochemical
+    raw-data folder.
+  - Derived from `hd_separation_ml/data_extraction/all_data/LSV` and
+    `hd_separation_ml/data_extraction/separation_coefficient.xlsx`.
+  - Includes geometry-area handling for Ag-Ce, Co-V, and Mo-Mg.
+  - For traces that cross the target current multiple times, uses the worst
+    crossing, i.e. the most negative raw potential / largest overpotential.
 - `data/figure1_bottom_plot_points.csv`
-  - Long-format extraction retained for auditing the earlier workbook-derived
-    plotted points.
+  - Long-format audit table for all plotted points.
   - Columns: `source_type`, `source_label`, `reference_label`, `x_raw`,
     `plot_x_overpotential_mV`, `separation_coefficient`.
-  - For `This work`, `x_raw` is the original potential in V and
-    `plot_x_overpotential_mV` is `-1000 * x_raw`.
-  - For literature/benchmark rows, `x_raw` is already overpotential in mV.
+- `data/figure1_bottom_this_work_worst_crossing_updates.csv`
+  - Audit table listing this-work points whose plotted overpotential changed
+    by more than 0.5 mV when the conservative worst-crossing rule was applied.
 - `notebooks/v4.ipynb`
   - Active notebook for the bottom panel.
-  - Patched to read `../data/all_data_corrected.xlsx`.
-  - Patched to rebuild all `This work` points from
-    `../../../all_samples_708_corrected.csv`.
-  - Patched to save current outputs to `../outputs/`.
+  - Reads `../data/figure1_bottom_literature_benchmarks.csv` and
+    `../data/figure1_bottom_this_work_from_all_data.csv`.
+  - Saves the current output to `../outputs/pareto_plot_v2.png`.
 - `outputs/pareto_plot_v2.png`
-  - Current English output.
-- `outputs/pareto_plot_v2——chinese.png`
-  - Current Chinese-labeled output.
+  - Current output PNG.
 
 ## Data Count
 
-The active notebook rebuilds the this-work series from the repo-level corrected
-table:
+The active notebook rebuilds the this-work series from the trusted
+`hd_separation_ml/data_extraction` data:
 
-- 708 "This work" points
+- 709 "This work" points
+- 561 initial-screening points
+- 112 four-system BO points
+- 36 extra Co-Fe BO points
 - 76 literature-reference points
 - 2 benchmark points: `Ni foam` and `Pt sheet`
-- 786 total plotted points
+- 787 total plotted points
 
 So the Figure 1 bottom panel includes all this-work data in the comparison
-workbook, not only the 560 initial-screening samples.
-
-## Raw Materials
-
-- `raw_materials/`
-  - Assembled figure files, icons, PPTX, SVGs, TIFFs, and other visual assets
-    used during Figure 1 assembly.
-
-## Archive
-
-- `archive/notebooks/`
-  - Older notebook versions: `v1.ipynb`, `v2.ipynb`, `v3.ipynb`.
-- `archive/outputs/`
-  - Older Pareto/output variants.
-- `archive/dta/`
-  - Older data bundle and draft outputs that previously lived in `0-data/dta`.
-- `archive/data.rar`
-  - Compressed old data bundle.
+workflow, not only the 561 initial-screening samples.

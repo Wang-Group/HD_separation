@@ -1,52 +1,20 @@
-# Model Outputs
+# Machine-Learning Outputs
 
-This folder separates outputs from different no-BO ML workflows so that runs do
-not overwrite each other.
+This folder stores generated outputs from the active ML notebooks.
 
-## feature_selection_558
+## Active Output Folders
 
-Reference feature-selection outputs for the legacy 558-sample matrix.
+- `feature_selection_561_rs_from_eis_no_eis_fitting/`
+  - Feature-selection history, selected-feature tables, comparison plots, and
+    the 561-sample feature matrix used during selection.
+- `final_model_8features_561_seed17_rs_from_eis/`
+  - Final model outputs for the 8-feature seed-17 model.
+  - Includes prediction plot, model metrics, feature importance, SHAP plots,
+    and the final feature matrix.
+- `md_bond_ablation_561_seed17/`
+  - Additional descriptor-ablation checks involving M-D bond features.
+- `data_audit/`
+  - Notebook rerun logs and data-audit helper outputs.
 
-Key files:
-
-- `feature_selection_558_model_summary.csv`
-
-The corresponding notebook is:
-
-```text
-notebooks/01_feature_selection_558.ipynb
-```
-
-## final_model_fixed12_558
-
-Legacy model outputs for the 558-sample matrix using the fixed 12-feature
-descriptor set.
-
-The corresponding notebook is:
-
-```text
-notebooks/02_final_model_fixed12_558.ipynb
-```
-
-## final_model_fixed12_560
-
-Final model outputs for the corrected 560-sample dataset using the fixed
-12-feature descriptor set.
-
-Key files:
-
-- `final_ml_I_raw_results.csv`
-- `final_prediction_I_raw.png`
-- `final_shap_I_raw/`
-- `section3_interpretable_ml_composite.png`
-
-The corresponding notebook is:
-
-```text
-notebooks/03_final_model_fixed12_560.ipynb
-```
-
-## model_run_summary.csv
-
-Compact comparison of the legacy reference run, the corrected 560-sample
-feature-selection run, and the corrected 560-sample fixed-12-feature final run.
+These folders are generated analysis outputs, not raw data. Raw electrochemical
+inputs are stored under `../data_extraction/all_data/`.

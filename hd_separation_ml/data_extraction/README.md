@@ -1,51 +1,29 @@
-# Data Extraction Notes
+# Data Extraction Inputs
 
-This folder contains intermediate tables used to build the labeled ML table.
+This folder contains the trusted electrochemical and separation-coefficient
+inputs used by the current machine-learning and figure-generation workflows.
 
-## `all_substances.json`
+## Active Data
 
-`all_substances.json` stores one record per catalyst entry with:
+- `all_data/LSV/`: LSV raw curves.
+- `all_data/EIS/`: EIS raw curves.
+- `all_data/CV20/`: CV raw curves retained for provenance.
+- `all_data/Et/`: chrono/potential traces retained for provenance.
+- `separation_coefficient.xlsx`: H/D separation-coefficient labels.
 
-- `substance1`
-- `substance2`
-- `ir_value`
-- `lsv_overpotential_-0.01`
-- `EIS_V`
+## LSV Geometry Metadata
 
-Most `ir_value` values are from the original extracted robot/experiment record.
-`EIS_V` is calculated as:
+`all_data/LSV/lsv_geometry_area_metadata.csv` records initial-screening samples
+measured with 2 cm^2 geometry. For those samples, eta10 under the standard
+1 cm^2 convention is extracted from the raw -20 mA point.
 
-```text
-EIS_V = lsv_overpotential_-0.01 - ir_value * 0.01
-```
+## Current Usage
 
-## Known Gap for Later ML Assembly
+- Figure 1 bottom panel rebuilds this-work overpotentials from `all_data/LSV/`
+  and labels from `separation_coefficient.xlsx`.
+- Figure 3 top panel extracts eta10 from `all_data/LSV/` for the current ML
+  sample set.
+- ML notebooks estimate Rs directly from `all_data/EIS/`.
 
-`Co-Ni4` is absent from the current `all_substances.json` even though its raw
-data and separation coefficient are present:
-
-- `all_data/EIS/Co-Ni4.txt`
-- `all_data/LSV/Co-Ni4.txt`
-- `all_data/Et/Co-Ni4.txt`
-- `all_data/CV20/Co-Ni4.txt`
-- `separation_coefficient.xlsx`
-
-Do not edit `all_substances.json` directly for this case. Keep it as the
-historical intermediate extraction file. When building a complete 709-sample ML
-table later, add the missing `Co-Ni4` values in the table-generation step.
-
-The values to use for `Co-Ni4` are:
-
-```text
-substance1 = Co
-substance2 = Ni4
-ir_value = 3.159323533079328
-lsv_overpotential_-0.01 = -1.1367623108
-EIS_V = -1.1683555461307933
-```
-
-The `ir_value` for `Co-Ni4` should be inferred from the EIS fitting result
-`independent_fitting_results.csv` as the fitted `R_s`, not from the original
-robot-extracted `all_substances.json` record. The LSV value should come from the
-Figure 4 BO source table `0-Figures/Figure4/1-data/BO_data.xlsx`
-(`initial_sampling_Co_Ni`, `row_id = 4`).
+`backups/` contains local backup copies created during data correction. The
+active workflows do not read from that folder.

@@ -1,60 +1,59 @@
-# Data and Code for H/D Separation by Water Electrolysis
+# Data and Code for Electrochemical H/D Separation
 
-This repository contains the data, analysis notebooks, machine-learning
-workflows, Bayesian-optimization code, and hardware-control provenance used for
-the accompanying H/D separation manuscript.
+This repository contains the data tables, analysis notebooks, machine-learning
+workflow, Bayesian-optimization records, and platform-control code associated
+with the H/D separation study.
 
-The repository is organized for manuscript review and reproducibility rather
-than as a standalone installable software package. Most figure/data analyses can
-be inspected from notebooks and checked output files. The hardware-control code
-is included for provenance and should not be run casually because it can control
-real pumps, potentiostats, mass spectrometry, and robotic hardware.
+The repository is organized for manuscript reproducibility and later reuse. It
+is not a single installable software package. Figure notebooks and ML notebooks
+can be inspected and rerun from their local folders; the hardware-control code
+is included for provenance and should only be run in the intended lab setup.
 
-## Quick Map
+## Repository Map
 
 ```text
 .
-|-- all_samples_708_corrected.csv        # corrected full sample-level table
-|-- DATA_MANIFEST.md                     # figure/data mapping
-|-- 0-Figures/                           # figure notebooks, data, outputs
+|-- DATA_MANIFEST.md          # current figure/data map
+|-- 0-Figures/                # figure-specific data, notebooks, and outputs
 |   |-- Figure1/
 |   |-- Figure3/
 |   `-- Figure4/
-|-- hd_separation_ml/                    # ML data curation and model notebooks
-|   |-- datasets/
-|   |-- notebooks/
-|   |-- outputs/
+|-- hd_separation_ml/         # curated ML data extraction and model notebooks
 |   |-- data_extraction/
-|   `-- archive/
-`-- EC_tool_sys/                         # automation and BO provenance
+|   |-- notebooks/
+|   `-- outputs/
+`-- EC_tool_sys/              # platform automation and BO provenance code
     |-- BO_PROVENANCE.md
     |-- botorch_test/
     `-- manager/
 ```
 
-## Canonical Data Tables
+## Current Canonical Data
 
-- `all_samples_708_corrected.csv`
-  - Full corrected sample-level table used for manuscript-level figure updates.
-  - 708 rows total: 560 initial-screening samples and 148 digit-suffixed
-    BO/follow-up samples.
-- `hd_separation_ml/datasets/final_no_BO_560.csv`
-  - Corrected no-BO initial-screening dataset used by the final fixed-feature ML
-    model.
-- `0-Figures/Figure4/1-data/curated/figure4_bo_complete_112.csv`
-  - Curated Figure 4 BO table: four systems, 28 completed datapoints each,
-    112 rows total.
+- `0-Figures/Figure1/data/figure1_bottom_this_work_from_all_data.csv`
+  - Current this-work table for the Figure 1 bottom comparison panel.
+  - 709 rows: 561 initial-screening samples, 112 four-system Figure 4 BO
+    samples, and 36 extra Co-Fe follow-up samples.
+  - LSV values are extracted from
+    `hd_separation_ml/data_extraction/all_data/LSV`.
+- `hd_separation_ml/outputs/final_model_8features_561_seed17_rs_from_eis/feature_matrix_8features.csv`
+  - Current no-BO ML feature matrix.
+  - 561 initial-screening samples.
+- `0-Figures/Figure4/curated/figure4_bo_complete_112.csv`
+  - Current Figure 4 BO table.
+  - 112 rows: 28 completed experiments each for Co-Mo, Co-V, Co-Ni, and
+    Fe-Ni.
 
-See `DATA_MANIFEST.md` for the detailed figure/data mapping.
+See `DATA_MANIFEST.md` for a more detailed figure-by-figure map.
 
-## Reproducing Manuscript Figures
+## Figure Reproduction
 
 ### Figure 1
 
 - Notebook: `0-Figures/Figure1/notebooks/v4.ipynb`
-- Main data:
-  - `all_samples_708_corrected.csv`
-  - `0-Figures/Figure1/data/all_data_corrected.xlsx`
+- Main inputs:
+  - `0-Figures/Figure1/data/figure1_bottom_this_work_from_all_data.csv`
+  - `0-Figures/Figure1/data/figure1_bottom_literature_benchmarks.csv`
 - Output: `0-Figures/Figure1/outputs/pareto_plot_v2.png`
 
 ### Figure 3
@@ -62,96 +61,81 @@ See `DATA_MANIFEST.md` for the detailed figure/data mapping.
 Top panel:
 
 - Notebook: `0-Figures/Figure3/notebooks/visualizewithcolors.ipynb`
-- Main data: `all_samples_708_corrected.csv`
+- Derived data: `0-Figures/Figure3/data/figure3_top_from_ml_dataset.csv`
 - Output: `0-Figures/Figure3/outputs/before_BO_Fe_Co_Others.png`
 
 Machine-learning panels:
 
-- Final notebook: `hd_separation_ml/notebooks/03_final_model_fixed12_560.ipynb`
-- Final outputs: `hd_separation_ml/outputs/final_model_fixed12_560/`
-- Figure-local copies: `0-Figures/Figure3/outputs/ml/`
-
-The legacy 558-sample feature-selection workflow is retained in
-`hd_separation_ml/archive/legacy_558_reference/` and is documented in
-`hd_separation_ml/DATA_CURATION_LOG.md`.
+- Final notebook:
+  `hd_separation_ml/notebooks/02_final_model_8features_561_seed17_rs_from_eis.ipynb`
+- Final outputs:
+  `hd_separation_ml/outputs/final_model_8features_561_seed17_rs_from_eis/`
 
 ### Figure 4
 
-- Main folder: `0-Figures/Figure4/1-data/`
-- BO/Pareto notebook: `0-Figures/Figure4/1-data/pareto_polygon_enclosure_code.ipynb`
-- Descriptor-map notebook: `0-Figures/Figure4/1-data/BO_analysis -2D_symbolic.ipynb`
-- Curated BO table: `0-Figures/Figure4/1-data/curated/figure4_bo_complete_112.csv`
-- Outputs: `0-Figures/Figure4/1-data/outputs/`
+- Folder: `0-Figures/Figure4/`
+- Pareto/IoH notebook: `0-Figures/Figure4/pareto_polygon_enclosure_code.ipynb`
+- Descriptor-map notebook: `0-Figures/Figure4/BO_analysis -2D_symbolic.ipynb`
+- Curated BO table: `0-Figures/Figure4/curated/figure4_bo_complete_112.csv`
+- Current Pareto/IoH export:
+  `0-Figures/Figure4/eight_panels_2x4_batch1_7_lg.png`
+- Descriptor outputs: `0-Figures/Figure4/outputs/`
 
-## Machine-Learning Workflow
+## Machine Learning
 
-The ML workflow is documented in `hd_separation_ml/README.md`.
+The current ML workflow is documented in `hd_separation_ml/README.md`.
 
-The intended notebook order is:
+Recommended notebook order:
 
-1. `hd_separation_ml/notebooks/01_feature_selection_558.ipynb`
-   - Reproduces the legacy 558-sample feature-selection reference.
-2. `hd_separation_ml/notebooks/02_final_model_fixed12_558.ipynb`
-   - Reproduces the fixed 12-feature model on the 558-sample reference matrix.
-3. `hd_separation_ml/notebooks/03_final_model_fixed12_560.ipynb`
-   - Runs the final corrected 560-sample fixed-feature model.
+1. `hd_separation_ml/notebooks/01_feature_selection_561_rs_from_eis_no_eis_fitting.ipynb`
+   - Feature selection on the current 561-sample no-BO dataset.
+   - Avoids EIS-fitting descriptors; Rs is estimated directly from EIS.
+2. `hd_separation_ml/notebooks/02_final_model_8features_561_seed17_rs_from_eis.ipynb`
+   - Final 8-feature model using random seed 17.
 
-Current checked summary:
+Current checked final model:
 
-- final corrected model: 560 samples;
-- fixed 12-feature descriptor set;
-- Extra Trees regressor;
-- test R2 = 0.6726;
-- test RMSE = 0.9109.
+- dataset: 561 no-BO initial-screening samples;
+- descriptor set: 8 features;
+- best model: Extra Trees;
+- test R2: 0.6676;
+- test RMSE: 0.9758.
 
-## Bayesian Optimization and Automation Code
+## Bayesian Optimization and Automation
 
-The BO workflow is documented in:
+The BO/platform provenance is documented in:
 
 - `EC_tool_sys/BO_PROVENANCE.md`
-- `EC_tool_sys/manager/platform_manager_HD_Hcell.py`
-- `EC_tool_sys/botorch_test/botorch_tool/active_learning.py`
+- `EC_tool_sys/manager/README.md`
+- `EC_tool_sys/botorch_test/README.md`
 
-The relevant function is:
+The manuscript-relevant active-learning helper is:
 
 ```python
 generate_new_exp_MO_one_system_V2
 ```
 
-It uses:
+It uses BoTorch multi-objective Bayesian optimization with
+`lsv_overpotential_-0.01` and `separation_coefficient` as the objectives.
 
-- recipe variables: metal 1 volume, metal 2 volume, sodium citrate volume;
-- objectives: HER activity from `lsv_overpotential_-0.01` and
-  `separation_coefficient`;
-- acquisition function: BoTorch `qNoisyExpectedHypervolumeImprovement`.
+## Electrochemical Data Notes
 
-The hardware manager writes completed experimental results back to the
-experiment table, calls the BO helper after each completed batch, appends new
-candidate recipes, and then continues with the appended rows. The runtime loop
-uses a preset experiment count rather than hypervolume-based stopping.
+- The active LSV, EIS, CV20, and Et files are under
+  `hd_separation_ml/data_extraction/all_data/`.
+- The separation-coefficient table is
+  `hd_separation_ml/data_extraction/separation_coefficient.xlsx`.
+- For LSV traces that cross a target current more than once, figure-generation
+  notebooks use the conservative crossing: the most negative raw potential.
+- `hd_separation_ml/data_extraction/all_data/LSV/lsv_geometry_area_metadata.csv`
+  records the initial-screening samples measured with 2 cm^2 geometry.
 
-## Hardware Code Warning
+## Hardware Safety
 
 `EC_tool_sys/manager/` contains hardware-facing automation code. It assumes a
 specific Windows lab environment with configured COM ports, instrument drivers,
 vendor software, robotic hardware, and mass-spectrometry control. Do not run
-these scripts unless the hardware setup and safety procedures have been
-verified.
-
-## Archive Folders
-
-Archive folders preserve historical notebooks, old outputs, backup files, and
-legacy data snapshots. They are retained for traceability but are not the
-recommended entry points for reproducing the current manuscript figures.
-
-## Recommended Reading Order
-
-For manuscript review:
-
-1. `DATA_MANIFEST.md`
-2. `hd_separation_ml/README.md`
-3. `EC_tool_sys/BO_PROVENANCE.md`
-4. figure-specific READMEs under `0-Figures/`
+platform-manager scripts unless the hardware setup and safety procedures have
+been verified.
 
 ## Contact
 

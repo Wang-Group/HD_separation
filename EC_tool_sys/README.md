@@ -1,4 +1,4 @@
-# Ec_tool_sys
+# EC_tool_sys
 
 `Ec_tool_sys` is a Windows-based lab automation codebase for electrochemical catalyst synthesis, screening, mass-spectrometry-assisted evaluation, and Bayesian optimization.
 

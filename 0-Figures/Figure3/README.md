@@ -1,60 +1,47 @@
 # Figure 3
 
-This folder contains the active Figure 3 panel data and figure-ready outputs.
-The runnable machine-learning workflow remains in `hd_separation_ml/` because
-that notebook depends on the ML directory's descriptor, EIS, and LSV files.
+This folder keeps only the figure-local material needed for the Figure 3 top
+panel. The machine-learning workflow and outputs are maintained in
+`../../hd_separation_ml/`, because those notebooks depend on the curated ML raw
+data, descriptor tables, EIS files, and LSV files.
 
-## Top Panel: Initial Screening Scatter
+## Top Panel
 
 - Notebook: `notebooks/visualizewithcolors.ipynb`
-- Main input: `../../all_samples_708_corrected.csv`
+- Derived data: `data/figure3_top_from_ml_dataset.csv`
 - Output: `outputs/before_BO_Fe_Co_Others.png`
 
-The notebook is patched to read the repo-level corrected 708-sample table and
-save to `../outputs/`.
+The notebook rebuilds the top-panel scatter from the current 561-sample no-BO
+machine-learning dataset:
 
-### Filtering Rule
+`../../hd_separation_ml/outputs/final_model_8features_561_seed17_rs_from_eis/feature_matrix_8features.csv`
 
-The notebook:
+For each sample, the plotted eta10 value is re-extracted from:
 
-1. Splits `sample` into first and second components using `-`.
-2. Keeps rows where the second component is letters only: `[A-Za-z]+`.
-3. Removes digit-suffixed BO/follow-up rows such as `Co-Fe0`.
+`../../hd_separation_ml/data_extraction/all_data/LSV/`
 
-Current count:
+If an LSV trace crosses the target current more than once, the notebook uses
+the worst crossing, i.e. the most negative raw potential / largest
+overpotential, for conservative reporting.
 
-- 708 rows before filtering
-- 560 rows after filtering
+The conversion uses:
 
-## CSV Variants
+`eta10_mV = -1000 * (E_raw + 0.098 + 0.0592 * 14)`
 
-- `data/sample_overpotentials_new.csv`
-  - 706 rows, clean five-column metric table.
-- `data/sample_overpotentials_new_corrected_verison.csv`
-  - Historical figure-local input retained for comparison.
-  - 706 rows; this file predates recovery of the final two no-BO points.
-  - Includes extra unnamed columns in this figure-local copy.
-- `data/sample_overpotentials_new_corrected_v2.csv`
-  - Larger figure-local variant with many extra columns.
-  - Not active unless the notebook path is manually switched.
+Samples listed in `LSV/lsv_geometry_area_metadata.csv` are corrected for their
+2 cm^2 LSV geometry by using the raw current corresponding to -10 mA cm^-2.
 
-## Middle/Bottom Panels: Machine Learning
+To keep the scatter plot consistent with the original initial-screening LSV
+window, eta10 values are plotted within the common LSV lower-potential limit of
+-1.50 V. The data CSV keeps both the plotted common-window eta10 and the
+full-LSV eta10 for provenance.
 
-- Notebook: `../../hd_separation_ml/notebooks/03_final_model_fixed12_560.ipynb`
-- Output folder: `../../hd_separation_ml/outputs/final_model_fixed12_560/`
-- Figure-local copies:
-  - `outputs/ml/section3_interpretable_ml_composite.png`
-  - `outputs/ml/final_prediction_I_raw.png`
-  - `outputs/ml/shap_bar.png`
-  - `outputs/ml/shap_bar_fixed_for_composite.png`
-  - `outputs/ml/shap_swarm.png`
-  - `data/ml/final_ml_I_raw_results.csv`
-- Data flow:
-  - 708 repo-level source rows
-  - 148 digit-suffixed BO/follow-up rows removed
-  - 560 no-BO initial-screening rows remain
-  - 560 rows enter the final corrected fixed-feature ML run
+## ML Panels
 
-So the current ML panels should be based on the corrected 560-sample no-BO
-dataset. The earlier 558-sample workflow is retained only as a legacy feature
-selection reference in `hd_separation_ml/archive/legacy_558_reference/`.
+Do not duplicate machine-learning notebooks or copied ML output images here.
+Use the current ML outputs in:
+
+`../../hd_separation_ml/outputs/final_model_8features_561_seed17_rs_from_eis/`
+
+The active final model uses the current 561-sample no-BO dataset and the
+8-feature descriptor set documented in `hd_separation_ml`.
