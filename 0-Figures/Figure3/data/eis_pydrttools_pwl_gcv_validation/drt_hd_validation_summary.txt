@@ -1,0 +1,73 @@
+Figure 3 pyDRTtools DRT-HD validation
+=====================================
+
+Method: official pyDRTtools simple_run with CVXOPT quadratic programming.
+Settings: rbf_type=PWL, data_used=Combined Re-Im Data, induct_used=1, cv_type=GCV, lambda=0.001.
+Recovered gamma(tau) is interpolated to a common tau grid before integration.
+Long-tau fraction maps to the low-frequency 0.1-10 Hz process window by tau = 1/(2*pi*f).
+
+EIS files in source folder: 706
+Separation labels: 709
+DRT-fitted spectra: 706
+Initial-screening no-BO fitted spectra: 561
+Digit-suffixed BO/follow-up fitted spectra: 145
+Missing EIS labels: ['Co-Fe24', 'Co-Mo20', 'Co-V24']
+DRT skipped/error spectra: 0
+
+Focused DRT correlations:
+                       subset                         feature   n  pearson  spearman
+                  all_matched              drt_total_area_ohm 706  -0.2904   -0.5606
+                  all_matched                    imag_loss_r2 706   0.0784    0.0539
+                  all_matched              imag_loss_rel_rmse 706  -0.0469    0.0511
+                  all_matched        long_over_short_tau_area 706  -0.0094   -0.3606
+                  all_matched     long_tau_0p1_10Hz__fraction 706   0.0894    0.0534
+                  all_matched       mid_tau_10_1kHz__fraction 706  -0.2273   -0.2919
+                  all_matched   short_tau_1k_100kHz__fraction 706   0.3150    0.4929
+                  all_matched very_long_tau_0p1_1Hz__fraction 706   0.1477    0.0672
+digit_suffixed_followup_or_BO              drt_total_area_ohm 145  -0.1639    0.0025
+digit_suffixed_followup_or_BO                    imag_loss_r2 145   0.0214    0.1312
+digit_suffixed_followup_or_BO              imag_loss_rel_rmse 145  -0.0422   -0.1295
+digit_suffixed_followup_or_BO        long_over_short_tau_area 145   0.0201    0.1549
+digit_suffixed_followup_or_BO     long_tau_0p1_10Hz__fraction 145   0.0828   -0.0062
+digit_suffixed_followup_or_BO       mid_tau_10_1kHz__fraction 145  -0.3187   -0.0035
+digit_suffixed_followup_or_BO   short_tau_1k_100kHz__fraction 145  -0.0508   -0.0989
+digit_suffixed_followup_or_BO very_long_tau_0p1_1Hz__fraction 145   0.0341    0.0739
+      initial_screening_no_BO              drt_total_area_ohm 561  -0.2220   -0.4196
+      initial_screening_no_BO                    imag_loss_r2 561   0.0225   -0.0703
+      initial_screening_no_BO              imag_loss_rel_rmse 561   0.0126    0.0902
+      initial_screening_no_BO        long_over_short_tau_area 561   0.0149   -0.3000
+      initial_screening_no_BO     long_tau_0p1_10Hz__fraction 561   0.0441   -0.0018
+      initial_screening_no_BO       mid_tau_10_1kHz__fraction 561   0.0218    0.0432
+      initial_screening_no_BO   short_tau_1k_100kHz__fraction 561   0.1855    0.3754
+      initial_screening_no_BO very_long_tau_0p1_1Hz__fraction 561  -0.0263   -0.1045
+
+Top initial-screening DRT correlations:
+                        feature   n  pearson  spearman
+             drt_total_area_ohm 561  -0.2220   -0.4196
+  short_tau_1k_100kHz__fraction 561   0.1855    0.3754
+             drt_peak_gamma_ohm 561  -0.1279   -0.3742
+    long_tau_0p1_10Hz__area_ohm 561  -0.2536   -0.3173
+       long_over_short_tau_area 561   0.0149   -0.3000
+      mid_tau_10_1kHz__area_ohm 561  -0.2237   -0.2694
+                   real_loss_r2 561   0.0014   -0.2652
+very_long_tau_0p1_1Hz__area_ohm 561  -0.1658   -0.2620
+  short_tau_1k_100kHz__area_ohm 561  -0.0436   -0.2379
+         pydrttools_wall_time_s 561  -0.1755   -0.1728
+                 drt_peak_tau_s 561  -0.1825   -0.1645
+           drt_peak_log10_tau_s 561  -0.1036   -0.1645
+                         lambda 561  -0.0251    0.1586
+               combined_loss_r2 561  -0.0059   -0.1571
+               pydrttools_R_ohm 561  -0.1467   -0.1182
+very_long_tau_0p1_1Hz__fraction 561  -0.0263   -0.1045
+             imag_loss_rel_rmse 561   0.0126    0.0902
+                   n_eis_points 561   0.1052    0.0880
+               freq_min_used_hz 561  -0.0253   -0.0880
+                   imag_loss_r2 561   0.0225   -0.0703
+
+Interpretation:
+- Total DRT relaxation area is negatively correlated with HD separation.
+- Absolute long-tau / low-frequency DRT area is also negatively correlated with
+  HD separation, but the normalized long-tau fraction is weak and not a robust
+  negative trend in this batch inversion.
+- This is the official pyDRTtools validation; the separate raw-frequency proxy is kept in
+  data/eis_hd_validation/ for comparison.

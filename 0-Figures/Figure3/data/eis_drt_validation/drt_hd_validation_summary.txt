@@ -1,0 +1,72 @@
+Figure 3 DRT-HD validation
+==========================
+
+Method: nonnegative Tikhonov DRT inversion from capacitive -Z''.
+Kernel: -Z''(omega) = integral gamma(tau) omega tau / (1 + (omega tau)^2) dln(tau).
+Long-tau fraction maps to the low-frequency 0.1-10 Hz process window by tau = 1/(2*pi*f).
+
+EIS files in source folder: 706
+Separation labels: 709
+DRT-fitted spectra: 706
+Initial-screening no-BO fitted spectra: 561
+Digit-suffixed BO/follow-up fitted spectra: 145
+Missing EIS labels: ['Co-Fe24', 'Co-Mo20', 'Co-V24']
+DRT skipped/error spectra: 0
+
+Focused DRT correlations:
+                       subset                         feature   n  pearson  spearman
+                  all_matched              drt_total_area_ohm 706  -0.3023   -0.5690
+                  all_matched                    imag_loss_r2 706   0.0031    0.1650
+                  all_matched              imag_loss_rel_rmse 706  -0.0720   -0.1516
+                  all_matched        long_over_short_tau_area 706  -0.2903   -0.2645
+                  all_matched     long_tau_0p1_10Hz__fraction 706   0.1541    0.1541
+                  all_matched       mid_tau_10_1kHz__fraction 706  -0.2219   -0.2841
+                  all_matched   short_tau_1k_100kHz__fraction 706   0.0131   -0.0694
+                  all_matched very_long_tau_0p1_1Hz__fraction 706   0.2210    0.1132
+digit_suffixed_followup_or_BO              drt_total_area_ohm 145  -0.1709    0.0005
+digit_suffixed_followup_or_BO                    imag_loss_r2 145   0.0373    0.2373
+digit_suffixed_followup_or_BO              imag_loss_rel_rmse 145  -0.1366   -0.2690
+digit_suffixed_followup_or_BO        long_over_short_tau_area 145  -0.0754    0.1623
+digit_suffixed_followup_or_BO     long_tau_0p1_10Hz__fraction 145   0.1135    0.0549
+digit_suffixed_followup_or_BO       mid_tau_10_1kHz__fraction 145  -0.3520    0.0002
+digit_suffixed_followup_or_BO   short_tau_1k_100kHz__fraction 145  -0.0446   -0.0683
+digit_suffixed_followup_or_BO very_long_tau_0p1_1Hz__fraction 145   0.0666    0.0859
+      initial_screening_no_BO              drt_total_area_ohm 561  -0.2332   -0.4251
+      initial_screening_no_BO                    imag_loss_r2 561  -0.0223    0.0124
+      initial_screening_no_BO              imag_loss_rel_rmse 561  -0.0186   -0.0205
+      initial_screening_no_BO        long_over_short_tau_area 561  -0.2426   -0.2519
+      initial_screening_no_BO     long_tau_0p1_10Hz__fraction 561   0.0752    0.0558
+      initial_screening_no_BO       mid_tau_10_1kHz__fraction 561   0.0233    0.0462
+      initial_screening_no_BO   short_tau_1k_100kHz__fraction 561   0.0271   -0.0158
+      initial_screening_no_BO very_long_tau_0p1_1Hz__fraction 561   0.0112   -0.0782
+
+Top initial-screening DRT correlations:
+                        feature   n  pearson  spearman
+             drt_total_area_ohm 561  -0.2332   -0.4251
+             drt_peak_gamma_ohm 561  -0.0969   -0.4045
+    long_tau_0p1_10Hz__area_ohm 561  -0.2512   -0.3113
+                      objective 561  -0.1079   -0.3106
+                     iterations 561  -0.2730   -0.3031
+      mid_tau_10_1kHz__area_ohm 561  -0.2222   -0.2701
+       long_over_short_tau_area 561  -0.2426   -0.2519
+            n_capacitive_points 561  -0.1807   -0.2453
+               freq_max_used_hz 561  -0.0750   -0.2368
+very_long_tau_0p1_1Hz__area_ohm 561  -0.1533   -0.2295
+                 drt_peak_tau_s 561  -0.1693   -0.1688
+           drt_peak_log10_tau_s 561  -0.1365   -0.1688
+very_long_tau_0p1_1Hz__fraction 561   0.0112   -0.0782
+    long_tau_0p1_10Hz__fraction 561   0.0752    0.0558
+      mid_tau_10_1kHz__fraction 561   0.0233    0.0462
+             imag_loss_rel_rmse 561  -0.0186   -0.0205
+  short_tau_1k_100kHz__area_ohm 561  -0.0081   -0.0201
+  short_tau_1k_100kHz__fraction 561   0.0271   -0.0158
+                   imag_loss_r2 561  -0.0223    0.0124
+               freq_min_used_hz 561   0.0189    0.0018
+
+Interpretation:
+- Total DRT relaxation area is negatively correlated with HD separation.
+- Absolute long-tau / low-frequency DRT area is also negatively correlated with
+  HD separation, but the normalized long-tau fraction is weak and not a robust
+  negative trend in this batch inversion.
+- This is the DRT-style validation; the separate raw-frequency proxy is kept in
+  data/eis_hd_validation/ for comparison.

@@ -1,0 +1,27 @@
+Figure 3 initial no-BO EIS-HD validation
+========================================
+
+EIS files in source folder: 706
+Initial-screening separation labels: 561
+Initial-screening matched EIS spectra: 561
+Initial-screening no-BO matched spectra: 561
+Missing EIS labels: []
+Parse errors: 0
+
+Focused correlations for total integral and frequency fractions:
+                 subset                           feature   n  pearson  spearman
+initial_screening_no_BO      high_1k_100kHz_fraction_Zabs 561   0.3311    0.3513
+initial_screening_no_BO high_1k_100kHz_fraction_abs_Zimag 561   0.2130    0.3967
+initial_screening_no_BO        low_0p1_10Hz_fraction_Zabs 561  -0.3080   -0.3240
+initial_screening_no_BO   low_0p1_10Hz_fraction_abs_Zimag 561  -0.0762   -0.1587
+initial_screening_no_BO         mid_10_1kHz_fraction_Zabs 561   0.2544    0.2656
+initial_screening_no_BO    mid_10_1kHz_fraction_abs_Zimag 561  -0.0335    0.0126
+initial_screening_no_BO        total_Zabs_area_0p1_100kHz 561  -0.3203   -0.3948
+initial_screening_no_BO   total_abs_Zimag_area_0p1_100kHz 561  -0.2812   -0.3976
+
+Interpretation:
+- The total EIS area/integral features are negatively correlated with HD separation.
+- The low-frequency |Z| area fraction is also negatively correlated with HD separation.
+- The low-frequency |Z''| fraction is weaker in the raw-frequency proxy, so the stronger
+  low-frequency-fraction statement should be tied to |Z| area or to a later DRT/FRT
+  relaxation-area decomposition.

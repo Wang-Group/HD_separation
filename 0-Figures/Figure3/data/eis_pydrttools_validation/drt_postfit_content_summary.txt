@@ -1,0 +1,57 @@
+Post-fit DRT content analysis, initial no-BO
+============================================
+
+Question: which DRT-derived quantities besides total DRT area relate to HD separation?
+
+Top direct and partial feature associations, initial 561:
+                      feature   n  spearman  partial_spearman_control_log_total_area
+  long_tau_0p1_10Hz__fraction 561    0.0281                                   0.1868
+short_tau_1k_100kHz__fraction 561    0.3728                                   0.1422
+             pydrttools_R_ohm 561   -0.1245                                  -0.1161
+               pydrttools_L_h 561    0.0523                                   0.1053
+  long_tau_0p1_10Hz__area_ohm 561   -0.3117                                   0.0999
+                 imag_loss_r2 561   -0.0604                                   0.0834
+    mid_tau_10_1kHz__fraction 561    0.0393                                  -0.0760
+           imag_loss_rel_rmse 561    0.0817                                  -0.0750
+           drt_peak_gamma_ohm 561   -0.3786                                   0.0706
+    mid_tau_10_1kHz__area_ohm 561   -0.2673                                  -0.0669
+     long_over_short_tau_area 561   -0.2908                                  -0.0573
+                 real_loss_r2 561   -0.2625                                   0.0400
+
+Initial top/bottom 20% HD medians:
+                      feature  bottom20_median  top20_median  top_over_bottom
+       separation_coefficient           2.8512        7.0989           2.4898
+           drt_total_area_ohm          42.8103        9.0617           0.2117
+           drt_peak_gamma_ohm          16.2651        4.1702           0.2564
+    mid_tau_10_1kHz__area_ohm           5.0865        1.2433           0.2444
+  long_tau_0p1_10Hz__area_ohm          25.1388        6.0562           0.2409
+short_tau_1k_100kHz__fraction           0.0087        0.0418           4.8120
+  long_tau_0p1_10Hz__fraction           0.6868        0.7286           1.0609
+               drt_peak_tau_s           0.1153        0.0466           0.4043
+
+Strongest initial tau-resolved gamma associations:
+  tau_s  equivalent_freq_hz  spearman  partial_spearman_control_log_total_area
+0.00149           106.57684  -0.29391                                 -0.16097
+0.00125           127.73635  -0.28479                                 -0.15761
+0.00179            88.92239  -0.28007                                 -0.14798
+0.00104           153.09683  -0.26444                                 -0.15128
+0.00215            74.19241  -0.25887                                 -0.12811
+2.50540             0.06352  -0.24496                                 -0.15841
+0.00001         14166.36195  -0.24425                                 -0.07559
+3.00281             0.05300  -0.24410                                 -0.15582
+
+Exploratory 5-fold predictive checks:
+                 subset                     model  mean_cv_r2  sd_cv_r2  mean_cv_mae
+initial_screening_no_BO     ridge_total_area_only      0.1228    0.0410       1.2432
+initial_screening_no_BO         ridge_compact_drt      0.2135    0.0300       1.1628
+initial_screening_no_BO random_forest_compact_drt      0.2892    0.0697       1.1003
+
+Interpretation:
+- Total DRT area remains the main single descriptor.
+- DRT peak height and mid/long-tau absolute areas track HD mostly because they
+  co-vary with the total relaxation resistance.
+- The strongest tau-resolved signal is near tau = 1-2 ms, equivalent to roughly
+  80-150 Hz; this signal partly remains after controlling total DRT area.
+- Short-tau fraction is positively associated with HD separation, but this is a
+  normalized shape effect and should be framed as relative redistribution rather
+  than an independent absolute resistance increase.

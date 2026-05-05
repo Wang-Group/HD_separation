@@ -1,0 +1,49 @@
+all_data vs raw_data audit
+===========================
+
+Current all_data txt files: 2830
+Expected raw mapping candidates: 4330
+Raw archive txt files hashed: 6998
+
+Counts by data type:
+data_type  n_current_txt_files  n_expected_existing_raw_files
+     CV20                  706                            784
+      EIS                  706                            784
+       Et                  709                            789
+      LSV                  709                            790
+
+Status summary:
+data_type                               status  n_files
+     CV20                       expected_match      701
+     CV20    expected_mismatch_exact_elsewhere        1
+     CV20 expected_mismatch_no_exact_elsewhere        2
+     CV20   no_expected_mapping_no_exact_match        2
+      EIS                       expected_match      701
+      EIS    expected_mismatch_exact_elsewhere        1
+      EIS expected_mismatch_no_exact_elsewhere        2
+      EIS   no_expected_mapping_no_exact_match        2
+       Et                       expected_match      706
+       Et    expected_mismatch_exact_elsewhere        1
+       Et expected_mismatch_no_exact_elsewhere        1
+       Et   no_expected_mapping_no_exact_match        1
+      LSV                       expected_match      706
+      LSV expected_mismatch_no_exact_elsewhere        3
+
+Anomalies:
+ sample data_type                               status                                            current_relpath                     expected_raw_relpath                                                                                                       exact_raw_hash_matches_full_archive exact_raw_hash_matches_same_type
+   Co-V      CV20    expected_mismatch_exact_elsewhere    hd_separation_ml\data_extraction\all_data\CV20\Co-V.txt 11-Co-1\tmp\electrocatalysis\CV\20\6.txt                       168-raw_data\20250121\Co-V\Co-V-6-1-CV20-0.92-0.18.txt | 168-raw_data\20250121\Co-V\CoV\Co-V-6-1-CV20-0.92-0.18.txt                                 
+   Co-V       EIS    expected_mismatch_exact_elsewhere     hd_separation_ml\data_extraction\all_data\EIS\Co-V.txt   11-Co-1\tmp\electrocatalysis\EIS\6.txt                                 168-raw_data\20250121\Co-V\Co-V-6-1-EIS-1.13V.txt | 168-raw_data\20250121\Co-V\CoV\Co-V-6-1-EIS-1.13V.txt                                 
+   Co-V        Et    expected_mismatch_exact_elsewhere      hd_separation_ml\data_extraction\all_data\Et\Co-V.txt    11-Co-1\tmp\electrocatalysis\Et\6.txt 168-raw_data\20250121\Co-V\Co-V-catalysis-50mA-1600s-channel8.txt | 168-raw_data\20250121\Co-V\CoV\Co-V-catalysis-50mA-1600s-channel8.txt                                 
+  Ag-Ce      CV20 expected_mismatch_no_exact_elsewhere   hd_separation_ml\data_extraction\all_data\CV20\Ag-Ce.txt 16-Ag1\tmp\electrocatalysis\CV\20\27.txt                                                                                                                                                                           
+  Mo-Mg      CV20 expected_mismatch_no_exact_elsewhere   hd_separation_ml\data_extraction\all_data\CV20\Mo-Mg.txt 15-Mo-1\tmp\electrocatalysis\CV\20\0.txt                                                                                                                                                                           
+  Ag-Ce       EIS expected_mismatch_no_exact_elsewhere    hd_separation_ml\data_extraction\all_data\EIS\Ag-Ce.txt   16-Ag1\tmp\electrocatalysis\EIS\27.txt                                                                                                                                                                           
+  Mo-Mg       EIS expected_mismatch_no_exact_elsewhere    hd_separation_ml\data_extraction\all_data\EIS\Mo-Mg.txt   15-Mo-1\tmp\electrocatalysis\EIS\0.txt                                                                                                                                                                           
+  Ag-Ce        Et expected_mismatch_no_exact_elsewhere     hd_separation_ml\data_extraction\all_data\Et\Ag-Ce.txt    16-Ag1\tmp\electrocatalysis\Et\27.txt                                                                                                                                                                           
+  Ag-Ce       LSV expected_mismatch_no_exact_elsewhere    hd_separation_ml\data_extraction\all_data\LSV\Ag-Ce.txt   16-Ag1\tmp\electrocatalysis\LSV\27.txt                                                                                                                                                                           
+   Co-V       LSV expected_mismatch_no_exact_elsewhere     hd_separation_ml\data_extraction\all_data\LSV\Co-V.txt   11-Co-1\tmp\electrocatalysis\LSV\6.txt                                                                                                                                                                           
+  Mo-Mg       LSV expected_mismatch_no_exact_elsewhere    hd_separation_ml\data_extraction\all_data\LSV\Mo-Mg.txt   15-Mo-1\tmp\electrocatalysis\LSV\0.txt                                                                                                                                                                           
+Co-Fe25      CV20   no_expected_mapping_no_exact_match hd_separation_ml\data_extraction\all_data\CV20\Co-Fe25.txt                                      NaN                                                                                                                                                                           
+ Co-Ni4      CV20   no_expected_mapping_no_exact_match  hd_separation_ml\data_extraction\all_data\CV20\Co-Ni4.txt                                      NaN                                                                                                                                                                           
+Co-Fe25       EIS   no_expected_mapping_no_exact_match  hd_separation_ml\data_extraction\all_data\EIS\Co-Fe25.txt                                      NaN                                                                                                                                                                           
+ Co-Ni4       EIS   no_expected_mapping_no_exact_match   hd_separation_ml\data_extraction\all_data\EIS\Co-Ni4.txt                                      NaN                                                                                                                                                                           
+  Mo-Mg        Et   no_expected_mapping_no_exact_match     hd_separation_ml\data_extraction\all_data\Et\Mo-Mg.txt                                      NaN                                                                                                                                                                           
