@@ -138,6 +138,30 @@ This version removes contour filling.
 Use this version when a purely data-point-based representation is preferred.
 It avoids interpolation assumptions entirely.
 
+## Figure S14: Descriptor-Space Supporting Summary
+
+Script:
+
+`assemble_figure_S14_descriptor_panels.py`
+
+Run:
+
+```powershell
+& C:\Users\yibinjiang\anaconda3\python.exe .\assemble_figure_S14_descriptor_panels.py
+```
+
+Output:
+
+`outputs/figure_S14_four_panel_BO_descriptor_analysis_rows.png`
+
+This script reuses the same Figure 4C plotting code and curated descriptor
+tables to assemble the four-row supporting-information summary:
+
+- global descriptor landscape;
+- global point distribution;
+- local BO-region descriptor landscape;
+- local BO-region point distribution.
+
 ## Legacy Descriptor Panels
 
 Notebook:

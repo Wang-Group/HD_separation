@@ -29,6 +29,14 @@ folder so relative paths resolve.
    - Trains the final fixed 8-feature model with random seed 17.
    - Writes outputs to
      `outputs/final_model_8features_561_seed17_rs_from_eis/`.
+3. `notebooks/03_eta10_activity_model_raw_descriptors.ipynb`
+   - Builds a separate HER-activity model for LSV-derived `eta10_mV`.
+   - Uses true LSV crossings only, applies the 2 cm2 geometry rule where
+     relevant, and excludes `eta10 < 20 mV` outliers.
+   - Excludes `I_raw` and converts work-function, PZC, and standard-potential
+     descriptors back to raw elemental values for eta10 interpretation.
+   - Writes outputs to
+     `outputs/03_eta10_activity_model_raw_descriptors/`.
 
 ## Final Feature Set
 

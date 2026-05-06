@@ -374,8 +374,8 @@ def draw_joint_panel(fig, subspec, initial_df, bo_df, x_col, y_col, lims, mode):
 
     ax_scatter.set_xlim(*xlim)
     ax_scatter.set_ylim(*ylim)
-    ax_scatter.set_xlabel(LABELS[x_col], fontsize=12, fontweight="bold")
-    ax_scatter.set_ylabel(LABELS[y_col], fontsize=12, fontweight="bold")
+    ax_scatter.set_xlabel(LABELS[x_col], fontsize=12, fontweight="bold", labelpad=6)
+    ax_scatter.set_ylabel(LABELS[y_col], fontsize=12, fontweight="bold", labelpad=8)
     ax_scatter.grid(True, color="#c9c9c9", linewidth=0.35, alpha=0.28)
     style_tick_labels(ax_scatter)
 
@@ -383,6 +383,8 @@ def draw_joint_panel(fig, subspec, initial_df, bo_df, x_col, y_col, lims, mode):
 
     for side in ["left", "right", "top", "bottom"]:
         ax_scatter.spines[side].set_linewidth(2.0)
+
+    return ax_histx, ax_scatter, ax_histy
 
 
 def draw_legend(fig):
@@ -440,6 +442,13 @@ def main():
         LOCAL_LIMS,
         "contour",
         "figure4C_local_BO_descriptor_joint_marginals_initial_contour_same_bins_circles_old_panel_aspect_masked_strict055",
+    )
+    draw_figure(
+        initial_df,
+        bo_df,
+        LOCAL_LIMS,
+        "points_only",
+        "figure4C_local_BO_descriptor_joint_marginals_points_only_initial_edgecolor_bo_filled",
     )
     draw_figure(
         initial_df,
