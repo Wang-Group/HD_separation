@@ -116,6 +116,12 @@ def remove_gridlines(*axes: plt.Axes) -> None:
         ax.grid(False)
 
 
+def separation_mappable(data: pd.DataFrame):
+    sm = plt.cm.ScalarMappable(norm=base.hd_color_norm(data), cmap=base.HD_CMAP)
+    sm.set_array([])
+    return sm
+
+
 def main() -> None:
     base.OUT_FIG.mkdir(parents=True, exist_ok=True)
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
@@ -124,6 +130,7 @@ def main() -> None:
     fig_b, ax_b = plt.subplots(figsize=(5.9, 5.0), constrained_layout=True)
     background = plot_good_fit_background(ax_b, data)
     base.plot_panel_b(ax_b, data, show_curve_labels=True)
+    base.add_top_colorbar(fig_b, ax_b, separation_mappable(data))
     remove_gridlines(ax_b)
     png_b, svg_b = output_paths(
         "figure3B_eis_top_bottom_goodfit_background_initial", timestamp
@@ -135,6 +142,7 @@ def main() -> None:
     fig_ab, axes = plt.subplots(1, 2, figsize=(12.6, 5.1), constrained_layout=True)
     plot_good_fit_background(axes[0], data)
     base.plot_panel_b(axes[0], data)
+    base.add_top_colorbar(fig_ab, axes[0], separation_mappable(data))
     scatter = base.plot_panel_a(axes[1], data)
     base.add_top_colorbar(fig_ab, axes[1], scatter)
     remove_gridlines(*axes)

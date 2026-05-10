@@ -36,8 +36,8 @@ is included for provenance and should only be run in the intended lab setup.
     samples, and 36 extra Co-Fe follow-up samples.
   - LSV values are extracted from
     `hd_separation_ml/data_extraction/all_data/LSV`.
-- `hd_separation_ml/outputs/final_model_8features_561_seed17_rs_from_eis/feature_matrix_8features.csv`
-  - Current no-BO ML feature matrix.
+- `hd_separation_ml/outputs/feature_selection_561_rs_from_eis_no_eis_fitting/feature_matrix_561_no_eis_fitting.csv`
+  - Current no-BO ML feature matrix used by the H/D-separation workflow.
   - 561 initial-screening samples.
 - `0-Figures/Figure4/curated/figure4_bo_complete_112.csv`
   - Current Figure 4 BO table.
@@ -66,20 +66,26 @@ Top panel:
 
 Machine-learning panels:
 
-- Final notebook:
-  `hd_separation_ml/notebooks/02_final_model_8features_561_seed17_rs_from_eis.ipynb`
-- Final outputs:
-  `hd_separation_ml/outputs/final_model_8features_561_seed17_rs_from_eis/`
+- Feature-matrix notebook:
+  `hd_separation_ml/notebooks/01_feature_selection_561_rs_from_eis_no_eis_fitting.ipynb`
+- Current script-based H/D-separation workflow:
+  `hd_separation_ml/current_hd_separation_workflow/README.md`
+- Final H/D-separation outputs:
+  `hd_separation_ml/outputs/final_model_10features_561_seed42_rf_et_only/`
+- Separate eta10 activity outputs:
+  `hd_separation_ml/outputs/03_eta10_activity_model_raw_descriptors/`
 
 ### Figure 4
 
 - Folder: `0-Figures/Figure4/`
 - Pareto/IoH notebook: `0-Figures/Figure4/pareto_polygon_enclosure_code.ipynb`
-- Descriptor-map notebook: `0-Figures/Figure4/BO_analysis -2D_symbolic.ipynb`
+- Descriptor-map SI script: `0-Figures/Figure4/assemble_figure_S15_descriptor_panels.py`
+- Descriptor-overlay script: `0-Figures/Figure4/plot_top3_shap_descriptor_bo_overlay.py`
 - Curated BO table: `0-Figures/Figure4/curated/figure4_bo_complete_112.csv`
 - Current Pareto/IoH export:
   `0-Figures/Figure4/eight_panels_2x4_batch1_7_lg.png`
-- Descriptor outputs: `0-Figures/Figure4/outputs/`
+- Descriptor outputs:
+  `0-Figures/Figure4/outputs/figure_S15_descriptor_space_interpretation_BO_outcomes.png`
 
 ## Machine Learning
 
@@ -88,18 +94,35 @@ The current ML workflow is documented in `hd_separation_ml/README.md`.
 Recommended notebook order:
 
 1. `hd_separation_ml/notebooks/01_feature_selection_561_rs_from_eis_no_eis_fitting.ipynb`
-   - Feature selection on the current 561-sample no-BO dataset.
+   - Builds the current 561-sample no-BO feature matrix.
    - Avoids EIS-fitting descriptors; Rs is estimated directly from EIS.
-2. `hd_separation_ml/notebooks/02_final_model_8features_561_seed17_rs_from_eis.ipynb`
-   - Final 8-feature model using random seed 17.
+2. `hd_separation_ml/notebooks/03_eta10_activity_model_raw_descriptors.ipynb`
+   - Separate eta10 HER-activity model using LSV-derived eta10 values and raw
+     element-level descriptors.
+
+The current manuscript-facing H/D-separation model is script-based:
+
+```powershell
+cd hd_separation_ml
+.\current_hd_separation_workflow\run_current_hd_workflow.ps1
+```
 
 Current checked final model:
 
 - dataset: 561 no-BO initial-screening samples;
-- descriptor set: 8 features;
-- best model: Extra Trees;
-- test R2: 0.6676;
-- test RMSE: 0.9758.
+- H/D-separation descriptor set: 10 features;
+- H/D-separation best model: Random Forest;
+- H/D-separation test R2: 0.6061;
+- H/D-separation test RMSE: 1.0576.
+
+The eta10 HER-activity analysis is separate from the H/D-separation model:
+
+- dataset after eta10 filtering: 319 samples;
+- descriptor set: 9 features;
+- compared models: Random Forest and Extra Trees;
+- best model: Random Forest;
+- test R2: 0.6499;
+- test RMSE: 96.0 mV.
 
 ## Bayesian Optimization and Automation
 

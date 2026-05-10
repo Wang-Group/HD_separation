@@ -32,9 +32,10 @@ to reproduce the current plots without inspecting every notebook.
 ### Machine-learning feature matrix
 
 - Path:
-  `hd_separation_ml/outputs/final_model_8features_561_seed17_rs_from_eis/feature_matrix_8features.csv`
+  `hd_separation_ml/outputs/feature_selection_561_rs_from_eis_no_eis_fitting/feature_matrix_561_no_eis_fitting.csv`
 - Rows: 561
-- Scope: current no-BO initial-screening samples used by the final ML model.
+- Scope: current no-BO initial-screening samples used by the H/D-separation ML
+  workflow.
 - Key fields:
   - `sample`
   - `E_actual`
@@ -84,36 +85,63 @@ to reproduce the current plots without inspecting every notebook.
 
 ### Figure 3, ML panels
 
-- Feature-selection notebook:
+- Feature-matrix notebook:
   `hd_separation_ml/notebooks/01_feature_selection_561_rs_from_eis_no_eis_fitting.ipynb`
-- Final-model notebook:
-  `hd_separation_ml/notebooks/02_final_model_8features_561_seed17_rs_from_eis.ipynb`
+- Current H/D-separation workflow:
+  `hd_separation_ml/current_hd_separation_workflow/README.md`
 - Final output folder:
-  `hd_separation_ml/outputs/final_model_8features_561_seed17_rs_from_eis/`
+  `hd_separation_ml/outputs/final_model_10features_561_seed42_rf_et_only/`
 - Dataset scope: 561 no-BO initial-screening samples.
 - Final feature set:
-  - `I_raw`
-  - `work_function_element2`
-  - `MM_bond_element2`
-  - `FE_ads_avg_element1`
-  - `delta_EOH_element1`
-  - `delta_EOH_element2`
+  - `Frequency_H_element1`
+  - `Frequency_D_element1`
+  - `delta_ZPE_H_element1`
   - `electronegativity_element1`
-  - `electronegativity_element2`
+  - `work_function_element2`
+  - `delta_EOH_element2`
+  - `FE_ads_avg_element1`
+  - `work_function_element1`
+  - `E_std_element2`
+  - `MM_bond_element2`
+
+### Eta10 activity ML analysis
+
+- Notebook: `hd_separation_ml/notebooks/03_eta10_activity_model_raw_descriptors.ipynb`
+- Output folder: `hd_separation_ml/outputs/03_eta10_activity_model_raw_descriptors/`
+- Target: `eta10_mV`, extracted from LSV at -10 mA cm^-2 with the documented
+  geometry convention.
+- Dataset scope:
+  - 323 samples with valid true LSV crossings before filtering.
+  - 4 eta10 < 20 mV low-outlier samples excluded.
+  - 319 samples used for activity modeling.
+- Final feature set:
+  - `Rs_from_EIS`
+  - `work_function_element1`
+  - `work_function_element2`
+  - `pzc_element2`
+  - `E_std_element2`
+  - `FE_ads_avg_element1`
+  - `FE_ads_avg_element2`
+  - `MH_bond_kJ_element2`
+  - `delta_ZPE_H_element1`
+- Compared models: Random Forest and Extra Trees.
+- Current best model: Random Forest, test R2 = 0.6499, test RMSE = 96.0 mV.
 
 ### Figure 4
 
 - Folder: `0-Figures/Figure4`
 - Main notebook:
   `0-Figures/Figure4/pareto_polygon_enclosure_code.ipynb`
-- Descriptor-map notebook:
-  `0-Figures/Figure4/BO_analysis -2D_symbolic.ipynb`
 - Primary table:
   `0-Figures/Figure4/curated/figure4_bo_complete_112.csv`
-- Descriptor table:
-  `0-Figures/Figure4/curated/figure4_bo_weighted_ml_top3_descriptors.csv`
 - Current Pareto/IoH output:
   `0-Figures/Figure4/eight_panels_2x4_batch1_7_lg.png`
+- Descriptor-space SI script:
+  `0-Figures/Figure4/assemble_figure_S15_descriptor_panels.py`
+- Descriptor-overlay script:
+  `0-Figures/Figure4/plot_top3_shap_descriptor_bo_overlay.py`
+- Current descriptor-space output:
+  `0-Figures/Figure4/outputs/figure_S15_descriptor_space_interpretation_BO_outcomes.png`
 
 ## BO Count Note
 

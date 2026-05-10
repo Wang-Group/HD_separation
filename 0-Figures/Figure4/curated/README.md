@@ -1,12 +1,12 @@
-# Figure 4 Curated Tables
+# Figure 4 Curated Table
 
-This folder contains only the manuscript-facing tables needed to reproduce the
-current Figure 4 panels.
+This folder keeps the manuscript-facing BO performance table used for
+Figure 4A/B.
 
 ## Current Trusted Table
 
 - `figure4_bo_complete_112.csv`
-  - Current authoritative Figure 4 BO table.
+  - Current authoritative BO table.
   - Count: 112 completed BO datapoints, with 28 each for `Co-Mo`, `Co-V`,
     `Co-Ni`, and `Fe-Ni`.
   - Derived from the platform BO JSON files.
@@ -14,8 +14,5 @@ current Figure 4 panels.
   - Separation coefficients are aligned to the current
     `hd_separation_ml/data_extraction/separation_coefficient.xlsx`.
 
-## Descriptor Tables
-
-- `figure4_bo_weighted_ml_top3_descriptors.csv`
-  - Weighted descriptor values used for the Figure 4 descriptor projection
-    plots.
+Weighted descriptor projection tables are generated from current sources by
+`../plot_top3_shap_descriptor_bo_overlay.py` and written to `../outputs/`.
