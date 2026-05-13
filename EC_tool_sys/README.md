@@ -29,7 +29,6 @@ At a high level, the workflow implemented here is:
 |-- manager/
 |   |-- README.md
 |   |-- platform_manager_HD_Hcell.py
-|   |-- platform_manager_HD_Hcell_one_cell_v3_BO.py
 |   |-- platform_manager_HD_Hcell_two_cell.py
 |   |-- bopai_controller/
 |   |-- configs/
@@ -52,7 +51,6 @@ The `manager` package contains the lab automation layer:
 
 - `README.md`: concise map of the platform-manager files and active-learning code path.
 - `platform_manager_HD_Hcell.py`: H-cell workflow manager that imports and calls `generate_new_exp_MO_one_system_V2`.
-- `platform_manager_HD_Hcell_one_cell_v3_BO.py`: one-cell workflow manager with BoTorch active learning integration.
 - `platform_manager_HD_Hcell_two_cell.py`: two-cell workflow manager.
 - `pumps/`: liquid handling logic built on syringe pumps, switch valves, and peristaltic pump drivers.
 - `robotic_arm/`: MG400 robot and slide-rail motion helpers.
@@ -168,7 +166,6 @@ Update these before running on another workstation.
 There is no single polished CLI entry point. The main orchestration objects are the hardware-facing `PlatformManager` classes:
 
 - `manager/platform_manager_HD_Hcell.py`
-- `manager/platform_manager_HD_Hcell_one_cell_v3_BO.py`
 - `manager/platform_manager_HD_Hcell_two_cell.py`
 
 `platform_manager_HD_Hcell.py` imports `generate_new_exp_MO_one_system_V2` from

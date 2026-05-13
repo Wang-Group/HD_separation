@@ -53,8 +53,11 @@ Current selected features:
 - `summary_eta10_raw_descriptor_model.json`: compact machine-readable summary.
 - `eta10_raw_descriptor_model_results.csv`: model comparison table.
 - `selected_features_eta10_raw_descriptors.csv`: final selected feature list.
-- `eta10_raw_descriptor_feature_importance.csv`: native and permutation
-  importance values for the final model.
+- `eta10_raw_descriptor_feature_importance.csv`: mean absolute SHAP values used
+  for Figure S9, with native and permutation importance retained only as
+  diagnostic columns.
+- `eta10_raw_descriptor_shap_importance.csv`: compact SHAP-only importance
+  table for the final model.
 - `eta10_raw_descriptor_test_predictions.csv`: held-out test predictions.
 - `feature_matrix_561_with_eta10_raw_electronic_descriptors.csv`: working
   feature matrix with extracted eta10 values.
@@ -68,8 +71,8 @@ Current selected features:
   eta10 notebook.
 - `eta10_raw_descriptor_prediction_residual.png`: prediction and residual
   panels.
-- `eta10_raw_descriptor_feature_importance.png`: final feature-importance
-  panel.
+- `eta10_raw_descriptor_feature_importance.png`: final SHAP feature-importance
+  panel using averaged absolute SHAP values.
 - `eta10_workfunction1_workfunction2_distribution.png`: eta10 distribution in
   raw work-function descriptor space.
 - `raw_selected_features_vs_eta10_scatter_grid.png`: selected feature scatter

@@ -49,9 +49,6 @@ enabled in the runtime loop.
 
 ## Other Platform Managers
 
-- `platform_manager_HD_Hcell_one_cell_v3_BO.py`: later/alternate one-cell
-  workflow. It imports a single-objective helper and should not be used as
-  the main qNEHVI active-learning workflow.
 - `platform_manager_HD_Hcell_two_cell.py`: two-cell workflow manager.
 
 ## Safety Note
