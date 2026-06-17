@@ -30,6 +30,11 @@ bottom comparison/Pareto panel.
   - Reads `../data/figure1_bottom_literature_benchmarks.csv` and
     `../data/figure1_bottom_this_work_from_all_data.csv`.
   - Saves the current output to `../outputs/pareto_plot_v2.png`.
+- `plot_this_work_pareto_front_only.py`
+  - Recomputes the Pareto front from only the 709 this-work points, where
+    lower overpotential and higher separation coefficient are preferred.
+  - Saves `outputs/this_work_pareto_front_only.png` and
+    `outputs/this_work_pareto_front_points.csv`.
 - `outputs/pareto_plot_v2.png`
   - Current output PNG.
 
