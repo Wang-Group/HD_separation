@@ -28,6 +28,28 @@ to reproduce the current plots without inspecting every notebook.
     `hd_separation_ml/data_extraction/separation_coefficient.xlsx`.
   - Multi-crossing LSV traces use the most negative crossing for conservative
     overpotential reporting.
+  - Traces already beyond -10 mA cm^-2 at the scan start are usually plotted at
+    the 10 mV boundary as non-HER/background-current cases and excluded from
+    Pareto-front calculation.
+  - A small Co-V subset with a clear near-target LSV maximum is recovered using
+    the measured point closest to -10 mA cm^-2. `Co-V8`, `Co-V11`, `Co-V20`,
+    and `Co-V22` are retained as borderline recovered cases.
+  - Red/near-target and purple/turning-point estimates are accepted only when
+    the measured/turning-point current is within 10 mA cm^-2 of
+    -10 mA cm^-2 and the LSV shape is interpretable. `Fe-Pt`, `Pd-Pd`,
+    `Y-Pd`, and `Co-Pt` are treated as turning-point eta estimates.
+    `Co-Fe29`, `Co-Fe33`, `Sc-Pd`, and `W-Pd` remain non-HER lower-bound
+    cases and are excluded from Pareto calculations.
+  - `Sc-Pb`, `Cd-Y`, `W-Pb`, and `Ce-Pb` are treated as charging-current
+    artifacts that do not reach a valid HER eta10 and are forced to the 550 mV
+    cap.
+  - Traces that do not reach -10 mA cm^-2 are right-censored: if the endpoint
+    current is within 2 mA cm^-2 of the target, the measured endpoint
+    overpotential is plotted; otherwise the point is assigned to the Figure 1
+    cap of 550 mV.
+  - Figure 1 eta10 values are reported within a bounded plotting window of
+    10-550 mV. Exact-crossing samples, recovered near-target Co-V estimates,
+    and turning-point estimates are eligible for the this-work Pareto front.
 
 ### Machine-learning feature matrix
 
@@ -59,16 +81,31 @@ to reproduce the current plots without inspecting every notebook.
 
 ### Figure 1, bottom panel
 
-- Notebook: `0-Figures/Figure1/notebooks/v4.ipynb`
+- Script: `0-Figures/Figure1/plot_figure1_censored_eta10.py`
 - Inputs:
   - `0-Figures/Figure1/data/figure1_bottom_this_work_from_all_data.csv`
   - `0-Figures/Figure1/data/figure1_bottom_literature_benchmarks.csv`
-- Output: `0-Figures/Figure1/outputs/pareto_plot_v2.png`
+  - `0-Figures/Figure1/data/figure1_this_work_eta10_censoring.csv`
+  - `0-Figures/Figure1/outputs/lsv_target_failures/lsv_target_reach_audit_all_709.csv`
+- Outputs:
+  - `0-Figures/Figure1/outputs/pareto_plot_v2_censored_eta10.png`
+  - `0-Figures/Figure1/outputs/pareto_plot_v2_censored_eta10_no_text.png`
+- LSV audits for new eta10 handling:
+  - `0-Figures/Figure1/plot_eta_below_10_lsv.py`
+  - `0-Figures/Figure1/plot_right_censored_middle_lsv.py`
 - Dataset scope:
   - 709 this-work points.
   - 76 literature-reference points.
   - 2 benchmark points: Ni foam and Pt sheet.
   - 787 total plotted points.
+- Pareto-front rules:
+  - This-work candidates require exact eta10 crossings, recovered near-target
+    Co-V eta estimates, or turning-point eta estimates; samples plotted at the
+    10 mV non-HER/background-current boundary and charging-current forced-cap
+    cases are shown but excluded.
+  - Literature candidates require a reported separation-coefficient condition
+    of at least 50 mA cm^-2; lower or unclear conditions are shown as squares
+    but excluded.
 
 ### Figure 3, top panel
 
@@ -80,6 +117,8 @@ to reproduce the current plots without inspecting every notebook.
 - LSV handling:
   - target: -10 mA cm^-2 under the appropriate geometry convention.
   - multi-crossing traces: use the most negative crossing.
+  - common-window endpoint non-reachers: assign 550 mV as the worst-case
+    plotted overpotential.
   - 2 cm^2 geometry exceptions are read from
     `hd_separation_ml/data_extraction/all_data/LSV/lsv_geometry_area_metadata.csv`.
 
@@ -114,6 +153,16 @@ to reproduce the current plots without inspecting every notebook.
   - 323 samples with valid true LSV crossings before filtering.
   - 4 eta10 < 20 mV low-outlier samples excluded.
   - 319 samples used for activity modeling.
+- Artifact sensitivity:
+  - Folder:
+    `hd_separation_ml/outputs/03_eta10_activity_model_raw_descriptors/sensitivity_eta10_artifacts/`
+  - Script:
+    `hd_separation_ml/eta10_artifact_sensitivity_check.py`
+  - Stricter variants removing multi-crossing traces and/or raising the eta10
+    lower threshold to 50 mV gave stable Random Forest performance and stable
+    feature-importance rankings.
+  - Conclusion: the existing true-crossing and eta10 < 20 mV filters remove the
+    main LSV/eta10 artifact classes, and the eta10 ML conclusions are robust.
 - Final feature set:
   - `Rs_from_EIS`
   - `work_function_element1`

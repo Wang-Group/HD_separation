@@ -9,7 +9,8 @@ bottom comparison/Pareto panel.
   - Literature and benchmark comparison points extracted from the legacy
     workbook into an explicit active CSV.
   - Columns: `source_type`, `source_label`, `reference_label`,
-    `plot_x_overpotential_mV`, `separation_coefficient`.
+    `plot_x_overpotential_mV`, `separation_coefficient`,
+    `measurement_condition`.
 - `data/figure1_bottom_this_work_from_all_data.csv`
   - Full this-work extraction table from the current trusted electrochemical
     raw-data folder.
@@ -18,29 +19,61 @@ bottom comparison/Pareto panel.
   - Includes geometry-area handling for Ag-Ce, Co-V, and Mo-Mg.
   - For traces that cross the target current multiple times, uses the worst
     crossing, i.e. the most negative raw potential / largest overpotential.
+  - For traces whose current at the most negative point still does not reach
+    -10 mA cm^-2, keeps the measured endpoint overpotential only when the
+    trace is within 2 mA cm^-2 of the target current; otherwise assigns the
+    Figure 1 cap of 550 mV as the plotted worst-case overpotential.
+  - Points already active at the scan start are generally plotted at the 10 mV
+    boundary as samples with non-HER/background current and are excluded from
+    Pareto front calculations.
+  - A small Co-V subset with a clear near-target LSV maximum is recovered using
+    the measured point closest to -10 mA cm^-2. `Co-V8`, `Co-V11`, `Co-V20`,
+    and `Co-V22` are retained as borderline recovered cases.
+  - Red/near-target and purple/turning-point estimates are accepted only when
+    the measured/turning-point current is within 10 mA cm^-2 of
+    -10 mA cm^-2 and the LSV shape is interpretable. `Fe-Pt`, `Pd-Pd`,
+    `Y-Pd`, and `Co-Pt` are treated as turning-point eta estimates.
+    `Co-Fe29`, `Co-Fe33`, `Sc-Pd`, and `W-Pd` remain non-HER lower-bound
+    cases and are excluded from Pareto calculations.
+  - `Sc-Pb`, `Cd-Y`, `W-Pb`, and `Ce-Pb` are treated as charging-current
+    artifacts that never provide a valid HER eta10 and are forced to the
+    550 mV cap.
+  - Plotted eta10 values are bounded to the Figure 1 reporting window:
+    10-550 mV.
+- `plot_figure1_censored_eta10.py`
+  - Current script for the bottom Pareto panel with eta10 censoring,
+    literature-condition filtering, and exclusion of non-HER current points
+    from the Pareto front.
+  - Saves `outputs/pareto_plot_v2_censored_eta10.png`,
+    `outputs/pareto_plot_v2_censored_eta10_no_text.png`, and the corresponding
+    PDF/CSV audit outputs.
 - `data/figure1_bottom_plot_points.csv`
   - Long-format audit table for all plotted points.
   - Columns: `source_type`, `source_label`, `reference_label`, `x_raw`,
     `plot_x_overpotential_mV`, `separation_coefficient`.
-- `data/figure1_bottom_this_work_worst_crossing_updates.csv`
-  - Audit table listing this-work points whose plotted overpotential changed
-    by more than 0.5 mV when the conservative worst-crossing rule was applied.
-- `notebooks/v4.ipynb`
-  - Active notebook for the bottom panel.
-  - Reads `../data/figure1_bottom_literature_benchmarks.csv` and
-    `../data/figure1_bottom_this_work_from_all_data.csv`.
-  - Saves the current output to `../outputs/pareto_plot_v2.png`.
-- `plot_this_work_pareto_front_only.py`
-  - Recomputes the Pareto front from only the 709 this-work points, where
-    lower overpotential and higher separation coefficient are preferred.
-  - Saves `outputs/this_work_pareto_front_only.png` and
-    `outputs/this_work_pareto_front_points.csv`.
-- `outputs/pareto_plot_v2.png`
-  - Current output PNG.
+- `data/figure1_this_work_eta10_censoring.csv`
+  - Current audit/classification table for exact eta10, right-censored
+    non-reaching traces, recovered near-target Co-V eta estimates, samples
+    with non-HER/background current, turning-point eta estimates, and
+    charging-current forced-cap cases.
+- `plot_eta_below_10_lsv.py`
+  - Draws LSVs for the 30 samples initially caught by the eta/bound < 10 mV
+    audit, including near-target recovered Co-V samples and charging-current
+    forced-cap cases.
+  - Saves outputs under `outputs/eta_below_10_lsv/`.
+- `plot_right_censored_middle_lsv.py`
+  - Draws LSVs for right-censored samples that are close to -10 mA cm^-2 and
+    therefore kept at their measured endpoint overpotential instead of being
+    assigned to the 550 mV cap.
+  - Saves outputs under `outputs/right_censored_middle_lsv/`.
+- `outputs/pareto_plot_v2_censored_eta10.png`
+  - Current annotated Figure 1 bottom-panel output.
+- `outputs/pareto_plot_v2_censored_eta10_no_text.png`
+  - Current no-text Figure 1 bottom-panel output.
 
 ## Data Count
 
-The active notebook rebuilds the this-work series from the trusted
+The active script rebuilds the this-work series from the trusted
 `hd_separation_ml/data_extraction` data:
 
 - 709 "This work" points

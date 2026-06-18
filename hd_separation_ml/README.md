@@ -150,6 +150,16 @@ Current eta10 dataset and model:
 - best model: Random Forest;
 - test R2 = 0.6499, test RMSE = 96.0 mV.
 
+Artifact sensitivity checks in
+`outputs/03_eta10_activity_model_raw_descriptors/sensitivity_eta10_artifacts/`
+show that the eta10 ML conclusions are robust to the LSV/eta10 artifacts
+identified during the Figure 1 audit. Removing multi-crossing traces and/or
+raising the eta10 lower threshold to 50 mV did not degrade the Random Forest
+test performance, and feature-importance rankings remained stable. This
+supports the conclusion that the existing true-crossing and `eta10 < 20 mV`
+filters successfully remove the artifact classes most likely to bias the eta10
+analysis.
+
 Current eta10 feature set:
 
 - `Rs_from_EIS`

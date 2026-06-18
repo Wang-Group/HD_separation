@@ -36,6 +36,12 @@ is included for provenance and should only be run in the intended lab setup.
     samples, and 36 extra Co-Fe follow-up samples.
   - LSV values are extracted from
     `hd_separation_ml/data_extraction/all_data/LSV`.
+  - Figure 1 reports eta10 within a bounded plotting window of 10-550 mV.
+    Exact crossings, recovered near-target Co-V eta estimates, and
+    turning-point eta estimates are eligible for this-work Pareto-front
+    decisions. Non-HER/background-current cases at the 10 mV boundary,
+    right-censored non-reachers, and charging-current forced-cap cases are
+    shown but excluded.
 - `hd_separation_ml/outputs/feature_selection_561_rs_from_eis_no_eis_fitting/feature_matrix_561_no_eis_fitting.csv`
   - Current no-BO ML feature matrix used by the H/D-separation workflow.
   - 561 initial-screening samples.
@@ -50,11 +56,17 @@ See `DATA_MANIFEST.md` for a more detailed figure-by-figure map.
 
 ### Figure 1
 
-- Notebook: `0-Figures/Figure1/notebooks/v4.ipynb`
+- Script: `0-Figures/Figure1/plot_figure1_censored_eta10.py`
 - Main inputs:
   - `0-Figures/Figure1/data/figure1_bottom_this_work_from_all_data.csv`
   - `0-Figures/Figure1/data/figure1_bottom_literature_benchmarks.csv`
-- Output: `0-Figures/Figure1/outputs/pareto_plot_v2.png`
+  - `0-Figures/Figure1/data/figure1_this_work_eta10_censoring.csv`
+- Main outputs:
+  - `0-Figures/Figure1/outputs/pareto_plot_v2_censored_eta10.png`
+  - `0-Figures/Figure1/outputs/pareto_plot_v2_censored_eta10_no_text.png`
+- LSV audit outputs:
+  - `0-Figures/Figure1/outputs/eta_below_10_lsv/`
+  - `0-Figures/Figure1/outputs/right_censored_middle_lsv/`
 
 ### Figure 3
 
@@ -123,6 +135,11 @@ The eta10 HER-activity analysis is separate from the H/D-separation model:
 - best model: Random Forest;
 - test R2: 0.6499;
 - test RMSE: 96.0 mV.
+- artifact sensitivity check:
+  `hd_separation_ml/eta10_artifact_sensitivity_check.py`, with outputs in
+  `hd_separation_ml/outputs/03_eta10_activity_model_raw_descriptors/sensitivity_eta10_artifacts/`;
+  stricter eta10 artifact filters gave stable performance and feature-importance
+  rankings.
 
 ## Bayesian Optimization and Automation
 
@@ -149,6 +166,20 @@ It uses BoTorch multi-objective Bayesian optimization with
   `hd_separation_ml/data_extraction/separation_coefficient.xlsx`.
 - For LSV traces that cross a target current more than once, figure-generation
   notebooks use the conservative crossing: the most negative raw potential.
+- For Figure 1 traces that do not reach -10 mA cm^-2, near-target endpoints
+  within 2 mA cm^-2 are plotted at the measured endpoint overpotential; the
+  rest are assigned to the 550 mV cap.
+- Traces already beyond -10 mA cm^-2 at the scan start are plotted at 10 mV as
+  non-HER/background-current cases and are excluded from this-work Pareto-front
+  calculation unless a near-target Co-V estimate or turning-point eta estimate
+  is explicitly recovered.
+- Recovered near-target and turning-point estimates require the measured or
+  selected turning-point current to be within 10 mA cm^-2 of -10 mA cm^-2 and
+  the LSV shape to be interpretable. `Fe-Pt`, `Pd-Pd`, `Y-Pd`, and `Co-Pt` use
+  turning-point eta estimates; `Co-Fe29`, `Co-Fe33`, `Sc-Pd`, and `W-Pd`
+  remain non-HER lower-bound cases and are excluded from Pareto calculations.
+- `Sc-Pb`, `Cd-Y`, `W-Pb`, and `Ce-Pb` are treated as charging-current artifacts
+  and forced to the 550 mV cap.
 - `hd_separation_ml/data_extraction/all_data/LSV/lsv_geometry_area_metadata.csv`
   records the initial-screening samples measured with 2 cm^2 geometry.
 

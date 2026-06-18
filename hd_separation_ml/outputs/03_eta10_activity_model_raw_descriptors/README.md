@@ -17,6 +17,30 @@ the raw -20 mA crossing to remain comparable to -10 mA cm^-2 under the standard
 Samples with unreliable crossings are not modeled. Samples with `eta10 < 20 mV`
 are excluded from the activity-modeling step as low-outlier cases.
 
+## Artifact Sensitivity
+
+The eta10 workflow was checked against LSV artifacts identified during the
+Figure 1 eta10 audit. The existing filters already remove the major artifact
+classes from the eta10 ML target: samples without true -10 mA cm^-2 crossings
+are not modeled, and low-eta outliers (`eta10 < 20 mV`) are excluded before
+training.
+
+A sensitivity check in `sensitivity_eta10_artifacts/` compared the current
+319-sample dataset against stricter variants that remove multi-crossing traces
+and/or raise the eta10 lower threshold to 50 mV. With the current 9 selected
+features fixed, the Random Forest model remained stable:
+
+- Baseline current dataset: test R2 = 0.650, test RMSE = 95.9 mV.
+- Single-crossing only: test R2 = 0.681, test RMSE = 88.8 mV.
+- eta10 >= 50 mV: test R2 = 0.720, test RMSE = 82.3 mV.
+- eta10 >= 50 mV and single-crossing only: test R2 = 0.730, test RMSE = 80.8 mV.
+
+Random Forest feature-importance rankings were also stable relative to the
+baseline (Spearman rank correlation >= 0.967 across the stricter variants).
+Thus the eta10 ML conclusions are robust to the identified LSV/eta10 artifacts,
+and the earlier true-crossing plus low-eta filtering successfully removes the
+artifact classes most likely to bias the analysis.
+
 ## Dataset
 
 - Valid true eta10 crossings before filtering: 323 samples.
@@ -63,6 +87,8 @@ Current selected features:
   feature matrix with extracted eta10 values.
 - `eta10_extracted_from_lsv_561.csv`: eta10 values extracted from LSV traces.
 - `excluded_eta10_lt_20mV.csv`: low-outlier samples excluded from modeling.
+- `sensitivity_eta10_artifacts/`: artifact sensitivity metrics, feature
+  stability tables, and summary figure.
 
 ## Main Figures
 
