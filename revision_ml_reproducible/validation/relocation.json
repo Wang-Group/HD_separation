@@ -1,0 +1,50 @@
+{
+  "passed": true,
+  "original_repository_reads_forbidden": true,
+  "isolated_python": true,
+  "working_directory_outside_package": true,
+  "package_path_contains_spaces": true,
+  "checks": [
+    {
+      "command": "audit",
+      "returncode": 0,
+      "verification": {
+        "command": "audit",
+        "complete": true,
+        "smoke": false,
+        "partial": false,
+        "initial": 554,
+        "bo": 111,
+        "sealed": false,
+        "outer_arms": 90,
+        "inner_partitions": 270,
+        "matched_archived_inner_order": true,
+        "versions": {
+          "python": "3.13.5",
+          "numpy": "2.1.3",
+          "pandas": "2.2.3",
+          "scipy": "1.15.3",
+          "sklearn": "1.6.1",
+          "joblib": "1.4.2"
+        },
+        "scientific_full_run": true
+      }
+    },
+    {
+      "command": "refit",
+      "returncode": 0,
+      "verification": {
+        "command": "refit",
+        "complete": true,
+        "smoke": false,
+        "partial": true,
+        "initial": 554,
+        "bo": 111,
+        "sealed": false,
+        "max_prediction_error": 8.881784197001252e-16,
+        "jobs": 1,
+        "scientific_full_run": false
+      }
+    }
+  ]
+}

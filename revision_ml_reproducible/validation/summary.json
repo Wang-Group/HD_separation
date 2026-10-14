@@ -1,0 +1,173 @@
+{
+  "development_audit_v2": {
+    "command": "audit",
+    "complete": true,
+    "smoke": false,
+    "partial": false,
+    "initial": 554,
+    "bo": 111,
+    "sealed": false,
+    "outer_arms": 90,
+    "inner_partitions": 270,
+    "matched_archived_inner_order": true,
+    "versions": {
+      "python": "3.13.5",
+      "numpy": "2.1.3",
+      "pandas": "2.2.3",
+      "scipy": "1.15.3",
+      "sklearn": "1.6.1",
+      "joblib": "1.4.2"
+    },
+    "scientific_full_run": true
+  },
+  "reproduction_33": {
+    "command": "refit",
+    "complete": true,
+    "smoke": false,
+    "partial": false,
+    "initial": 554,
+    "bo": 111,
+    "sealed": false,
+    "max_prediction_error": 1.7763568394002505e-15,
+    "jobs": 90,
+    "scientific_full_run": true
+  },
+  "frozen_validation": {
+    "command": "freeze",
+    "complete": true,
+    "smoke": false,
+    "partial": false,
+    "initial": 554,
+    "bo": 111,
+    "sealed": false,
+    "jobs": 90,
+    "retrospective_sensitivity": true,
+    "independent_nested_estimate": false,
+    "max_prediction_error": 1.7763568394002505e-15,
+    "scientific_full_run": true
+  },
+  "scratch_validation": {
+    "command": "train",
+    "complete": true,
+    "smoke": false,
+    "partial": true,
+    "initial": 554,
+    "bo": 111,
+    "sealed": false,
+    "max_prediction_error": 8.881784197001252e-16,
+    "jobs": 1,
+    "scientific_full_run": false
+  },
+  "composition_validation": {
+    "command": "composition",
+    "complete": true,
+    "smoke": false,
+    "partial": true,
+    "initial": 554,
+    "bo": 111,
+    "sealed": false,
+    "jobs": 1,
+    "max_baseline_prediction_error": 8.881784197001252e-16,
+    "scientific_full_run": false
+  },
+  "figures_validation": {
+    "command": "figures",
+    "complete": true,
+    "smoke": false,
+    "partial": false,
+    "initial": 554,
+    "bo": 111,
+    "sealed": false,
+    "initial_en": 496,
+    "bo_en": 111,
+    "bootstrap": 1000,
+    "no_imputation": true,
+    "scientific_full_run": true
+  },
+  "sensitivity39_validation": {
+    "command": "refit",
+    "complete": true,
+    "smoke": false,
+    "partial": true,
+    "initial": 554,
+    "bo": 111,
+    "sealed": false,
+    "max_prediction_error": 8.881784197001252e-16,
+    "jobs": 1,
+    "scientific_full_run": false
+  },
+  "unit_tests_passed": 51,
+  "all_six_composition_scenarios_replay_error": 0.0,
+  "pixel_checks": {
+    "nested33_shap.png": {
+      "nonblank": true,
+      "identical_to_archived": true
+    },
+    "frozen_vs_nested_family_shap.png": {
+      "nonblank": true,
+      "identical_to_archived": true
+    },
+    "original_four_bo_electronegativity.png": {
+      "nonblank": true,
+      "identical_to_archived": true
+    },
+    "all_five_bo_electronegativity.png": {
+      "nonblank": true,
+      "identical_to_archived": true
+    },
+    "bo_pair_trajectories.png": {
+      "nonblank": true,
+      "identical_to_archived": false
+    }
+  },
+  "relocation": {
+    "passed": true,
+    "original_repository_reads_forbidden": true,
+    "isolated_python": true,
+    "working_directory_outside_package": true,
+    "package_path_contains_spaces": true,
+    "checks": [
+      {
+        "command": "audit",
+        "returncode": 0,
+        "verification": {
+          "command": "audit",
+          "complete": true,
+          "smoke": false,
+          "partial": false,
+          "initial": 554,
+          "bo": 111,
+          "sealed": false,
+          "outer_arms": 90,
+          "inner_partitions": 270,
+          "matched_archived_inner_order": true,
+          "versions": {
+            "python": "3.13.5",
+            "numpy": "2.1.3",
+            "pandas": "2.2.3",
+            "scipy": "1.15.3",
+            "sklearn": "1.6.1",
+            "joblib": "1.4.2"
+          },
+          "scientific_full_run": true
+        }
+      },
+      {
+        "command": "refit",
+        "returncode": 0,
+        "verification": {
+          "command": "refit",
+          "complete": true,
+          "smoke": false,
+          "partial": true,
+          "initial": 554,
+          "bo": 111,
+          "sealed": false,
+          "max_prediction_error": 8.881784197001252e-16,
+          "jobs": 1,
+          "scientific_full_run": false
+        }
+      }
+    ]
+  }
+}

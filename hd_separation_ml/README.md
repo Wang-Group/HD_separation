@@ -1,5 +1,27 @@
 # H/D Separation Machine Learning
 
+## Current Self-Contained Revision Package
+
+The current main line is **33 ICP-informed candidates -> nested forward-10
+selection**, evaluated across three tasks with and without BO. The original
+39-candidate pool and frozen Task-1 specifications are sensitivity analyses.
+
+Use [revision_ml_reproducible](../revision_ml_reproducible/README.md) for the
+self-contained data snapshot, portable commands, environment, reference results,
+and instructions for changing the response values. Raw input paths relative to
+that folder match their paths relative to this repository's root.
+
+## Earlier ICP Revision Workflow
+
+The revision analysis uses the English ICP workbook and a separate, replaceable
+response table. For supported commands and current results, use the package's
+[README](../revision_ml_reproducible/README.md) and
+[archived results](../revision_ml_reproducible/published_results/README.md).
+All sections below describe the historical submitted workflow, not the new
+ICP-weighted nested-CV performance estimates.
+
+## Historical Submitted Workflow
+
 This folder contains the corrected data extraction inputs, machine-learning
 feature matrix, and the current manuscript-facing H/D-separation descriptor
 workflow for the no-BO initial-screening dataset.
