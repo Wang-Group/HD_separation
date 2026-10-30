@@ -1,0 +1,21 @@
+{
+  "protocols": ["stratified_random", "unseen_pair"],
+  "repeats": 3,
+  "outer_folds": 5,
+  "inner_folds": 3,
+  "selection_trees": 120,
+  "tuning_trees": 80,
+  "final_trees": 400,
+  "forward_steps": 16,
+  "selected_features": 10,
+  "models": ["RF", "ET"],
+  "path_config": {"max_depth": 8, "min_samples_leaf": 1, "max_features": "sqrt"},
+  "configs": [
+    {"max_depth": null, "min_samples_leaf": 1, "max_features": "sqrt"},
+    {"max_depth": null, "min_samples_leaf": 3, "max_features": 1.0},
+    {"max_depth": null, "min_samples_leaf": 6, "max_features": "sqrt"},
+    {"max_depth": 8, "min_samples_leaf": 1, "max_features": 1.0},
+    {"max_depth": 8, "min_samples_leaf": 3, "max_features": "sqrt"},
+    {"max_depth": 8, "min_samples_leaf": 6, "max_features": 1.0}
+  ]
+}

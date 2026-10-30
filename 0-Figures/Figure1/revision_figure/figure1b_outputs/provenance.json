@@ -1,0 +1,56 @@
+{
+  "plotted_samples": 672,
+  "excluded_samples": 0,
+  "metrics": {
+    "eta10": 424,
+    "scan_limit": 240,
+    "estimate": 7,
+    "left_boundary_placeholder": 1
+  },
+  "frontier_samples": [
+    "Y-Pd",
+    "Co-V14",
+    "Co-V13",
+    "Co-Fe27",
+    "Co-V10",
+    "Co-Fe30",
+    "Co-Mo",
+    "Co-Mo10",
+    "Co-Mo26",
+    "Fe-Ni21",
+    "Fe-Ni18",
+    "Fe-Ni11"
+  ],
+  "HD_policy": "Original HD values only; no newly added HD measurements or HD error bars.",
+  "LSV_policy": "Crossing eta10 mean and sample SD. If no crossings, average adopted rising/nearest estimates together, explicitly as estimates. Otherwise show furthest scan limit or no-result placeholder.",
+  "grouping_policy": "Pool audited same-recipe individual curves once under ordinary catalyst names. Initial-submission HD means are pooled by their measurement counts.",
+  "no_crossing_policy": "Samples without a usable result shown at 10 mV as open left triangles; display placeholders only. No assigned eta10 or SD.",
+  "frontier_policy": "Unclipped eta10 means; rising points, bounds and pure metals excluded. Same-recipe groups treated as ordinary samples.",
+  "display_window": [
+    10.0,
+    550.0
+  ],
+  "axis_window": [
+    0,
+    560
+  ],
+  "figure_size_inches": [
+    16,
+    8
+  ],
+  "catalyst_annotations": false,
+  "literature_identity_note": "Catalyst labels omitted for manual annotation in Inkscape.",
+  "input_sha256": {
+    "0-Figures\\Figure1\\revision_figure\\eta10_curves.csv": "7ce9c5c8cb63a0b5320e06f8b472fd05df8a2cd980cb4b14aade94891c01be09",
+    "0-Figures\\Figure1\\revision_figure\\eta10_samples.csv": "1173454be611b951416574b2e14460205901bf6fec23e786a84fc4eaf8618244",
+    "0-Figures\\Figure1\\revision_figure\\extraction_summary.json": "1e62c996fb55a7b3ad5c1179a580c79485acb805971ee46db85eca6f9e1d33ba",
+    "0-Figures\\Figure1\\revision_figure\\lsv_rules.py": "22f22f69d5f5896dbf9106cbae6ee42d55fa5766bd9524550d44885b78e31509",
+    "0-Figures\\Figure1\\revision_figure\\lsv_noise_exceptions.json": "6e95a45f0bb738071c08266d767000abf13139d204fe9373dbd0eabd7f0be2ef",
+    "others_revision\\reproducibility_overview\\recipe_evidence.json": "01c70a9a35ef6469561ca240f018b2c1b0acb7548c5f733359ca8f52e5b8cd0d",
+    "0-Figures\\Figure1\\revision_figure\\lsv_plot_data.py": "4a7d42a294ec91724d6a994305b511da6e4efd58bfecedbc83c69f713f163c67",
+    "plot_figure1b.py": "6d926a489e37bfb30cb4bfc58ee5140dedea0846f18235fdc8b19c82f9b87082",
+    "literature.csv": "80cf24af7aec7ec99cdca125398ee7ca336d7d346b72f97f71f79a10b2b9b8bf",
+    "literature_labels.csv": "d487f967588c64a067559af70caf8cf164c950be2ca528b6fc0b46b39b3e2274",
+    "original_HD.csv": "ecbef527a6daf922829fe567a2669a953ad74bcdb851435c7908e541072e3e52"
+  }
+}

@@ -1,0 +1,6 @@
+# Preserve the exact bytes used by input/code/figure SHA-256 manifests.
+# Python can read either newline style; Git must not rewrite these packages.
+ml_revision/** -text
+others_revision/** -text
+0-Figures/manuscript/** -text
+0-Figures/Figure1/revision_figure/** -text

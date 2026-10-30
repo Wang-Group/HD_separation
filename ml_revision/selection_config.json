@@ -1,0 +1,10 @@
+{
+  "threshold": 0.90,
+  "resamples": 20,
+  "resample_train_fraction": 0.80,
+  "ranking_permutations": 3,
+  "heldout_permutations": 5,
+  "candidate_counts": [1, 2, 3, 5, 8, 10, 12, 16, 20],
+  "include_maximum_group_count": true,
+  "choice": "highest mean inner-fold R2; ties: fewer inputs, model name, configuration index"
+}

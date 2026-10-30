@@ -1,0 +1,141 @@
+{
+  "naming": "analysis content, independent of document numbering",
+  "typography_postprocess": "python ../0-Figures/figure_typography.py . --apply",
+  "commands_working_directory": "others_revision",
+  "figures": [
+    {
+      "asset_id": "hd_calibration_h2_control",
+      "command": "python mass_spectrometry/plot_mz3_response.py",
+      "source": "mass_spectrometry/inputs/mz3_response",
+      "assets": {
+        "mass_spectrometry/outputs/mz3_response/hd_calibration_h2_control.png": "794418950ba38f1586712d35f6663e03e01747cae9c2d445d6b74812d91c28bf",
+        "mass_spectrometry/outputs/mz3_response/hd_calibration_h2_control.svg": "17e6369c2e8d88ee2054eb9f6dda60566c853e622d9d223aef83da8de8cdea8f",
+        "mass_spectrometry/outputs/mz3_response/hd_calibration_h2_control.pdf": "e408becd670fe8d6bb6eb2f59b57dbc96a447e7903b9fff2e9ffb25aa7fa3b44"
+      }
+    },
+    {
+      "asset_id": "matched_mz3_responses",
+      "command": "python mass_spectrometry/plot_mz3_response.py",
+      "source": "mass_spectrometry/inputs/mz3_response",
+      "assets": {
+        "mass_spectrometry/outputs/mz3_response/matched_mz3_responses.png": "bf7ce0a4cb76ce82fdde647215d628d1d80b4e10c85bc8a1e880162abcbbbf00",
+        "mass_spectrometry/outputs/mz3_response/matched_mz3_responses.svg": "9a75fa610cce0836fbc1a3e886141a72626aba315a2feca2ce111844fe560ed9",
+        "mass_spectrometry/outputs/mz3_response/matched_mz3_responses.pdf": "316c31bb515270d366d08352a5121f24190b22d4004345d417ed96e0978aa660"
+      }
+    },
+    {
+      "asset_id": "nmr_calibration",
+      "command": "python nmr/plot_response.py",
+      "source": "nmr/results",
+      "assets": {
+        "nmr/results/figures/nmr_calibration.png": "130d822e8678fc14d94145265a90a5aa72abf86c28a61eea3581a431a767c415",
+        "nmr/results/figures/nmr_calibration.svg": "58632f90d8b9a56df587888b1c93e0f297311ff3ddb7f38b535506e3a7cc9a21",
+        "nmr/results/figures/nmr_calibration.pdf": "c7e663c210b7258d59dc1a43c50303c2a9e832bf82d4c929f645b45ceccc2272"
+      }
+    },
+    {
+      "asset_id": "nmr_calibration_spectra_low",
+      "command": "python nmr/plot_calibration_spectra.py",
+      "source": "nmr/results",
+      "assets": {
+        "nmr/results/figures/nmr_calibration_spectra_low.png": "1172c41a2cb16d1c87d0de9e1bb51070f032228ebe3af424e4f81e6b7d44f431",
+        "nmr/results/figures/nmr_calibration_spectra_low.svg": "09bb9e0db6c7f1d349071a1de52194d680d656bab601d630242be17f7211b11e",
+        "nmr/results/figures/nmr_calibration_spectra_low.pdf": "748649b0e727e48cadba0381ec834db3aab2d9075d9c48f97c8d7fd229596b28"
+      }
+    },
+    {
+      "asset_id": "nmr_calibration_spectra_high",
+      "command": "python nmr/plot_calibration_spectra.py",
+      "source": "nmr/results",
+      "assets": {
+        "nmr/results/figures/nmr_calibration_spectra_high.png": "8cf8c2c428a65ff963dadfabc20b93d5d169a6cd74e22491bcb2a2fee771a827",
+        "nmr/results/figures/nmr_calibration_spectra_high.svg": "cc08885a5876ae4406e371e61ebff718fd069e1732e35d73fb86c5e42ec0529f",
+        "nmr/results/figures/nmr_calibration_spectra_high.pdf": "d38b61d1b33dfa59654b34a51fa394b649a9627138db24b56b72e849379de9f2"
+      }
+    },
+    {
+      "asset_id": "stagewise_deuterium_enrichment",
+      "command": "python nmr/plot_response.py",
+      "source": "nmr/results",
+      "assets": {
+        "nmr/results/figures/stagewise_deuterium_enrichment.png": "0c5e54c0edc348efa70bbe0238f0a9a7ba90bb38ba50d32e972cfec7b90b44ae",
+        "nmr/results/figures/stagewise_deuterium_enrichment.svg": "427901598b81e0dc87ddc5d770b3744ede719efe72c3f171058cf50d664c87cc",
+        "nmr/results/figures/stagewise_deuterium_enrichment.pdf": "52055eaf1d9ad37bbe15ce8b8db651a11231411593886cbb0249ae1ca51db86f"
+      }
+    },
+    {
+      "asset_id": "stage_product_nmr_spectra",
+      "command": "python nmr/plot_response.py",
+      "source": "nmr/results",
+      "assets": {
+        "nmr/results/figures/stage_product_nmr_spectra.png": "7006a9607ed4188efe0e5af00ca085eeff8dd41497648ea9f19f4ee5977c38fd",
+        "nmr/results/figures/stage_product_nmr_spectra.svg": "d292a2082ddca46ed6180655eecf4450aa548368b9edec8e8f00b687a67d0c35",
+        "nmr/results/figures/stage_product_nmr_spectra.pdf": "ceeb4c81b827e84c02947e98083e1a6bc64e24891771ba0c9cfed19b29bc61d8"
+      }
+    },
+    {
+      "asset_id": "hiden_hydrogen_control",
+      "command": "python mass_spectrometry/plot_response.py",
+      "source": "mass_spectrometry/outputs",
+      "assets": {
+        "mass_spectrometry/outputs/interference_sensitivity/hiden_hydrogen_control.png": "7798159befac323edaf30d8815429de119d9b04758e2a7fcdfd0bebe3afda51c",
+        "mass_spectrometry/outputs/interference_sensitivity/hiden_hydrogen_control.svg": "125e2fae180b69e7b383733fdbfd5aa4d4a4b3c0d923a1db8770efdf6a510c02",
+        "mass_spectrometry/outputs/interference_sensitivity/hiden_hydrogen_control.pdf": "3701885e527c2d62b33e93b387c152638b7caf0bd58719e04c85e023705e6478"
+      }
+    },
+    {
+      "asset_id": "h3_separation_sensitivity",
+      "command": "python mass_spectrometry/interference_sensitivity.py",
+      "source": "mass_spectrometry/outputs",
+      "assets": {
+        "mass_spectrometry/outputs/interference_sensitivity/h3_separation_sensitivity.png": "19ef0671cefa5fc4bd3f79f502a12750894c77c941507b9f8bae350c6e889fec",
+        "mass_spectrometry/outputs/interference_sensitivity/h3_separation_sensitivity.svg": "ab337b93822f65341ff8180cbaa65b920450a02eed7775b0b2271ee5f87a9951",
+        "mass_spectrometry/outputs/interference_sensitivity/h3_separation_sensitivity.pdf": "f57cc1a5e61fd9a7461a8a82dfb5130b297a2e5ae2e3157be60734bc131ca051"
+      }
+    },
+    {
+      "asset_id": "lsv_repeatability",
+      "command": "python LSV_repeat_analysis/plot_and_tables.py",
+      "source": "LSV_repeat_analysis/tables",
+      "assets": {
+        "LSV_repeat_analysis/figures/lsv_repeatability.png": "3781a3cc1a7a8f46360c067ff0bdf811f7e5ee88bb3e3e921f664f5a33c70bbf",
+        "LSV_repeat_analysis/figures/lsv_repeatability.svg": "aeae64a5a63ef5145fbf663b8471d2196153b96407fc144a804a40f6df14ff04",
+        "LSV_repeat_analysis/figures/lsv_repeatability.pdf": "865040fb2496057830988633d663fc2c560e822035988ed583f19e292722fd3d"
+      }
+    },
+    {
+      "asset_id": "hd_repeatability",
+      "command": "python HD_repeat_analysis/plot_distribution.py",
+      "source": "HD_repeat_analysis/tables",
+      "assets": {
+        "HD_repeat_analysis/figures/HD_repeatability_distribution.png": "108d6abf844f1cd52346825290b39664a15fcbf1010b71f3c5e3fc015da8dcff",
+        "HD_repeat_analysis/figures/HD_repeatability_distribution.svg": "04c23a22adc624429becc504c0e0da83ca9796f34f61fe375e3b355e74f67478",
+        "HD_repeat_analysis/figures/HD_repeatability_distribution.pdf": "81b65b7c08a32976a3e91826d3e49b327a15cdf2e5177c8a3ff512cb66642d11"
+      }
+    },
+    {
+      "asset_id": "reproducibility_overview",
+      "command": "python reproducibility_overview/build_overview.py",
+      "source": "reproducibility_overview",
+      "assets": {
+        "reproducibility_overview/reproducibility_overview.png": "2432e7688f5b7428c5ee90443c09e78f1d81e3852976b8850d56abf33f806a65",
+        "reproducibility_overview/reproducibility_overview.svg": "a37ab62b496ade367b93fff7352b09ef40be30b6731813d29e6cbe34a1315f9c",
+        "reproducibility_overview/reproducibility_overview.pdf": "f9eba95eb69f8ba58b2b8e410c5688073dc190f969bdf734c113d60fe49df45f"
+      }
+    }
+  ],
+  "tables": [
+    {
+      "asset_id": "stage_product_concentrations",
+      "path": "nmr/results/tables/stage_product_concentrations.csv",
+      "command": "python nmr/export_tables.py",
+      "sha256": "24f1ee4c03e9e327873bb8c3603eef568bc3d55fd70b60985d85ae7b32286204"
+    },
+    {
+      "asset_id": "stagewise_enrichment_inventory",
+      "path": "nmr/results/tables/stagewise_enrichment_inventory.csv",
+      "command": "python nmr/export_tables.py",
+      "sha256": "3dfa131d9df18f502b02fa9f463c688062af8508410252caa220ce69a524b5e0"
+    }
+  ]
+}

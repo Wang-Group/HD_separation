@@ -1,0 +1,152 @@
+{
+  "counts": {
+    "initial": 232,
+    "BO": 111
+  },
+  "properties": [
+    "work_function",
+    "FE_ads_avg",
+    "electronegativity"
+  ],
+  "colors": [
+    "#AE5CFA",
+    "#AAC0FC",
+    "#F1E2AD",
+    "#F19FA0",
+    "#F35656"
+  ],
+  "global_limits": {
+    "weighted_work_function": [
+      2.9735,
+      5.5265
+    ],
+    "weighted_FE_ads_avg": [
+      -0.9476666666666667,
+      0.7543333333333334
+    ],
+    "weighted_electronegativity": [
+      1.1474,
+      2.6126
+    ]
+  },
+  "local_limits": {
+    "weighted_work_function": [
+      4.2975325,
+      4.750967500000001
+    ],
+    "weighted_FE_ads_avg": [
+      -0.6739975,
+      -0.3175025
+    ],
+    "weighted_electronegativity": [
+      1.6148075,
+      2.1736925
+    ]
+  },
+  "panels": [
+    {
+      "mode": "precursor",
+      "view": "global",
+      "x": "weighted_work_function",
+      "y": "weighted_FE_ads_avg",
+      "supported_pixels": 14424
+    },
+    {
+      "mode": "precursor",
+      "view": "global",
+      "x": "weighted_work_function",
+      "y": "weighted_electronegativity",
+      "supported_pixels": 12147
+    },
+    {
+      "mode": "precursor",
+      "view": "global",
+      "x": "weighted_FE_ads_avg",
+      "y": "weighted_electronegativity",
+      "supported_pixels": 15937
+    },
+    {
+      "mode": "icp",
+      "view": "global",
+      "x": "weighted_work_function",
+      "y": "weighted_FE_ads_avg",
+      "supported_pixels": 16593
+    },
+    {
+      "mode": "icp",
+      "view": "global",
+      "x": "weighted_work_function",
+      "y": "weighted_electronegativity",
+      "supported_pixels": 13167
+    },
+    {
+      "mode": "icp",
+      "view": "global",
+      "x": "weighted_FE_ads_avg",
+      "y": "weighted_electronegativity",
+      "supported_pixels": 17575
+    },
+    {
+      "mode": "precursor",
+      "view": "local",
+      "x": "weighted_work_function",
+      "y": "weighted_FE_ads_avg",
+      "supported_pixels": 20881
+    },
+    {
+      "mode": "precursor",
+      "view": "local",
+      "x": "weighted_work_function",
+      "y": "weighted_electronegativity",
+      "supported_pixels": 22180
+    },
+    {
+      "mode": "precursor",
+      "view": "local",
+      "x": "weighted_FE_ads_avg",
+      "y": "weighted_electronegativity",
+      "supported_pixels": 18249
+    },
+    {
+      "mode": "icp",
+      "view": "local",
+      "x": "weighted_work_function",
+      "y": "weighted_FE_ads_avg",
+      "supported_pixels": 13009
+    },
+    {
+      "mode": "icp",
+      "view": "local",
+      "x": "weighted_work_function",
+      "y": "weighted_electronegativity",
+      "supported_pixels": 19401
+    },
+    {
+      "mode": "icp",
+      "view": "local",
+      "x": "weighted_FE_ads_avg",
+      "y": "weighted_electronegativity",
+      "supported_pixels": 15987
+    }
+  ],
+  "method": "Matched complete properties across both representations and all three axes; no imputation; 36-neighbor distance-weighted initial H/D mean; fixed pooled initial range normalization; display-normalized proximity mask <=0.055; no hull mask; BO overlay only",
+  "local_policy": "Pooled BO min/max plus 5.5% padding, no H/D-dependent selection",
+  "verification": "Global/local predictions identical at fixed probes",
+  "hashes": {
+    "ml_revision/plot_weighted_trio_letter.py": "a230bd8e72c82096e711a4695e89011339f40b3faed18926b3eb1f05307a6382",
+    "0-Figures/Figure4/descriptor_joint_panel_helpers.py": "ca88941680952ad95f225f36a031e8363654c0b8873a22a7ea006484076acdce",
+    "ml_revision/workflow/data.py": "3d132a696f7d1079755998cd7df3ae475ae37a024cb103b49dc5e7a8e09993da",
+    "ml_revision/weighted_descriptor_helpers.py": "c20dfaad71f253ce875816b26ceec3cb1d885103cf20e3618e09e988d13e63a3",
+    "ml_revision/plot_six_weighted_descriptor_pairs.py": "c4702c263c0a479f67a5d9f7a385243b118e7041afd1a40af4ba3658ac022a9a",
+    "ml_revision/inputs/reference/BO_recipes.csv": "1496dd5acdc88b51929572f45c3d8d6b6f0c8f8d2f4198d58119d0197ead4764",
+    "ml_revision/inputs/reference/CoFe_recipes.json": "b58c79847914da4e2375c68b03a115dd6f584b3e307af9cc127e25b390880866",
+    "ml_revision/inputs/reference/CoFe_targets.csv": "73ce12a62485526399040e0458045f8e9ffc2d3d1bb1528c0a8332671b6d0a62",
+    "ml_revision/inputs/reference/elemental_properties.csv": "625625376c8711ea9d593a482ba3905be66e532dbb0d0643ef37c6b7e3d466e9",
+    "ml_revision/inputs/reference/elemental_properties_source.xlsx": "f26659d92ed989b81445af039440c654ecc3469eb8c84dd864d5f271f2db2735",
+    "ml_revision/inputs/reference/original_targets.csv": "0756d57920573df7b427d5ed810a8ac0231f66749c77d8c1b046ad4d5163a435",
+    "ml_revision/inputs/reference/sample_metadata.csv": "44dadfc285729f61a37f71ddca2dca11b0ab0f26fde09ab7537e88b4bfc0d449",
+    "ml_revision/inputs/icp/CoFe_ICP-OES_received.xlsx": "11e7a006d5418d778cbfe84841a9ae006e142a3a2adf541e54822ac7916e8fe8",
+    "ml_revision/inputs/icp/ICP_raw_and_percentages_EN.xlsx": "112e3917399b55eed0f4ce198e96cfb4f96ceec5dc57a6e039dc7cefca593a1a"
+  },
+  "response_changed": false
+}

@@ -1,0 +1,12 @@
+{
+  "received": "2026-10-21",
+  "source": "Six first-hand ICP concentration pairs supplied by the user in this conversation; mg/L confirmed by the user.",
+  "mapping": "First concentration is M1; second is Au. Mo, Cu and Ni shorthand maps to Mo-Au, Cu-Au and Ni-Au.",
+  "unit": "mg/L",
+  "additional_atomic_masses": {"Au": 196.966570},
+  "atomic_mass_source": "https://www.ciaaw.org/gold.htm",
+  "mass_fraction": "c_i / (c_1 + c_2)",
+  "molar_fraction": "(c_i / M_i) / (c_1 / M_1 + c_2 / M_2)",
+  "baseline_workbook": "../ml/outputs/icp_simple_20261012/ICP_raw_and_percentages_EN.xlsx",
+  "unchanged": "Other ICP records, target values, shared-ICP exclusions and the 33-descriptor candidate set. W-Nb remains excluded."
+}

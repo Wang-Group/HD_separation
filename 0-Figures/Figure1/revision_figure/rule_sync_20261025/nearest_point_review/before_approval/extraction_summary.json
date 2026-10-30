@@ -1,0 +1,50 @@
+{
+  "raw_files": 1583,
+  "samples": 677,
+  "counts": {
+    "scan_limit": 382,
+    "eta10_crossing": 1106,
+    "rising_point": 24,
+    "above_target_no_crossing": 60,
+    "nearest_point_estimate": 11
+  },
+  "counts_by_origin": {
+    "original": {
+      "eta10_crossing": 423,
+      "scan_limit": 256,
+      "above_target_no_crossing": 11,
+      "rising_point": 8,
+      "nearest_point_estimate": 9
+    },
+    "additional": {
+      "scan_limit": 126,
+      "eta10_crossing": 683,
+      "rising_point": 16,
+      "above_target_no_crossing": 49,
+      "nearest_point_estimate": 2
+    }
+  },
+  "approved_estimates": 35,
+  "unapproved_nearest_candidates_within_window": 35,
+  "sample_coverage": {
+    "accepted_eta10": 430,
+    "eta10_with_SD": 353,
+    "any_approved_estimate": 25,
+    "estimate_without_accepted_eta10": 3,
+    "any_scan_limit": 315
+  },
+  "rule_version": "2026-10-25",
+  "estimate_window": "-20 < selected j < -10 mA/cm2; explicit approval required",
+  "terminal_gate_retained": true,
+  "target_capping_applied": false,
+  "input_sha256": {
+    "manifest.csv": "bc7641cadfb6f7993c025c7c01bdb6b3a140840bda760727a2f26017ed11c98c",
+    "approved_rising_points.csv": "97d6a6e8f5cc5b251574ae32a41fc44f8ba20a64912b1c6b565531860138c83c",
+    "approved_additional_estimates.csv": "ed9e0b5a5bd800473cacd391c2c75d0992c9c8a4186a5990b482c8b8d1d4406f"
+  },
+  "figures_refreshed": false,
+  "ML_rerun": false,
+  "hashes_verified": true,
+  "raw_modified": false,
+  "extra_iR_applied": false
+}

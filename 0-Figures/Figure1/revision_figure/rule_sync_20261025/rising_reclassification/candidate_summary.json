@@ -1,0 +1,24 @@
+{
+  "reviewed_nearest_curves": 46,
+  "reclassified_as_rising": 39,
+  "retained_nearest": 7,
+  "existing_rising_checked": 24,
+  "existing_rising_values_unchanged": true,
+  "selection": "largest potential among eligible candidates",
+  "selected_current_window": "-20 < raw j < -10 mA/cm2",
+  "detection_config": {
+    "grid_step_mV": 1,
+    "median_window_points": 5,
+    "prominence_mA_cm2": 0.5,
+    "peak_distance_mV": 10,
+    "left_margin_mV": 5,
+    "right_margin_mV": 30,
+    "recovery_window_mV": 100,
+    "minimum_recovery_mA_cm2": 2,
+    "minimum_curve_span_mV": 20,
+    "maximum_reversal_mV": 1
+  },
+  "smoothing_only_for_candidate_detection": true,
+  "adopted_values_from_raw": true,
+  "approval_sha256": "6d5a9762c461d2fd49d2560dbf49bd9807fbf099a1f5869caf20213fb2bf5e28"
+}

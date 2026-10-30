@@ -1,0 +1,52 @@
+{
+  "alpha_assumed": 10.0,
+  "liquid_D_atom_fraction": 0.1,
+  "gas_D2_assumed_negligible": true,
+  "H2_to_HD_molecular_concentration_ratio": 44.5,
+  "concentration_unit": "vol% as printed on both calibration axes",
+  "control_plateaus": 40,
+  "calibration_equations": {
+    "mz2_mbar": "2.06e-7 * H2_volpct - 1.31e-9",
+    "mz3_mbar": "6.16e-8 * HD_volpct + 9.51e-12"
+  },
+  "calibration_reproduction": {
+    "H2": {
+      "slope": 2.0570451376178197e-07,
+      "intercept": -1.3115654173274776e-09,
+      "R2": 0.9971401958822496,
+      "n": 21,
+      "measured_concentration_range_volpct": [
+        0.12,
+        0.36
+      ],
+      "origin_in_fit": false,
+      "saved_notebook_points_verified": true
+    },
+    "HD": {
+      "slope": 6.162521053684069e-08,
+      "intercept": 9.505164428375567e-12,
+      "R2": 0.9976887019910298,
+      "n": 21,
+      "measured_concentration_range_volpct": [
+        0.0048,
+        0.0144
+      ],
+      "origin_in_fit": false,
+      "saved_notebook_points_verified": true
+    }
+  },
+  "control_descriptive_fits": [
+    {
+      "degree": 1,
+      "coefficients_descending_mbar_per_volpct_power": [
+        7.275870745535874e-11,
+        -7.620811826682719e-12
+      ],
+      "descriptive_R2": 0.9899233240229353,
+      "RMSE_mbar": 5.082234729008966e-13,
+      "max_absolute_residual_mbar": 1.1143347678899986e-12,
+      "max_absolute_residual_percent_of_control_signal": 22.306539849922935
+    }
+  ],
+  "plotted_control_fit_degree": 1
+}

@@ -1,0 +1,622 @@
+{
+  "audit_date": "2026-10-24",
+  "initial": {
+    "source": "C:/Users/yibinjiang/Desktop/corrected_data_source/0-data-archive/raw_data/11-Co-1/initial_sampling.json",
+    "sha256": "700b6a8e4255c691f938cbee9a2c30f79d6a64a54f6a3e51f8d04b28dc95060c",
+    "indices": [
+      11
+    ],
+    "nonzero_recipe": {
+      "Co": 15.0,
+      "Fe": 2.5,
+      "Na3Cit": 2.5
+    },
+    "water": "No fourth ingredient field",
+    "LSV_source": "11-Co-1/tmp/electrocatalysis/LSV/11.txt",
+    "LSV_sha256": "44aed20173437888c9d9139668fcd70902dbd4c90d4be858f51eab27aab75a6f"
+  },
+  "BO_reference": {
+    "source": "C:/Users/yibinjiang/Desktop/corrected_data_source/0-data-archive/raw_data/BO-raw-data/3-CoFe-1/initial_sampling_Co_Fe.json",
+    "sha256": "ec15daac6e7e90ed876415a57a90bfcd394c84b776666506fdedfe3b69d18813",
+    "indices": [
+      3,
+      7,
+      8,
+      12,
+      16,
+      20,
+      24,
+      28,
+      32
+    ],
+    "nonzero_recipe": {
+      "Co": 15.0,
+      "Fe": 2.5,
+      "Na3Cit": 2.5
+    },
+    "water": 0.0,
+    "LSV_source": "BO-raw-data/3-CoFe-1/tmp/electrocatalysis/LSV/2/{index}.txt"
+  },
+  "decision": "Pool measurements with matching recorded precursor recipes under ordinary catalyst names. Each retained measurement is counted once.",
+  "limits": "Recipe matching verifies recorded substance names and volumes, not stock concentrations or identical acquisition conditions. The current Co-V LSV export does not byte-match initial batch 11-Co-1/index 6; its existing manifest identity and area are retained. No raw curves are added. JSON processed electrochemical/H-D values are not used. Only adopted H/D measurements are pooled; no omitted BO measurement is reinstated.",
+  "groups": [
+    {
+      "sample": "Co-Fe",
+      "lsv_alias": "reference_Co-Fe",
+      "HD_alias": "Co-Fe",
+      "initial": {
+        "source": "11-Co-1/initial_sampling.json",
+        "sha256": "700b6a8e4255c691f938cbee9a2c30f79d6a64a54f6a3e51f8d04b28dc95060c",
+        "index": 11,
+        "nonzero_recipe": {
+          "Co": 15.0,
+          "Fe": 2.5,
+          "Na3Cit": 2.5
+        },
+        "LSV_sha256": "44aed20173437888c9d9139668fcd70902dbd4c90d4be858f51eab27aab75a6f",
+        "matching_packaged_files": [
+          "repeat/Co-Fe/repeat2_Co-Fe.txt"
+        ]
+      },
+      "BO_reference": {
+        "source": "BO-raw-data/3-CoFe-1/tmp/initial_sampling_Co_Fe_1.json",
+        "sha256": "b58c79847914da4e2375c68b03a115dd6f584b3e307af9cc127e25b390880866",
+        "nonzero_recipe": {
+          "Co": 15.0,
+          "Fe": 2.5,
+          "Na3Cit": 2.5
+        },
+        "checked_curves": [
+          {
+            "index": 3,
+            "nonzero_recipe": {
+              "Co": 15.0,
+              "Fe": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Co-Fe/Co-Fe3.txt",
+            "source": "BO-raw-data/3-CoFe-1/tmp/electrocatalysis/LSV/2/3.txt",
+            "sha256": "c8ad66718d5806c6437a1127ccdb575ff57269bd696c90d1ed65fff70145f3c3"
+          },
+          {
+            "index": 7,
+            "nonzero_recipe": {
+              "Co": 15.0,
+              "Fe": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Co-Fe/Co-Fe7.txt",
+            "source": "BO-raw-data/3-CoFe-1/tmp/electrocatalysis/LSV/2/7.txt",
+            "sha256": "569b8f69a183851e1528bc9cee7dd71cd3b59114d11f6d14e4671acee07e9109"
+          },
+          {
+            "index": 8,
+            "nonzero_recipe": {
+              "Co": 15.0,
+              "Fe": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Co-Fe/Co-Fe8.txt",
+            "source": "BO-raw-data/3-CoFe-1/tmp/electrocatalysis/LSV/2/8.txt",
+            "sha256": "6aff73ee256c9ac1e8160085d183516c573f2bf08e7623234c87d6cbf9216a60"
+          },
+          {
+            "index": 12,
+            "nonzero_recipe": {
+              "Co": 15.0,
+              "Fe": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Co-Fe/Co-Fe12.txt",
+            "source": "BO-raw-data/3-CoFe-1/tmp/electrocatalysis/LSV/2/12.txt",
+            "sha256": "f32b3491ccb8cddd687617782c197f197489b8fce89ff96890a4f93536699610"
+          },
+          {
+            "index": 16,
+            "nonzero_recipe": {
+              "Co": 15.0,
+              "Fe": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Co-Fe/Co-Fe16.txt",
+            "source": "BO-raw-data/3-CoFe-1/tmp/electrocatalysis/LSV/2/16.txt",
+            "sha256": "e00b695de5d937b5372e36cdeee28882b05fededbe9707affdbea8f2d5a72515"
+          },
+          {
+            "index": 20,
+            "nonzero_recipe": {
+              "Co": 15.0,
+              "Fe": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Co-Fe/Co-Fe20.txt",
+            "source": "BO-raw-data/3-CoFe-1/tmp/electrocatalysis/LSV/2/20.txt",
+            "sha256": "f2e36108fbbcfe8bea7c1ffdf5a7c94d2373eb3e5fe9f4f77e17f46f77333855"
+          },
+          {
+            "index": 24,
+            "nonzero_recipe": {
+              "Co": 15.0,
+              "Fe": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Co-Fe/Co-Fe24.txt",
+            "source": "BO-raw-data/3-CoFe-1/tmp/electrocatalysis/LSV/2/24.txt",
+            "sha256": "1fae5bf9bfdd133c57d9f00ddc5320596cdecc1acb6449b98b4bdbe612c5f99d"
+          },
+          {
+            "index": 28,
+            "nonzero_recipe": {
+              "Co": 15.0,
+              "Fe": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Co-Fe/Co-Fe28.txt",
+            "source": "BO-raw-data/3-CoFe-1/tmp/electrocatalysis/LSV/2/28.txt",
+            "sha256": "1528a964c851976cb3a9563276ac79a5b55c9d9e063a0078b12d1fb7c4e0f2ac"
+          },
+          {
+            "index": 32,
+            "nonzero_recipe": {
+              "Co": 15.0,
+              "Fe": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Co-Fe/Co-Fe32.txt",
+            "source": "BO-raw-data/3-CoFe-1/tmp/electrocatalysis/LSV/2/32.txt",
+            "sha256": "828946dd6bdc5fd70360b2018eba521d45002b08619eed92d4823ebb69dc0859"
+          }
+        ]
+      },
+      "n_packaged_LSV": 11,
+      "n_unique_packaged_LSV": 11
+    },
+    {
+      "sample": "Co-Mo",
+      "lsv_alias": "reference_Co-Mo",
+      "HD_alias": "Co-Mo3",
+      "initial": {
+        "source": "11-Co-1/initial_sampling.json",
+        "sha256": "700b6a8e4255c691f938cbee9a2c30f79d6a64a54f6a3e51f8d04b28dc95060c",
+        "index": 8,
+        "nonzero_recipe": {
+          "Co": 15.0,
+          "Mo": 2.5,
+          "Na3Cit": 2.5
+        },
+        "LSV_sha256": "2904bc94cb4811742a6424405dd4c9c51b8a4d4e0e2f89b87b24857dfae49ad9",
+        "matching_packaged_files": [
+          "repeat/Co-Mo/repeat2_Co-Mo.txt"
+        ]
+      },
+      "BO_reference": {
+        "source": "BO-raw-data/1-CoMo/tmp/initial_sampling_Co_Mo.json",
+        "sha256": "7983184ab95411114e14703c819d4184da3dd26f04a5d976ee2edcff9e456c5c",
+        "nonzero_recipe": {
+          "Co": 15.0,
+          "Mo": 2.5,
+          "Na3Cit": 2.5
+        },
+        "checked_curves": [
+          {
+            "index": 3,
+            "nonzero_recipe": {
+              "Co": 15.0,
+              "Mo": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Co-Mo/Co-Mo3.txt",
+            "source": "BO-raw-data/1-CoMo/tmp/electrocatalysis/LSV/2/3.txt",
+            "sha256": "06b6a8abcf142692d8668ff18e4be4e62855b2147df1e35f12cd4f93e7f3b6cc"
+          },
+          {
+            "index": 7,
+            "nonzero_recipe": {
+              "Co": 15.0,
+              "Mo": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Co-Mo/Co-Mo7.txt",
+            "source": "BO-raw-data/1-CoMo/tmp/electrocatalysis/LSV/2/7.txt",
+            "sha256": "1ceeac355a2fdb64ba6f10edeb081086fcaf3d56fa1ceb066a795d144d054d31"
+          },
+          {
+            "index": 8,
+            "nonzero_recipe": {
+              "Co": 15.0,
+              "Mo": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Co-Mo/Co-Mo8.txt",
+            "source": "BO-raw-data/1-CoMo/tmp/electrocatalysis/LSV/2/8.txt",
+            "sha256": "9947d20bfc4bf04bb0de4fefd33dddca07d949cea8b772e19dd8863255e23ea6"
+          },
+          {
+            "index": 12,
+            "nonzero_recipe": {
+              "Co": 15.0,
+              "Mo": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Co-Mo/Co-Mo12.txt",
+            "source": "BO-raw-data/1-CoMo/tmp/electrocatalysis/LSV/2/12.txt",
+            "sha256": "962910c1ccc7d2cc75bf24cb6d64d6ec6ccfb4efd27914d4a185287adcc0e1e1"
+          },
+          {
+            "index": 16,
+            "nonzero_recipe": {
+              "Co": 15.0,
+              "Mo": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Co-Mo/Co-Mo16.txt",
+            "source": "BO-raw-data/1-CoMo/tmp/electrocatalysis/LSV/2/16.txt",
+            "sha256": "eb7ffd1827b8a7ce9610e8afd9bf2962424bd1031b785bcf534a42b93ecacad9"
+          },
+          {
+            "index": 20,
+            "nonzero_recipe": {
+              "Co": 15.0,
+              "Mo": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Co-Mo/Co-Mo20.txt",
+            "source": "BO-raw-data/1-CoMo/tmp/electrocatalysis/LSV/2/20.txt",
+            "sha256": "0294b121d3f9d911e2c0950d2ab05916edb4367d28cd0d1d52f120d2762ffb61"
+          },
+          {
+            "index": 24,
+            "nonzero_recipe": {
+              "Co": 15.0,
+              "Mo": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Co-Mo/Co-Mo24.txt",
+            "source": "BO-raw-data/1-CoMo/tmp/electrocatalysis/LSV/2/24.txt",
+            "sha256": "ce7510386c4cab4065808de28926ce262067c737257ca546f0876de045ee791b"
+          }
+        ]
+      },
+      "n_packaged_LSV": 9,
+      "n_unique_packaged_LSV": 9
+    },
+    {
+      "sample": "Co-Ni",
+      "lsv_alias": "reference_Co-Ni",
+      "HD_alias": "Co-Ni3",
+      "initial": {
+        "source": "11-Co-1/initial_sampling.json",
+        "sha256": "700b6a8e4255c691f938cbee9a2c30f79d6a64a54f6a3e51f8d04b28dc95060c",
+        "index": 14,
+        "nonzero_recipe": {
+          "Co": 15.0,
+          "Ni": 2.5,
+          "Na3Cit": 2.5
+        },
+        "LSV_sha256": "268dd5b3e41fac41b570bf9e23bd4a1f746e006f0b5135d9acb2a381b3c5177c",
+        "matching_packaged_files": [
+          "repeat/Co-Ni/repeat2_Co-Ni.txt"
+        ]
+      },
+      "BO_reference": {
+        "source": "BO-raw-data/4-CoNi/tmp/initial_sampling_Co_Ni.json",
+        "sha256": "4b44c80d55932e4ef2bab5abdba63040d7521e53ab3785246344d42defe31cfe",
+        "nonzero_recipe": {
+          "Co": 15.0,
+          "Ni": 2.5,
+          "Na3Cit": 2.5
+        },
+        "checked_curves": [
+          {
+            "index": 3,
+            "nonzero_recipe": {
+              "Co": 15.0,
+              "Ni": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Co-Ni/Co-Ni3.txt",
+            "source": "BO-raw-data/4-CoNi/tmp/electrocatalysis/LSV/2/3.txt",
+            "sha256": "6ca161aa5164a58fef694719a06b10ff13cb1bac7f52f8649af519e8f9449539"
+          },
+          {
+            "index": 7,
+            "nonzero_recipe": {
+              "Co": 15.0,
+              "Ni": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Co-Ni/Co-Ni7.txt",
+            "source": "BO-raw-data/4-CoNi/tmp/electrocatalysis/LSV/2/7.txt",
+            "sha256": "216869d80f605edb7521d79b79e5fa0129e7cedaf671b2535a8ed72d83a1ddba"
+          },
+          {
+            "index": 8,
+            "nonzero_recipe": {
+              "Co": 15.0,
+              "Ni": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Co-Ni/Co-Ni8.txt",
+            "source": "BO-raw-data/4-CoNi/tmp/electrocatalysis/LSV/2/8.txt",
+            "sha256": "78fa06dc6897a60d304e231bd3768490ebc1482ab9d4172cdc6b26c25fefeaae"
+          },
+          {
+            "index": 12,
+            "nonzero_recipe": {
+              "Co": 15.0,
+              "Ni": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Co-Ni/Co-Ni12.txt",
+            "source": "BO-raw-data/4-CoNi/tmp/electrocatalysis/LSV/2/12.txt",
+            "sha256": "559a40006a58a9686b8533188e35805b2932d0edc95aa458d28b7489c12ade95"
+          },
+          {
+            "index": 16,
+            "nonzero_recipe": {
+              "Co": 15.0,
+              "Ni": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Co-Ni/Co-Ni16.txt",
+            "source": "BO-raw-data/4-CoNi/tmp/electrocatalysis/LSV/2/16.txt",
+            "sha256": "0d65820338fc65cfcdc36e168ea674a7e19e00217c923195d3ae2dc74247baf9"
+          },
+          {
+            "index": 20,
+            "nonzero_recipe": {
+              "Co": 15.0,
+              "Ni": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Co-Ni/Co-Ni20.txt",
+            "source": "BO-raw-data/4-CoNi/tmp/electrocatalysis/LSV/2/20.txt",
+            "sha256": "58f87af093361edc698255051b49fc175fbcde4ae8faa4baa4fbae2cc80bdb7c"
+          },
+          {
+            "index": 24,
+            "nonzero_recipe": {
+              "Co": 15.0,
+              "Ni": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Co-Ni/Co-Ni24.txt",
+            "source": "BO-raw-data/4-CoNi/tmp/electrocatalysis/LSV/2/24.txt",
+            "sha256": "39a49649c82e7d44244aaa34f6274c24f5f5510736718d759d07c41ea8a6484c"
+          }
+        ]
+      },
+      "n_packaged_LSV": 9,
+      "n_unique_packaged_LSV": 9
+    },
+    {
+      "sample": "Co-V",
+      "lsv_alias": "reference_Co-V",
+      "HD_alias": "Co-V3",
+      "initial": {
+        "source": "11-Co-1/initial_sampling.json",
+        "sha256": "700b6a8e4255c691f938cbee9a2c30f79d6a64a54f6a3e51f8d04b28dc95060c",
+        "index": 6,
+        "nonzero_recipe": {
+          "Co": 15.0,
+          "V": 2.5,
+          "Na3Cit": 2.5
+        },
+        "LSV_sha256": "eeb12720cef371c8b529e34a03065d07291cf66c0534c7710f8249a1b64d6da5",
+        "matching_packaged_files": []
+      },
+      "BO_reference": {
+        "source": "BO-raw-data/2-CoV/tmp/initial_sampling_Co_V.json",
+        "sha256": "1ed1faf4b2632f57f08c83697379bf66b25ae46b0f6e598e547db9455bc49ef3",
+        "nonzero_recipe": {
+          "Co": 15.0,
+          "V": 2.5,
+          "Na3Cit": 2.5
+        },
+        "checked_curves": [
+          {
+            "index": 3,
+            "nonzero_recipe": {
+              "Co": 15.0,
+              "V": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Co-V/Co-V3.txt",
+            "source": "BO-raw-data/2-CoV/tmp/electrocatalysis/LSV/2/3.txt",
+            "sha256": "bb07ea92dc3d66350b1765a8a9a726b50135b6425f0bf27b4065eec5ced4b3e7"
+          },
+          {
+            "index": 7,
+            "nonzero_recipe": {
+              "Co": 15.0,
+              "V": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Co-V/Co-V7.txt",
+            "source": "BO-raw-data/2-CoV/tmp/electrocatalysis/LSV/2/7.txt",
+            "sha256": "6a1e29f4acc99d018ac9e0b2b0a40d87653bec301188f7676e0c95361e4bc42d"
+          },
+          {
+            "index": 8,
+            "nonzero_recipe": {
+              "Co": 15.0,
+              "V": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Co-V/Co-V8.txt",
+            "source": "BO-raw-data/2-CoV/tmp/electrocatalysis/LSV/2/8.txt",
+            "sha256": "d78a812680f33f121d63309342be545c9d51a98e75b3cb3f5485e1569c3d06f5"
+          },
+          {
+            "index": 12,
+            "nonzero_recipe": {
+              "Co": 15.0,
+              "V": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Co-V/Co-V12.txt",
+            "source": "BO-raw-data/2-CoV/tmp/electrocatalysis/LSV/2/12.txt",
+            "sha256": "6348021a00ef566776b49c950ced377d208387ec81978d5c53debf80285cb071"
+          },
+          {
+            "index": 16,
+            "nonzero_recipe": {
+              "Co": 15.0,
+              "V": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Co-V/Co-V16.txt",
+            "source": "BO-raw-data/2-CoV/tmp/electrocatalysis/LSV/2/16.txt",
+            "sha256": "a0132e5edc285dd7772f8f0cb94c2482a37d9b94bc1e89dfd021928a945e1d70"
+          },
+          {
+            "index": 20,
+            "nonzero_recipe": {
+              "Co": 15.0,
+              "V": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Co-V/Co-V20.txt",
+            "source": "BO-raw-data/2-CoV/tmp/electrocatalysis/LSV/2/20.txt",
+            "sha256": "fea654d4cea25d64e6debaeddf20de60917f5b896ed57b591abfc18356aca92a"
+          },
+          {
+            "index": 24,
+            "nonzero_recipe": {
+              "Co": 15.0,
+              "V": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Co-V/Co-V24.txt",
+            "source": "BO-raw-data/2-CoV/tmp/electrocatalysis/LSV/2/24.txt",
+            "sha256": "8ec6e50479206b1a88b7cf624260260be24d77e10c0052eeb50e7a62a006b806"
+          }
+        ]
+      },
+      "n_packaged_LSV": 8,
+      "n_unique_packaged_LSV": 8
+    },
+    {
+      "sample": "Fe-Ni",
+      "lsv_alias": "reference_Fe-Ni",
+      "HD_alias": "Fe-Ni3",
+      "initial": {
+        "source": "13-Fe-1/initial_sampling.json",
+        "sha256": "9d741a5a9f1bf4e3beb4c02564b8036d1904fab4fbada168089da095b1f850ae",
+        "index": 14,
+        "nonzero_recipe": {
+          "Fe": 15.0,
+          "Ni": 2.5,
+          "Na3Cit": 2.5
+        },
+        "LSV_sha256": "8d926848eedd98ff1095086474cb9bca1634150701a32edb70ad704d39b9cab6",
+        "matching_packaged_files": [
+          "repeat/Fe-Ni/repeat2_Fe-Ni.txt"
+        ]
+      },
+      "BO_reference": {
+        "source": "BO-raw-data/5-FeNi/tmp/initial_sampling_Fe_Ni.json",
+        "sha256": "2dc8b03c297e9966f4efc55cc49610ef97a9326edec1e340a317b713d8fedb2a",
+        "nonzero_recipe": {
+          "Fe": 15.0,
+          "Ni": 2.5,
+          "Na3Cit": 2.5
+        },
+        "checked_curves": [
+          {
+            "index": 3,
+            "nonzero_recipe": {
+              "Fe": 15.0,
+              "Ni": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Fe-Ni/Fe-Ni3.txt",
+            "source": "BO-raw-data/5-FeNi/tmp/electrocatalysis/LSV/2/3.txt",
+            "sha256": "8e856aef7c9837b7f2457f575c852f9962e2b05be53b3f49afc3f5f9d3742452"
+          },
+          {
+            "index": 7,
+            "nonzero_recipe": {
+              "Fe": 15.0,
+              "Ni": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Fe-Ni/Fe-Ni7.txt",
+            "source": "BO-raw-data/5-FeNi/tmp/electrocatalysis/LSV/2/7.txt",
+            "sha256": "b7d4976f92098b2ebe912fb99800fb2b51f7a6b1c09240703874ec3c457dd2d7"
+          },
+          {
+            "index": 8,
+            "nonzero_recipe": {
+              "Fe": 15.0,
+              "Ni": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Fe-Ni/Fe-Ni8.txt",
+            "source": "BO-raw-data/5-FeNi/tmp/electrocatalysis/LSV/2/8.txt",
+            "sha256": "ee2ba99967b26601e786c5fc76c21bdac9ed77686758b80553d6ed78764026fc"
+          },
+          {
+            "index": 12,
+            "nonzero_recipe": {
+              "Fe": 15.0,
+              "Ni": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Fe-Ni/Fe-Ni12.txt",
+            "source": "BO-raw-data/5-FeNi/tmp/electrocatalysis/LSV/2/12.txt",
+            "sha256": "45a01002858e88ed558a9a13f5bdb646f3e2b052e93a84d7abf3806f1ff5b3dd"
+          },
+          {
+            "index": 16,
+            "nonzero_recipe": {
+              "Fe": 15.0,
+              "Ni": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Fe-Ni/Fe-Ni16.txt",
+            "source": "BO-raw-data/5-FeNi/tmp/electrocatalysis/LSV/2/16.txt",
+            "sha256": "98fbd68434973e5e884f0fc89fb88bcf3270f650041034b2e4505071a005df32"
+          },
+          {
+            "index": 20,
+            "nonzero_recipe": {
+              "Fe": 15.0,
+              "Ni": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Fe-Ni/Fe-Ni20.txt",
+            "source": "BO-raw-data/5-FeNi/tmp/electrocatalysis/LSV/2/20.txt",
+            "sha256": "6db6fb3a26b46992fee44601e64af09ed66bfe423a0b1b6203944930cc46f81a"
+          },
+          {
+            "index": 24,
+            "nonzero_recipe": {
+              "Fe": 15.0,
+              "Ni": 2.5,
+              "Na3Cit": 2.5
+            },
+            "file": "reference/Fe-Ni/Fe-Ni24.txt",
+            "source": "BO-raw-data/5-FeNi/tmp/electrocatalysis/LSV/2/24.txt",
+            "sha256": "4afa0d80e6e12dba3aface7d3dad9ed2d0e845a7b4ded0f75f4f890a36571ddf"
+          }
+        ]
+      },
+      "n_packaged_LSV": 9,
+      "n_unique_packaged_LSV": 9
+    }
+  ],
+  "lsv_aliases": {
+    "reference_Co-Fe": "Co-Fe",
+    "reference_Co-Mo": "Co-Mo",
+    "reference_Co-Ni": "Co-Ni",
+    "reference_Co-V": "Co-V",
+    "reference_Fe-Ni": "Fe-Ni"
+  },
+  "HD_aliases": {
+    "Co-Mo3": "Co-Mo",
+    "Co-Ni3": "Co-Ni",
+    "Co-V3": "Co-V",
+    "Fe-Ni3": "Fe-Ni"
+  }
+}

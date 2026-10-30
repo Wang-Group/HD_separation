@@ -1,0 +1,114 @@
+{
+  "proposal_only": true,
+  "adopted": false,
+  "selection_uses_approval_list": false,
+  "raw_curves": 1583,
+  "counts_current": {
+    "scan_limit": 382,
+    "eta10_crossing": 1106,
+    "rising_point": 63,
+    "above_target_no_crossing": 25,
+    "nearest_point_estimate": 7
+  },
+  "counts_proposed": {
+    "scan_limit": 382,
+    "eta10_crossing": 1104,
+    "rising_point": 65,
+    "above_target_no_crossing": 25,
+    "nearest_point_estimate": 7
+  },
+  "counts_proposed_by_origin": {
+    "original": {
+      "eta10_crossing": 421,
+      "scan_limit": 256,
+      "above_target_no_crossing": 10,
+      "rising_point": 20
+    },
+    "additional": {
+      "scan_limit": 126,
+      "eta10_crossing": 683,
+      "rising_point": 45,
+      "above_target_no_crossing": 15,
+      "nearest_point_estimate": 7
+    }
+  },
+  "changed_curves": 6,
+  "affected_sample_labels": 6,
+  "changed_samples": 6,
+  "transitions": {
+    "eta10_crossing -> rising_point": 2,
+    "rising_point -> rising_point": 4
+  },
+  "detector_diagnostics": {
+    "terminal_scan_limit_priority": 382,
+    "detector_applied": 1199,
+    "reversal_exceeds_1mV_no_rising_estimate": 2
+  },
+  "sample_coverage_current": {
+    "eta10": 430,
+    "eta10_with_SD": 353
+  },
+  "sample_coverage_proposed": {
+    "eta10": 429,
+    "eta10_with_SD": 352
+  },
+  "detector_config": {
+    "grid_step_mV": 1,
+    "median_window_points": 5,
+    "prominence_mA_cm2": 0.5,
+    "peak_distance_mV": 10,
+    "left_margin_mV": 5,
+    "right_margin_mV": 30,
+    "recovery_window_mV": 100,
+    "minimum_recovery_mA_cm2": 2,
+    "minimum_curve_span_mV": 20,
+    "maximum_reversal_mV": 1
+  },
+  "selected_raw_current_window": "-20 < j < -10 mA/cm2",
+  "require_after_largest_crossing": true,
+  "choose_largest_eligible_overpotential": true,
+  "smoothing_only_for_detection": true,
+  "no_automatic_HER_attribution": true,
+  "seed_required": false,
+  "numpy_version": "2.1.3",
+  "scipy_version": "1.15.3",
+  "protected_before": {
+    "files": {
+      "eta10_curves.csv": "243da67324e92d4cd49d911c7c04b8b62f51b6d200a10ea410eb71f624ac6e13",
+      "eta10_samples.csv": "3213cd2935b5894543ac0648ece6c1ca5d4bfe2e3582e0aa0cd5323ba77baaaa",
+      "extraction_summary.json": "f828ccb9fc8cd0462f8e62f4be6c9b52b671f35f48485a23864739e28d0b744e",
+      "approved_rising_points.csv": "97d6a6e8f5cc5b251574ae32a41fc44f8ba20a64912b1c6b565531860138c83c",
+      "approved_additional_estimates.csv": "0a13ae594bb63c250fc3d5cced36221d3a5d1e24c5bb5f4c5152e0aff375c5bc",
+      "extract_eta10.py": "cae0f8d81ce28d8af35ab3eab85a0a47b373bc49c5c5c56f6c8381edce0b0c57",
+      "reclassify_nearest_as_rising.py": "acb51b73f6bb757befdaf3b1ea6f8fff6dd5763fe5a19abbab7749ce5f9bc2f6"
+    },
+    "directories": {
+      "ml_revision": {
+        "files": 2557,
+        "sha256": "b358cf89ca835175ac18b0d25397e228b79bdc801a71fa0e6e722159b903616c"
+      },
+      "0-Figures/Figure4": {
+        "files": 32,
+        "sha256": "f583fc578747ed0e4a15df09bfc9152c6c7cf3cf72174055f430edf8cb3001ad"
+      },
+      "hd_separation_ml/data_extraction/all_data/LSV_repeat": {
+        "files": 1585,
+        "sha256": "a4d36e510268c2fd516756f3f49c17f9b1c64ac501f3d23901b9b6c4f5a7b52b"
+      },
+      "hd_separation_ml/data_extraction/all_data/LSV": {
+        "files": 711,
+        "sha256": "1404b79da537c152cd137f00f1485e989b388bd741052639a895c36c94d25ccc"
+      },
+      "0-Figures/Figure1/revision_figure/figure1b_outputs": {
+        "files": 9,
+        "sha256": "d84421bc97a7d7d6aff5d905200dd8058a10cfc4e99b34dbb9ce8365c435bae7"
+      }
+    }
+  },
+  "protected_files_and_directories_unchanged": true,
+  "script_sha256": "734a58827b862795f283484344049829b9f3bc0ba39ed7a8702ec97194f897e0",
+  "detector_script_sha256": "acb51b73f6bb757befdaf3b1ea6f8fff6dd5763fe5a19abbab7749ce5f9bc2f6",
+  "ML_rerun": false,
+  "manuscript_updated": false,
+  "publication_figures_updated": false
+}

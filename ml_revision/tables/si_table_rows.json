@@ -1,0 +1,719 @@
+{
+  "hd_validation": [
+    [
+      "Protocol",
+      "Training arm",
+      "Inputs",
+      "R2",
+      "RMSE"
+    ],
+    [
+      "Random",
+      "Without BO",
+      "Selected",
+      "0.55 +/- 0.01",
+      "1.12 +/- 0.01"
+    ],
+    [
+      "Random",
+      "Without BO",
+      "All inputs",
+      "0.55 +/- 0.01",
+      "1.11 +/- 0.01"
+    ],
+    [
+      "Random",
+      "With BO",
+      "Selected",
+      "0.55 +/- 0.01",
+      "1.12 +/- 0.01"
+    ],
+    [
+      "Random",
+      "With BO",
+      "All inputs",
+      "0.56 +/- 0.01",
+      "1.11 +/- 0.01"
+    ],
+    [
+      "Unseen pair",
+      "Without BO",
+      "Selected",
+      "0.55 +/- 0.01",
+      "1.11 +/- 0.01"
+    ],
+    [
+      "Unseen pair",
+      "Without BO",
+      "All inputs",
+      "0.55 +/- 0.01",
+      "1.11 +/- 0.01"
+    ],
+    [
+      "Unseen pair",
+      "With BO",
+      "Selected",
+      "0.55 +/- 0.03",
+      "1.12 +/- 0.03"
+    ],
+    [
+      "Unseen pair",
+      "With BO",
+      "All inputs",
+      "0.54 +/- 0.03",
+      "1.12 +/- 0.03"
+    ]
+  ],
+  "representation": [
+    [
+      "Protocol",
+      "Representation",
+      "Inputs",
+      "R2",
+      "RMSE"
+    ],
+    [
+      "Random",
+      "Precursor (30)",
+      "Selected",
+      "0.53 +/- 0.02",
+      "1.14 +/- 0.02"
+    ],
+    [
+      "Random",
+      "Precursor (30)",
+      "All inputs",
+      "0.53 +/- 0.01",
+      "1.13 +/- 0.01"
+    ],
+    [
+      "Random",
+      "ICP (30)",
+      "Selected",
+      "0.55 +/- 0.01",
+      "1.12 +/- 0.01"
+    ],
+    [
+      "Random",
+      "ICP (30)",
+      "All inputs",
+      "0.56 +/- 0.01",
+      "1.11 +/- 0.01"
+    ],
+    [
+      "Random",
+      "ICP + M1 fraction (31)",
+      "Selected",
+      "0.55 +/- 0.01",
+      "1.12 +/- 0.01"
+    ],
+    [
+      "Random",
+      "ICP + M1 fraction (31)",
+      "All inputs",
+      "0.55 +/- 0.01",
+      "1.11 +/- 0.01"
+    ],
+    [
+      "Unseen pair",
+      "Precursor (30)",
+      "Selected",
+      "0.52 +/- 0.03",
+      "1.15 +/- 0.03"
+    ],
+    [
+      "Unseen pair",
+      "Precursor (30)",
+      "All inputs",
+      "0.52 +/- 0.03",
+      "1.15 +/- 0.03"
+    ],
+    [
+      "Unseen pair",
+      "ICP (30)",
+      "Selected",
+      "0.55 +/- 0.03",
+      "1.12 +/- 0.03"
+    ],
+    [
+      "Unseen pair",
+      "ICP (30)",
+      "All inputs",
+      "0.54 +/- 0.03",
+      "1.12 +/- 0.03"
+    ],
+    [
+      "Unseen pair",
+      "ICP + M1 fraction (31)",
+      "Selected",
+      "0.54 +/- 0.03",
+      "1.12 +/- 0.03"
+    ],
+    [
+      "Unseen pair",
+      "ICP + M1 fraction (31)",
+      "All inputs",
+      "0.55 +/- 0.02",
+      "1.12 +/- 0.03"
+    ]
+  ],
+  "electrochemical": [
+    [
+      "Configuration",
+      "Inputs",
+      "R2",
+      "RMSE"
+    ],
+    [
+      "Unshifted (30)",
+      "Selected",
+      "0.55 +/- 0.01",
+      "1.12 +/- 0.01"
+    ],
+    [
+      "Unshifted (30)",
+      "All inputs",
+      "0.55 +/- 0.01",
+      "1.11 +/- 0.01"
+    ],
+    [
+      "Unshifted + measured (33)",
+      "Selected",
+      "0.57 +/- 0.02",
+      "1.09 +/- 0.02"
+    ],
+    [
+      "Unshifted + measured (33)",
+      "All inputs",
+      "0.57 +/- 0.00",
+      "1.09 +/- 0.00"
+    ],
+    [
+      "Shifted (30)",
+      "Selected",
+      "0.54 +/- 0.01",
+      "1.12 +/- 0.02"
+    ],
+    [
+      "Shifted (30)",
+      "All inputs",
+      "0.56 +/- 0.01",
+      "1.11 +/- 0.01"
+    ],
+    [
+      "Shifted + measured (33)",
+      "Selected",
+      "0.56 +/- 0.00",
+      "1.10 +/- 0.01"
+    ],
+    [
+      "Shifted + measured (33)",
+      "All inputs",
+      "0.56 +/- 0.01",
+      "1.10 +/- 0.01"
+    ]
+  ],
+  "eta10": [
+    [
+      "Protocol",
+      "Target",
+      "Inputs",
+      "R2",
+      "RMSE (mV)"
+    ],
+    [
+      "Random",
+      "Initial LSV",
+      "Selected",
+      "0.67 +/- 0.02",
+      "89.15 +/- 2.22"
+    ],
+    [
+      "Random",
+      "Initial LSV",
+      "All inputs",
+      "0.69 +/- 0.01",
+      "87.53 +/- 1.43"
+    ],
+    [
+      "Random",
+      "Averaged",
+      "Selected",
+      "0.74 +/- 0.00",
+      "76.50 +/- 0.73"
+    ],
+    [
+      "Random",
+      "Averaged",
+      "All inputs",
+      "0.74 +/- 0.00",
+      "76.34 +/- 0.66"
+    ],
+    [
+      "Unseen pair",
+      "Initial LSV",
+      "Selected",
+      "0.71 +/- 0.00",
+      "84.19 +/- 0.39"
+    ],
+    [
+      "Unseen pair",
+      "Initial LSV",
+      "All inputs",
+      "0.71 +/- 0.01",
+      "84.35 +/- 2.06"
+    ],
+    [
+      "Unseen pair",
+      "Averaged",
+      "Selected",
+      "0.74 +/- 0.01",
+      "76.54 +/- 1.74"
+    ],
+    [
+      "Unseen pair",
+      "Averaged",
+      "All inputs",
+      "0.75 +/- 0.01",
+      "74.96 +/- 1.81"
+    ]
+  ],
+  "selection_frequency": [
+    [
+      "Descriptor",
+      "Random no BO",
+      "Random with BO",
+      "Unseen no BO",
+      "Unseen with BO"
+    ],
+    [
+      "Work Function | M1",
+      "15/15",
+      "15/15",
+      "15/15",
+      "15/15"
+    ],
+    [
+      "Work Function | M2",
+      "15/15",
+      "15/15",
+      "15/15",
+      "15/15"
+    ],
+    [
+      "Potential of Zero Charge | M1",
+      "15/15",
+      "15/15",
+      "15/15",
+      "15/15"
+    ],
+    [
+      "Potential of Zero Charge | M2",
+      "7/15",
+      "14/15",
+      "8/15",
+      "14/15"
+    ],
+    [
+      "M-M Bond Energy | M1",
+      "10/15",
+      "15/15",
+      "11/15",
+      "15/15"
+    ],
+    [
+      "M-M Bond Energy | M2",
+      "13/15",
+      "15/15",
+      "15/15",
+      "15/15"
+    ],
+    [
+      "Standard Potential | M1",
+      "2/15",
+      "3/15",
+      "0/15",
+      "2/15"
+    ],
+    [
+      "Standard Potential | M2",
+      "11/15",
+      "7/15",
+      "12/15",
+      "14/15"
+    ],
+    [
+      "H Adsorption Free Energy | M1",
+      "15/15",
+      "15/15",
+      "15/15",
+      "15/15"
+    ],
+    [
+      "H Adsorption Free Energy | M2",
+      "7/15",
+      "11/15",
+      "8/15",
+      "11/15"
+    ],
+    [
+      "OH Adsorption Energy | M1",
+      "15/15",
+      "10/15",
+      "15/15",
+      "13/15"
+    ],
+    [
+      "OH Adsorption Energy | M2",
+      "14/15",
+      "14/15",
+      "14/15",
+      "15/15"
+    ],
+    [
+      "Electronegativity | M1",
+      "13/15",
+      "12/15",
+      "15/15",
+      "13/15"
+    ],
+    [
+      "Electronegativity | M2",
+      "1/15",
+      "8/15",
+      "1/15",
+      "0/15"
+    ],
+    [
+      "M-H Bond Energy | M1",
+      "15/15",
+      "8/15",
+      "15/15",
+      "11/15"
+    ],
+    [
+      "M-H Bond Energy | M2",
+      "7/15",
+      "14/15",
+      "8/15",
+      "14/15"
+    ],
+    [
+      "O-H Vibrational Frequency | M1",
+      "15/15",
+      "15/15",
+      "15/15",
+      "15/15"
+    ],
+    [
+      "O-H Vibrational Frequency | M2",
+      "7/15",
+      "14/15",
+      "8/15",
+      "10/15"
+    ],
+    [
+      "H Vibrational Frequency | M1",
+      "15/15",
+      "15/15",
+      "15/15",
+      "15/15"
+    ],
+    [
+      "H Vibrational Frequency | M2",
+      "7/15",
+      "14/15",
+      "8/15",
+      "14/15"
+    ],
+    [
+      "ICP-weighted Work Function",
+      "15/15",
+      "15/15",
+      "15/15",
+      "15/15"
+    ],
+    [
+      "ICP-weighted Potential of Zero Charge",
+      "15/15",
+      "15/15",
+      "15/15",
+      "15/15"
+    ],
+    [
+      "ICP-weighted M-M Bond Energy",
+      "13/15",
+      "15/15",
+      "15/15",
+      "15/15"
+    ],
+    [
+      "ICP-weighted Standard Potential",
+      "5/15",
+      "3/15",
+      "2/15",
+      "7/15"
+    ],
+    [
+      "ICP-weighted H Adsorption Free Energy",
+      "15/15",
+      "15/15",
+      "14/15",
+      "15/15"
+    ],
+    [
+      "ICP-weighted OH Adsorption Energy",
+      "15/15",
+      "15/15",
+      "15/15",
+      "15/15"
+    ],
+    [
+      "ICP-weighted Electronegativity",
+      "10/15",
+      "12/15",
+      "13/15",
+      "8/15"
+    ],
+    [
+      "ICP-weighted M-H Bond Energy",
+      "13/15",
+      "15/15",
+      "10/15",
+      "15/15"
+    ],
+    [
+      "ICP-weighted O-H Vibrational Frequency",
+      "15/15",
+      "15/15",
+      "15/15",
+      "15/15"
+    ],
+    [
+      "ICP-weighted H Vibrational Frequency",
+      "14/15",
+      "15/15",
+      "14/15",
+      "15/15"
+    ]
+  ],
+  "shap": [
+    [
+      "Descriptor",
+      "Random no BO",
+      "Random with BO",
+      "Unseen no BO",
+      "Unseen with BO"
+    ],
+    [
+      "Work Function | M1",
+      "0.15 +/- 0.01",
+      "0.42 +/- 0.06",
+      "0.15 +/- 0.02",
+      "0.37 +/- 0.05"
+    ],
+    [
+      "Work Function | M2",
+      "0.08 +/- 0.01",
+      "0.09 +/- 0.01",
+      "0.08 +/- 0.01",
+      "0.09 +/- 0.01"
+    ],
+    [
+      "Potential of Zero Charge | M1",
+      "0.09 +/- 0.01",
+      "0.04 +/- 0.00",
+      "0.10 +/- 0.01",
+      "0.05 +/- 0.00"
+    ],
+    [
+      "Potential of Zero Charge | M2",
+      "0.01 +/- 0.00",
+      "0.02 +/- 0.00",
+      "0.01 +/- 0.01",
+      "0.02 +/- 0.00"
+    ],
+    [
+      "M-M Bond Energy | M1",
+      "0.02 +/- 0.01",
+      "0.03 +/- 0.01",
+      "0.02 +/- 0.01",
+      "0.03 +/- 0.01"
+    ],
+    [
+      "M-M Bond Energy | M2",
+      "0.04 +/- 0.02",
+      "0.04 +/- 0.01",
+      "0.05 +/- 0.01",
+      "0.04 +/- 0.01"
+    ],
+    [
+      "Standard Potential | M1",
+      "0.01 +/- 0.01",
+      "0.02 +/- 0.00",
+      "0.00 +/- 0.00",
+      "0.01 +/- 0.01"
+    ],
+    [
+      "Standard Potential | M2",
+      "0.04 +/- 0.01",
+      "0.03 +/- 0.01",
+      "0.04 +/- 0.00",
+      "0.05 +/- 0.01"
+    ],
+    [
+      "H Adsorption Free Energy | M1",
+      "0.14 +/- 0.01",
+      "0.16 +/- 0.01",
+      "0.14 +/- 0.02",
+      "0.16 +/- 0.02"
+    ],
+    [
+      "H Adsorption Free Energy | M2",
+      "0.01 +/- 0.00",
+      "0.01 +/- 0.01",
+      "0.01 +/- 0.01",
+      "0.01 +/- 0.00"
+    ],
+    [
+      "OH Adsorption Energy | M1",
+      "0.05 +/- 0.01",
+      "0.05 +/- 0.02",
+      "0.05 +/- 0.01",
+      "0.06 +/- 0.02"
+    ],
+    [
+      "OH Adsorption Energy | M2",
+      "0.05 +/- 0.00",
+      "0.03 +/- 0.00",
+      "0.04 +/- 0.01",
+      "0.04 +/- 0.00"
+    ],
+    [
+      "Electronegativity | M1",
+      "0.10 +/- 0.01",
+      "0.08 +/- 0.01",
+      "0.12 +/- 0.01",
+      "0.09 +/- 0.02"
+    ],
+    [
+      "Electronegativity | M2",
+      "0.00 +/- 0.01",
+      "0.02 +/- 0.01",
+      "0.01 +/- 0.01",
+      "0.00 +/- 0.00"
+    ],
+    [
+      "M-H Bond Energy | M1",
+      "0.10 +/- 0.01",
+      "0.06 +/- 0.05",
+      "0.11 +/- 0.01",
+      "0.07 +/- 0.01"
+    ],
+    [
+      "M-H Bond Energy | M2",
+      "0.01 +/- 0.01",
+      "0.02 +/- 0.00",
+      "0.01 +/- 0.01",
+      "0.02 +/- 0.00"
+    ],
+    [
+      "O-H Vibrational Frequency | M1",
+      "0.07 +/- 0.00",
+      "0.07 +/- 0.00",
+      "0.07 +/- 0.01",
+      "0.08 +/- 0.01"
+    ],
+    [
+      "O-H Vibrational Frequency | M2",
+      "0.01 +/- 0.00",
+      "0.01 +/- 0.00",
+      "0.01 +/- 0.01",
+      "0.01 +/- 0.00"
+    ],
+    [
+      "H Vibrational Frequency | M1",
+      "0.07 +/- 0.01",
+      "0.09 +/- 0.01",
+      "0.06 +/- 0.01",
+      "0.08 +/- 0.00"
+    ],
+    [
+      "H Vibrational Frequency | M2",
+      "0.01 +/- 0.01",
+      "0.02 +/- 0.00",
+      "0.01 +/- 0.01",
+      "0.02 +/- 0.00"
+    ],
+    [
+      "ICP-weighted Work Function",
+      "0.15 +/- 0.01",
+      "0.30 +/- 0.03",
+      "0.15 +/- 0.01",
+      "0.27 +/- 0.02"
+    ],
+    [
+      "ICP-weighted Potential of Zero Charge",
+      "0.05 +/- 0.00",
+      "0.03 +/- 0.00",
+      "0.05 +/- 0.01",
+      "0.03 +/- 0.00"
+    ],
+    [
+      "ICP-weighted M-M Bond Energy",
+      "0.02 +/- 0.00",
+      "0.04 +/- 0.01",
+      "0.03 +/- 0.00",
+      "0.04 +/- 0.01"
+    ],
+    [
+      "ICP-weighted Standard Potential",
+      "0.03 +/- 0.02",
+      "0.02 +/- 0.02",
+      "0.01 +/- 0.03",
+      "0.05 +/- 0.01"
+    ],
+    [
+      "ICP-weighted H Adsorption Free Energy",
+      "0.05 +/- 0.00",
+      "0.04 +/- 0.00",
+      "0.05 +/- 0.01",
+      "0.04 +/- 0.00"
+    ],
+    [
+      "ICP-weighted OH Adsorption Energy",
+      "0.04 +/- 0.01",
+      "0.07 +/- 0.01",
+      "0.04 +/- 0.00",
+      "0.06 +/- 0.01"
+    ],
+    [
+      "ICP-weighted Electronegativity",
+      "0.07 +/- 0.02",
+      "0.08 +/- 0.02",
+      "0.09 +/- 0.02",
+      "0.05 +/- 0.02"
+    ],
+    [
+      "ICP-weighted M-H Bond Energy",
+      "0.03 +/- 0.01",
+      "0.06 +/- 0.00",
+      "0.02 +/- 0.01",
+      "0.05 +/- 0.00"
+    ],
+    [
+      "ICP-weighted O-H Vibrational Frequency",
+      "0.05 +/- 0.00",
+      "0.06 +/- 0.01",
+      "0.05 +/- 0.00",
+      "0.06 +/- 0.00"
+    ],
+    [
+      "ICP-weighted H Vibrational Frequency",
+      "0.04 +/- 0.01",
+      "0.06 +/- 0.01",
+      "0.03 +/- 0.00",
+      "0.05 +/- 0.01"
+    ]
+  ]
+}

@@ -1,211 +1,73 @@
-# Data Manifest
+# Publication Data Map
 
-This file summarizes the active data organization for the figure and
-machine-learning analyses. It is intended as a compact map for readers who want
-to reproduce the current plots without inspecting every notebook.
+Paths below are relative to the repository root. Numerical source tables, not
+document panel numbers, define the analysis inputs.
 
-## Canonical Active Tables
+## Predictive Models
 
-### Figure 1 this-work table
+| Data | Location | Use |
+| --- | --- | --- |
+| Sample identities, recipes, elemental properties and H/D targets | `ml_revision/inputs/reference/` | H/D models and descriptor construction |
+| ICP workbooks and composition mapping | `ml_revision/inputs/icp/`, `ml_revision/reference_icp/` | Measured composition weights; shared mapping for recipe-equivalent references |
+| Paired raw LSV/EIS/Et and extracted covariates | `ml_revision/inputs/electrochemical/`, `ml_revision/inputs/paired/` | Acquisition-matched electrochemical comparison |
+| Per-curve activity records and excluded BO references | `ml_revision/inputs/lsv_crossings/` | Crossing-only initial and averaged activity targets |
+| Outer and inner memberships | `ml_revision/inputs/fold_locks/` | Matched validation comparisons |
+| Target inclusion and values | `ml_revision/results/eta10_target_audit.csv` | 298 matched activity-model samples |
+| Held-out predictions, metrics and fitting records | `ml_revision/results/` | Reported three-repeat model results |
+| Performance and feature-attribution tables | `ml_revision/tables/` | Full-precision source data for reporting |
 
-- Path: `0-Figures/Figure1/data/figure1_bottom_this_work_from_all_data.csv`
-- Rows: 709
-- Scope:
-  - 561 no-BO initial-screening samples.
-  - 112 four-system Figure 4 BO samples.
-  - 36 extra Co-Fe follow-up samples.
-- Key columns:
-  - `sample`
-  - `plot_x_overpotential_mV`
-  - `eta10_mV_vs_RHE_full_lsv`
-  - `separation_coefficient`
-  - `LSV_geometry_area_cm2`
-  - `target_current_A_raw`
-- Notes:
-  - LSV values are extracted from
-    `hd_separation_ml/data_extraction/all_data/LSV`.
-  - Separation coefficients are aligned to
-    `hd_separation_ml/data_extraction/separation_coefficient.xlsx`.
-  - Multi-crossing LSV traces use the most negative crossing for conservative
-    overpotential reporting.
-  - Traces already beyond -10 mA cm^-2 at the scan start are usually plotted at
-    the 10 mV boundary as non-HER/background-current cases and excluded from
-    Pareto-front calculation.
-  - A small Co-V subset with a clear near-target LSV maximum is recovered using
-    the measured point closest to -10 mA cm^-2. `Co-V8`, `Co-V11`, `Co-V20`,
-    and `Co-V22` are retained as borderline recovered cases.
-  - Red/near-target and purple/turning-point estimates are accepted only when
-    the measured/turning-point current is within 10 mA cm^-2 of
-    -10 mA cm^-2 and the LSV shape is interpretable. `Fe-Pt`, `Pd-Pd`,
-    `Y-Pd`, and `Co-Pt` are treated as turning-point eta estimates.
-    `Co-Fe29`, `Co-Fe33`, `Sc-Pd`, and `W-Pd` remain non-HER lower-bound
-    cases and are excluded from Pareto calculations.
-  - `Sc-Pb`, `Cd-Y`, `W-Pb`, and `Ce-Pb` are treated as charging-current
-    artifacts that do not reach a valid HER eta10 and are forced to the 550 mV
-    cap.
-  - Traces that do not reach -10 mA cm^-2 are right-censored: if the endpoint
-    current is within 2 mA cm^-2 of the target, the measured endpoint
-    overpotential is plotted; otherwise the point is assigned to the Figure 1
-    cap of 550 mV.
-  - Figure 1 eta10 values are reported within a bounded plotting window of
-    10-550 mV. Exact-crossing samples, recovered near-target Co-V estimates,
-    and turning-point estimates are eligible for the this-work Pareto front.
+H/D validation uses 560 initial-screening samples. The with-BO training arm adds
+111 independent BO observations; the 37 reference measurements are excluded
+from every ML workflow. The activity comparison also excludes BO-reference
+measurements when averaging targets. Both activity targets use the same samples
+and folds, with the mean capped to 10-550 mV after aggregation.
 
-### Machine-learning feature matrix
+The material feature space contains 30 descriptors. Paired electrochemical
+configurations add three measurements; the explicit-composition comparison adds
+one fraction. Feature selection is correlation-aware and confined to training
+data. Details and checks are in [ml_revision/README.md](ml_revision/README.md).
 
-- Path:
-  `hd_separation_ml/outputs/feature_selection_561_rs_from_eis_no_eis_fitting/feature_matrix_561_no_eis_fitting.csv`
-- Rows: 561
-- Scope: current no-BO initial-screening samples used by the H/D-separation ML
-  workflow.
-- Key fields:
-  - `sample`
-  - `E_actual`
-  - `Rs_from_EIS`
-  - `I_raw`
-  - `separation_coefficient`
-  - selected descriptor columns.
+## Experimental Repeatability
 
-### Figure 4 BO table
+| Data | Location |
+| --- | --- |
+| Raw LSV files, file hashes and area metadata | `hd_separation_ml/data_extraction/all_data/LSV_repeat/` |
+| Per-curve extraction | `0-Figures/Figure1/revision_figure/eta10_curves.csv` |
+| Separate crossing/estimate statistics | `0-Figures/Figure1/revision_figure/eta10_samples.csv` |
+| LSV SD distribution and figures | `others_revision/LSV_repeat_analysis/` |
+| H/D replicate data, SD distribution and figures | `others_revision/HD_repeat_analysis/` |
+| Recipe pooling evidence and joint mean/SD table | `others_revision/reproducibility_overview/` |
 
-- Path: `0-Figures/Figure4/curated/figure4_bo_complete_112.csv`
-- Rows: 112
-- Scope:
-  - `Co-Mo`: 28 rows.
-  - `Co-V`: 28 rows.
-  - `Co-Ni`: 28 rows.
-  - `Fe-Ni`: 28 rows.
-- Purpose: manuscript-facing table for Figure 4 Pareto/IoH plots.
+There are 1,583 LSV files: 1,105 accepted crossings, 64 rising-point estimates,
+seven nearest-point estimates, 382 scan limits and 25 unassigned no-crossing
+curves. These are curve counts, not ML sample counts. Crossings alone enter
+experimental eta10 means and SDs; estimates and limits retain separate fields.
+Recipe-equivalent reference measurements are retained for experimental
+repeatability, unlike the ML cohorts. See the [extraction rules](0-Figures/Figure1/revision_figure/README.md).
 
-## Figure Mapping
+## NMR and Mass Spectrometry
 
-### Figure 1, bottom panel
+The `input_manifest.json` files in `others_revision/nmr/` and
+`others_revision/mass_spectrometry/`, together with `others_revision/ASSET_INDEX.json`,
+record packaged dependencies and publication assets. The package includes NMR
+calibration/enrichment analyses and numerical MS calibration/interference data.
+Use [others_revision/README.md](others_revision/README.md) for the available
+calculations and verification commands. Other experimental characterizations
+are not implied to be reproduced by this package.
 
-- Script: `0-Figures/Figure1/plot_figure1_censored_eta10.py`
-- Inputs:
-  - `0-Figures/Figure1/data/figure1_bottom_this_work_from_all_data.csv`
-  - `0-Figures/Figure1/data/figure1_bottom_literature_benchmarks.csv`
-  - `0-Figures/Figure1/data/figure1_this_work_eta10_censoring.csv`
-  - `0-Figures/Figure1/outputs/lsv_target_failures/lsv_target_reach_audit_all_709.csv`
-- Outputs:
-  - `0-Figures/Figure1/outputs/pareto_plot_v2_censored_eta10.png`
-  - `0-Figures/Figure1/outputs/pareto_plot_v2_censored_eta10_no_text.png`
-- LSV audits for new eta10 handling:
-  - `0-Figures/Figure1/plot_eta_below_10_lsv.py`
-  - `0-Figures/Figure1/plot_right_censored_middle_lsv.py`
-- Dataset scope:
-  - 709 this-work points.
-  - 76 literature-reference points.
-  - 2 benchmark points: Ni foam and Pt sheet.
-  - 787 total plotted points.
-- Pareto-front rules:
-  - This-work candidates require exact eta10 crossings, recovered near-target
-    Co-V eta estimates, or turning-point eta estimates; samples plotted at the
-    10 mV non-HER/background-current boundary and charging-current forced-cap
-    cases are shown but excluded.
-  - Literature candidates require a reported separation-coefficient condition
-    of at least 50 mA cm^-2; lower or unclear conditions are shown as squares
-    but excluded.
+## Figures and BO Records
 
-### Figure 3, top panel
+- [Assembled manuscript figures](0-Figures/manuscript/README.md) are editable SVGs
+  with PNG/PDF companions. Panel-level analysis sources are listed there.
+- [ML reporting map](ml_revision/REPORTING_MAP.md) links SHAP, performance,
+  correlations, composition plots and descriptor maps to their plotting scripts.
+- The full six-property SI atlas is retained in
+  `ml_revision/figures/si_candidates/six_weighted_descriptor_pairs/`.
+- `0-Figures/Figure4/curated/figure4_bo_complete_112.csv` contains the recorded
+  four-system BO performance data: 28 observations each for Co-Mo, Co-V, Co-Ni
+  and Fe-Ni. These records are not replaced by repeatability means.
+- [BO provenance](EC_tool_sys/BO_PROVENANCE.md) documents the optimization code
+  and its recorded objectives.
 
-- Notebook: `0-Figures/Figure3/notebooks/visualizewithcolors.ipynb`
-- Derived data: `0-Figures/Figure3/data/figure3_top_from_ml_dataset.csv`
-- Output: `0-Figures/Figure3/outputs/before_BO_Fe_Co_Others.png`
-- Dataset scope: 561 no-BO initial-screening samples from the current ML
-  feature matrix.
-- LSV handling:
-  - target: -10 mA cm^-2 under the appropriate geometry convention.
-  - multi-crossing traces: use the most negative crossing.
-  - common-window endpoint non-reachers: assign 550 mV as the worst-case
-    plotted overpotential.
-  - 2 cm^2 geometry exceptions are read from
-    `hd_separation_ml/data_extraction/all_data/LSV/lsv_geometry_area_metadata.csv`.
-
-### Figure 3, ML panels
-
-- Feature-matrix notebook:
-  `hd_separation_ml/notebooks/01_feature_selection_561_rs_from_eis_no_eis_fitting.ipynb`
-- Current H/D-separation workflow:
-  `hd_separation_ml/current_hd_separation_workflow/README.md`
-- Final output folder:
-  `hd_separation_ml/outputs/final_model_10features_561_seed42_rf_et_only/`
-- Dataset scope: 561 no-BO initial-screening samples.
-- Final feature set:
-  - `Frequency_H_element1`
-  - `Frequency_D_element1`
-  - `delta_ZPE_H_element1`
-  - `electronegativity_element1`
-  - `work_function_element2`
-  - `delta_EOH_element2`
-  - `FE_ads_avg_element1`
-  - `work_function_element1`
-  - `E_std_element2`
-  - `MM_bond_element2`
-
-### Eta10 activity ML analysis
-
-- Notebook: `hd_separation_ml/notebooks/03_eta10_activity_model_raw_descriptors.ipynb`
-- Output folder: `hd_separation_ml/outputs/03_eta10_activity_model_raw_descriptors/`
-- Target: `eta10_mV`, extracted from LSV at -10 mA cm^-2 with the documented
-  geometry convention.
-- Dataset scope:
-  - 323 samples with valid true LSV crossings before filtering.
-  - 4 eta10 < 20 mV low-outlier samples excluded.
-  - 319 samples used for activity modeling.
-- Artifact sensitivity:
-  - Folder:
-    `hd_separation_ml/outputs/03_eta10_activity_model_raw_descriptors/sensitivity_eta10_artifacts/`
-  - Script:
-    `hd_separation_ml/eta10_artifact_sensitivity_check.py`
-  - Stricter variants removing multi-crossing traces and/or raising the eta10
-    lower threshold to 50 mV gave stable Random Forest performance and stable
-    feature-importance rankings.
-  - Conclusion: the existing true-crossing and eta10 < 20 mV filters remove the
-    main LSV/eta10 artifact classes, and the eta10 ML conclusions are robust.
-- Final feature set:
-  - `Rs_from_EIS`
-  - `work_function_element1`
-  - `work_function_element2`
-  - `pzc_element2`
-  - `E_std_element2`
-  - `FE_ads_avg_element1`
-  - `FE_ads_avg_element2`
-  - `MH_bond_kJ_element2`
-  - `delta_ZPE_H_element1`
-- Compared models: Random Forest and Extra Trees.
-- Current best model: Random Forest, test R2 = 0.6499, test RMSE = 96.0 mV.
-
-### Figure 4
-
-- Folder: `0-Figures/Figure4`
-- Main notebook:
-  `0-Figures/Figure4/pareto_polygon_enclosure_code.ipynb`
-- Primary table:
-  `0-Figures/Figure4/curated/figure4_bo_complete_112.csv`
-- Current Pareto/IoH output:
-  `0-Figures/Figure4/eight_panels_2x4_batch1_7_lg.png`
-- Descriptor-space SI script:
-  `0-Figures/Figure4/assemble_figure_S15_descriptor_panels.py`
-- Descriptor-overlay script:
-  `0-Figures/Figure4/plot_top3_shap_descriptor_bo_overlay.py`
-- Current descriptor-space output:
-  `0-Figures/Figure4/outputs/figure_S15_descriptor_space_interpretation_BO_outcomes.png`
-
-## BO Count Note
-
-The complete this-work Figure 1 table contains 148 digit-suffixed BO/follow-up
-samples: 112 from the four Figure 4 BO systems and 36 extra Co-Fe samples.
-Figure 4 uses only the four BO systems, so its plotted BO table has 112 rows.
-
-## Automation / BO Code Provenance
-
-The Figure 4 BO algorithm path is documented in:
-
-- `EC_tool_sys/BO_PROVENANCE.md`
-- `EC_tool_sys/manager/platform_manager_HD_Hcell.py`
-- `EC_tool_sys/botorch_test/botorch_tool/active_learning.py`
-
-The manuscript-relevant function is `generate_new_exp_MO_one_system_V2`, which
-uses `lsv_overpotential_-0.01` and `separation_coefficient` as objectives with
-BoTorch `qNoisyExpectedHypervolumeImprovement`.
+Experimental replicate SD, validation-repeat SD and conditional NMR intervals
+are different uncertainty quantities and remain separately identified.

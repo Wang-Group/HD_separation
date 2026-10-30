@@ -1,0 +1,75 @@
+{
+  "rule": "2026-10-25-automatic-rising-with-noise-review",
+  "snapshots": [
+    {
+      "source": "0-Figures/Figure1/revision_figure/eta10_curves.csv",
+      "local": "data/eta10_curves.csv",
+      "sha256": "7ce9c5c8cb63a0b5320e06f8b472fd05df8a2cd980cb4b14aade94891c01be09"
+    },
+    {
+      "source": "0-Figures/Figure1/revision_figure/eta10_samples.csv",
+      "local": "data/eta10_samples.csv",
+      "sha256": "1173454be611b951416574b2e14460205901bf6fec23e786a84fc4eaf8618244"
+    },
+    {
+      "source": "0-Figures/Figure1/revision_figure/repeatability_review/plot_sample_statistics.csv",
+      "local": "tables/plot_sample_statistics.csv",
+      "sha256": "0ec273fb7db52a2c3d8fb9ca436146e284a7c7ca57d428e0598aa07554352b1c"
+    },
+    {
+      "source": "0-Figures/Figure1/revision_figure/repeatability_review/summary.json",
+      "local": "tables/summary.json",
+      "sha256": "9d75283cb15db3d2c22485042c8c8f08e0e438fe828d09aca7a3bd88c36a0f81"
+    },
+    {
+      "source": "0-Figures/Figure1/revision_figure/repeatability_review/thresholds.csv",
+      "local": "tables/SD_thresholds.csv",
+      "sha256": "973d4d4a7c2da1f6ff9e0e4d8d15c6d3ac5aeb306be12ea80ef737f9f2df597a"
+    },
+    {
+      "source": "0-Figures/Figure1/revision_figure/repeatability_review/replicate_counts.csv",
+      "local": "tables/replicate_counts.csv",
+      "sha256": "a2cd71151d6e5058c5c680b307c93a791b71d0f22e7b805d41e78f603697f57d"
+    },
+    {
+      "source": "0-Figures/Figure1/revision_figure/repeatability_review/sample_SD_distribution.csv",
+      "local": "tables/sample_SD_distribution.csv",
+      "sha256": "d79a80649de6135bad26fb4efccc1ddcba4f81a57bd1626f74ac6df76435633e"
+    },
+    {
+      "source": "0-Figures/Figure1/revision_figure/repeatability_review/largest_20_SDs.csv",
+      "local": "tables/largest_20_SDs.csv",
+      "sha256": "f857a9c0be75fb6adff47ef2c8d515db170ca177f1f52ac0c4a7cdea133179de"
+    },
+    {
+      "source": "0-Figures/Figure1/revision_figure/repeatability_review/eta10_SD_distribution.pdf",
+      "local": "figures/lsv_repeatability.pdf",
+      "sha256": "865040fb2496057830988633d663fc2c560e822035988ed583f19e292722fd3d"
+    },
+    {
+      "source": "0-Figures/Figure1/revision_figure/repeatability_review/eta10_SD_distribution.png",
+      "local": "figures/lsv_repeatability.png",
+      "sha256": "3781a3cc1a7a8f46360c067ff0bdf811f7e5ee88bb3e3e921f664f5a33c70bbf"
+    },
+    {
+      "source": "0-Figures/Figure1/revision_figure/repeatability_review/eta10_SD_distribution.svg",
+      "local": "figures/lsv_repeatability.svg",
+      "sha256": "aeae64a5a63ef5145fbf663b8471d2196153b96407fc144a804a40f6df14ff04"
+    }
+  ],
+  "aggregation": "Shared lsv_plot_data.py; audited same-recipe measurements pooled from individual curves.",
+  "source_validation": {
+    "means_and_sample_SDs_rebuilt": true,
+    "hashes": {
+      "0-Figures\\Figure1\\revision_figure\\eta10_curves.csv": "7ce9c5c8cb63a0b5320e06f8b472fd05df8a2cd980cb4b14aade94891c01be09",
+      "0-Figures\\Figure1\\revision_figure\\eta10_samples.csv": "1173454be611b951416574b2e14460205901bf6fec23e786a84fc4eaf8618244",
+      "0-Figures\\Figure1\\revision_figure\\extraction_summary.json": "1e62c996fb55a7b3ad5c1179a580c79485acb805971ee46db85eca6f9e1d33ba",
+      "0-Figures\\Figure1\\revision_figure\\lsv_rules.py": "22f22f69d5f5896dbf9106cbae6ee42d55fa5766bd9524550d44885b78e31509",
+      "0-Figures\\Figure1\\revision_figure\\lsv_noise_exceptions.json": "6e95a45f0bb738071c08266d767000abf13139d204fe9373dbd0eabd7f0be2ef",
+      "others_revision\\reproducibility_overview\\recipe_evidence.json": "01c70a9a35ef6469561ca240f018b2c1b0acb7548c5f733359ca8f52e5b8cd0d",
+      "0-Figures\\Figure1\\revision_figure\\lsv_plot_data.py": "4a7d42a294ec91724d6a994305b511da6e4efd58bfecedbc83c69f713f163c67",
+      "plot_eta10_repeatability.py": "5521b4bbb05f5c876de6f9eac2ec469eafa298715e5e3647502615d579183f2e"
+    }
+  },
+  "SI_draft_status": "Current tables and figures support LSV repeatability; SI/MS integration is proposed in SI_MS_integration_notes.md."
+}

@@ -1,0 +1,243 @@
+{
+  "raw_source": "raw/mass_calibration/hiden_data/file147.csv",
+  "raw_sha256": "66111738bb025e9252208d90799e792d4ca50f1a79195e35360cc4e2a12675f6",
+  "calibration": {
+    "source": "User-supplied calibration figure, rounded displayed coefficients",
+    "H2_slope": 2.06e-07,
+    "H2_intercept": -1.31e-09,
+    "HD_slope": 6.16e-08,
+    "HD_intercept": 9.51e-12
+  },
+  "assumptions": [
+    "10 atom% D in liquid; gas D2 neglected.",
+    "Added m/z=3 interference is treated as residual beyond the calibration.",
+    "Control and calibration responses assumed transferable for this sensitivity calculation.",
+    "No extrapolation beyond observed H2 controls; 40 pulses, not 40 independent replicates.",
+    "Control spread is descriptive, not a confidence interval or experimental error bar.",
+    "Mixed-gas calibration may already absorb some H3 contribution; do not apply as a sample correction."
+  ],
+  "primary_scenario": "Local-background-subtracted control signal",
+  "alternative": "Entire raw m/z=3 control signal assigned as additional interference",
+  "summary": [
+    {
+      "subset": "all observed controls",
+      "true_alpha": 2,
+      "scenario": "net_h3",
+      "n": 40,
+      "bias_min": 0.39230044776709105,
+      "bias_median": 0.5597942175528448,
+      "bias_max": 0.6951768887601295,
+      "apparent_min": 1.9860964622247974,
+      "apparent_max": 1.9921539910446582
+    },
+    {
+      "subset": "all observed controls",
+      "true_alpha": 2,
+      "scenario": "raw_h3",
+      "n": 40,
+      "bias_min": 0.4953825562564518,
+      "bias_median": 0.6173942875952354,
+      "bias_max": 0.7369904956386231,
+      "apparent_min": 1.9852601900872275,
+      "apparent_max": 1.990092348874871
+    },
+    {
+      "subset": "all observed controls",
+      "true_alpha": 5,
+      "scenario": "net_h3",
+      "n": 40,
+      "bias_min": 1.044312805048584,
+      "bias_median": 1.4859726299845732,
+      "bias_max": 1.841260122651267,
+      "apparent_min": 4.907936993867437,
+      "apparent_max": 4.947784359747571
+    },
+    {
+      "subset": "all observed controls",
+      "true_alpha": 5,
+      "scenario": "raw_h3",
+      "n": 40,
+      "bias_min": 1.3164526431207335,
+      "bias_median": 1.6373216190867446,
+      "bias_max": 1.9506527436514176,
+      "apparent_min": 4.902467362817429,
+      "apparent_max": 4.934177367843963
+    },
+    {
+      "subset": "all observed controls",
+      "true_alpha": 10,
+      "scenario": "net_h3",
+      "n": 40,
+      "bias_min": 2.1132802788551786,
+      "bias_median": 2.9931732653769494,
+      "bias_max": 3.695517273678366,
+      "apparent_min": 9.630448272632163,
+      "apparent_max": 9.788671972114482
+    },
+    {
+      "subset": "all observed controls",
+      "true_alpha": 10,
+      "scenario": "raw_h3",
+      "n": 40,
+      "bias_min": 2.6565047257536634,
+      "bias_median": 3.2929679986941984,
+      "bias_max": 3.9106845776408328,
+      "apparent_min": 9.608931542235917,
+      "apparent_max": 9.734349527424634
+    },
+    {
+      "subset": "all observed controls",
+      "true_alpha": 15,
+      "scenario": "net_h3",
+      "n": 40,
+      "bias_min": 3.1595698768643863,
+      "bias_median": 4.455021690877879,
+      "bias_max": 5.481306253683738,
+      "apparent_min": 14.17780406194744,
+      "apparent_max": 14.526064518470342
+    },
+    {
+      "subset": "all observed controls",
+      "true_alpha": 15,
+      "scenario": "raw_h3",
+      "n": 40,
+      "bias_min": 3.9608622116522696,
+      "bias_median": 4.893942968970251,
+      "bias_max": 5.794192837315677,
+      "apparent_min": 14.130871074402648,
+      "apparent_max": 14.40587066825216
+    },
+    {
+      "subset": "all observed controls",
+      "true_alpha": 20,
+      "scenario": "net_h3",
+      "n": 40,
+      "bias_min": 4.183770589234097,
+      "bias_median": 5.873369258659595,
+      "bias_max": 7.202142103075727,
+      "apparent_min": 18.559571579384855,
+      "apparent_max": 19.16324588215318
+    },
+    {
+      "subset": "all observed controls",
+      "true_alpha": 20,
+      "scenario": "raw_h3",
+      "n": 40,
+      "bias_min": 5.230777866810961,
+      "bias_median": 6.442728033353404,
+      "bias_max": 7.605353982261659,
+      "apparent_min": 18.47892920354767,
+      "apparent_max": 18.953844426637808
+    },
+    {
+      "subset": "H2 within 4e-8 to 8e-8",
+      "true_alpha": 2,
+      "scenario": "net_h3",
+      "n": 30,
+      "bias_min": 0.47424528358140927,
+      "bias_median": 0.598417413899327,
+      "bias_max": 0.6951768887601295,
+      "apparent_min": 1.9860964622247974,
+      "apparent_max": 1.9905150943283718
+    },
+    {
+      "subset": "H2 within 4e-8 to 8e-8",
+      "true_alpha": 2,
+      "scenario": "raw_h3",
+      "n": 30,
+      "bias_min": 0.5364287125665834,
+      "bias_median": 0.6503414903125448,
+      "bias_max": 0.7369904956386231,
+      "apparent_min": 1.9852601900872275,
+      "apparent_max": 1.9892714257486683
+    },
+    {
+      "subset": "H2 within 4e-8 to 8e-8",
+      "true_alpha": 5,
+      "scenario": "net_h3",
+      "n": 30,
+      "bias_min": 1.260725903464781,
+      "bias_median": 1.587534254379035,
+      "bias_max": 1.841260122651267,
+      "apparent_min": 4.907936993867437,
+      "apparent_max": 4.936963704826761
+    },
+    {
+      "subset": "H2 within 4e-8 to 8e-8",
+      "true_alpha": 5,
+      "scenario": "raw_h3",
+      "n": 30,
+      "bias_min": 1.4245554221333556,
+      "bias_median": 1.7237928015723902,
+      "bias_max": 1.9506527436514176,
+      "apparent_min": 4.902467362817429,
+      "apparent_max": 4.928772228893332
+    },
+    {
+      "subset": "H2 within 4e-8 to 8e-8",
+      "true_alpha": 10,
+      "scenario": "net_h3",
+      "n": 30,
+      "bias_min": 2.5455158501194575,
+      "bias_median": 3.194592407394028,
+      "bias_max": 3.695517273678366,
+      "apparent_min": 9.630448272632163,
+      "apparent_max": 9.745448414988054
+    },
+    {
+      "subset": "H2 within 4e-8 to 8e-8",
+      "true_alpha": 10,
+      "scenario": "raw_h3",
+      "n": 30,
+      "bias_min": 2.8714454811269796,
+      "bias_median": 3.463928990064895,
+      "bias_max": 3.9106845776408328,
+      "apparent_min": 9.608931542235917,
+      "apparent_max": 9.712855451887302
+    },
+    {
+      "subset": "H2 within 4e-8 to 8e-8",
+      "true_alpha": 15,
+      "scenario": "net_h3",
+      "n": 30,
+      "bias_min": 3.7975033749162415,
+      "bias_median": 4.750259658311263,
+      "bias_max": 5.481306253683738,
+      "apparent_min": 14.17780406194744,
+      "apparent_max": 14.430374493762564
+    },
+    {
+      "subset": "H2 within 4e-8 to 8e-8",
+      "true_alpha": 15,
+      "scenario": "raw_h3",
+      "n": 30,
+      "bias_min": 4.276702913302491,
+      "bias_median": 5.143785026468127,
+      "bias_max": 5.794192837315677,
+      "apparent_min": 14.130871074402648,
+      "apparent_max": 14.358494563004626
+    },
+    {
+      "subset": "H2 within 4e-8 to 8e-8",
+      "true_alpha": 20,
+      "scenario": "net_h3",
+      "n": 30,
+      "bias_min": 5.0177801693726565,
+      "bias_median": 6.256779320583767,
+      "bias_max": 7.202142103075727,
+      "apparent_min": 18.559571579384855,
+      "apparent_max": 18.99644396612547
+    },
+    {
+      "subset": "H2 within 4e-8 to 8e-8",
+      "true_alpha": 20,
+      "scenario": "raw_h3",
+      "n": 30,
+      "bias_min": 5.641933035930595,
+      "bias_median": 6.766243045340721,
+      "bias_max": 7.605353982261659,
+      "apparent_min": 18.47892920354767,
+      "apparent_max": 18.87161339281388
+    }
+  ]
+}

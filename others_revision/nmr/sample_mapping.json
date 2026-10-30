@@ -1,0 +1,330 @@
+{
+  "date": "2026-10-23",
+  "user_confirmation": "Sample pairing and internal-standard preparation confirmed by the experimenter.",
+  "confirmed_mapping_directory_to_product": {
+    "3": 3,
+    "4": 5,
+    "5": 4,
+    "6": 6,
+    "7": 7
+  },
+  "feed_groups": {
+    "3": "low",
+    "4": "high",
+    "5": "high",
+    "6": "high",
+    "7": "high"
+  },
+  "additional_dilution_factor": 1,
+  "user_metric_selection": "Stage-specific feed/product concentrations and enrichment factors.",
+  "definition": "E = product atom%D / feed atom%D; not gas/liquid H/D separation factor",
+  "missing_actual_feeds": [],
+  "samples": [
+    {
+      "id": "standard_H2O",
+      "role": "standard",
+      "group": "low",
+      "nominal_volume_percent": 0,
+      "stage": null,
+      "feed_directory_batch": null,
+      "source": "inputs/standard_H2O"
+    },
+    {
+      "id": "standard_H2O-1",
+      "role": "standard",
+      "group": "low",
+      "nominal_volume_percent": 0,
+      "stage": null,
+      "feed_directory_batch": null,
+      "source": "inputs/standard_H2O-1"
+    },
+    {
+      "id": "standard_0.02",
+      "role": "standard",
+      "group": "low",
+      "nominal_volume_percent": 0.02,
+      "stage": null,
+      "feed_directory_batch": null,
+      "source": "inputs/standard_0.02"
+    },
+    {
+      "id": "standard_0.04",
+      "role": "standard",
+      "group": "low",
+      "nominal_volume_percent": 0.04,
+      "stage": null,
+      "feed_directory_batch": null,
+      "source": "inputs/standard_0.04"
+    },
+    {
+      "id": "standard_0.06",
+      "role": "standard",
+      "group": "low",
+      "nominal_volume_percent": 0.06,
+      "stage": null,
+      "feed_directory_batch": null,
+      "source": "inputs/standard_0.06"
+    },
+    {
+      "id": "standard_0.08",
+      "role": "standard",
+      "group": "low",
+      "nominal_volume_percent": 0.08,
+      "stage": null,
+      "feed_directory_batch": null,
+      "source": "inputs/standard_0.08"
+    },
+    {
+      "id": "standard_0.1",
+      "role": "standard",
+      "group": "low",
+      "nominal_volume_percent": 0.1,
+      "stage": null,
+      "feed_directory_batch": null,
+      "source": "inputs/standard_0.1"
+    },
+    {
+      "id": "standard_0.2",
+      "role": "standard",
+      "group": "low",
+      "nominal_volume_percent": 0.2,
+      "stage": null,
+      "feed_directory_batch": null,
+      "source": "inputs/standard_0.2"
+    },
+    {
+      "id": "standard_0.3",
+      "role": "standard",
+      "group": "low",
+      "nominal_volume_percent": 0.3,
+      "stage": null,
+      "feed_directory_batch": null,
+      "source": "inputs/standard_0.3"
+    },
+    {
+      "id": "standard_0.4",
+      "role": "standard",
+      "group": "low",
+      "nominal_volume_percent": 0.4,
+      "stage": null,
+      "feed_directory_batch": null,
+      "source": "inputs/standard_0.4"
+    },
+    {
+      "id": "standard_0.5",
+      "role": "standard",
+      "group": "low",
+      "nominal_volume_percent": 0.5,
+      "stage": null,
+      "feed_directory_batch": null,
+      "source": "inputs/standard_0.5"
+    },
+    {
+      "id": "standard_1",
+      "role": "standard",
+      "group": "high",
+      "nominal_volume_percent": 1.0,
+      "stage": null,
+      "feed_directory_batch": null,
+      "source": "inputs/standard_1"
+    },
+    {
+      "id": "standard_2",
+      "role": "standard",
+      "group": "high",
+      "nominal_volume_percent": 2.0,
+      "stage": null,
+      "feed_directory_batch": null,
+      "source": "inputs/standard_2"
+    },
+    {
+      "id": "standard_10",
+      "role": "standard",
+      "group": "high",
+      "nominal_volume_percent": 10.0,
+      "stage": null,
+      "feed_directory_batch": null,
+      "source": "inputs/standard_10"
+    },
+    {
+      "id": "standard_50",
+      "role": "standard",
+      "group": "high",
+      "nominal_volume_percent": 50.0,
+      "stage": null,
+      "feed_directory_batch": null,
+      "source": "inputs/standard_50"
+    },
+    {
+      "id": "standard_100",
+      "role": "standard",
+      "group": "high",
+      "nominal_volume_percent": 100.0,
+      "stage": null,
+      "feed_directory_batch": null,
+      "source": "inputs/standard_100"
+    },
+    {
+      "id": "product_1",
+      "role": "product",
+      "group": "low",
+      "stage": 1,
+      "feed_directory_batch": null,
+      "source": "inputs/product_1"
+    },
+    {
+      "id": "product_2",
+      "role": "product",
+      "group": "low",
+      "stage": 2,
+      "feed_directory_batch": null,
+      "source": "inputs/product_2"
+    },
+    {
+      "id": "product_3",
+      "role": "product",
+      "group": "high",
+      "stage": 3,
+      "feed_directory_batch": null,
+      "source": "inputs/product_3"
+    },
+    {
+      "id": "product_4",
+      "role": "product",
+      "group": "high",
+      "stage": 4,
+      "feed_directory_batch": null,
+      "source": "inputs/product_4"
+    },
+    {
+      "id": "product_5",
+      "role": "product",
+      "group": "high",
+      "stage": 5,
+      "feed_directory_batch": null,
+      "source": "inputs/product_5"
+    },
+    {
+      "id": "product_6",
+      "role": "product",
+      "group": "high",
+      "stage": 6,
+      "feed_directory_batch": null,
+      "source": "inputs/product_6"
+    },
+    {
+      "id": "product_7",
+      "role": "product",
+      "group": "high",
+      "stage": 7,
+      "feed_directory_batch": null,
+      "source": "inputs/product_7"
+    },
+    {
+      "id": "feed_dir3",
+      "role": "feed",
+      "group": "low",
+      "stage": 3,
+      "feed_directory_batch": 3,
+      "source": "inputs/feed_dir3"
+    },
+    {
+      "id": "comparator_dir3",
+      "role": "comparator",
+      "group": "low",
+      "stage": 2,
+      "feed_directory_batch": 3,
+      "source": "inputs/comparator_dir3"
+    },
+    {
+      "id": "feed_dir4",
+      "role": "feed",
+      "group": "high",
+      "stage": 5,
+      "feed_directory_batch": 4,
+      "source": "inputs/feed_dir4"
+    },
+    {
+      "id": "comparator_dir4",
+      "role": "comparator",
+      "group": "high",
+      "stage": 4,
+      "feed_directory_batch": 4,
+      "source": "inputs/comparator_dir4"
+    },
+    {
+      "id": "feed_dir5",
+      "role": "feed",
+      "group": "high",
+      "stage": 4,
+      "feed_directory_batch": 5,
+      "source": "inputs/feed_dir5"
+    },
+    {
+      "id": "comparator_dir5",
+      "role": "comparator",
+      "group": "high",
+      "stage": 3,
+      "feed_directory_batch": 5,
+      "source": "inputs/comparator_dir5"
+    },
+    {
+      "id": "feed_dir6",
+      "role": "feed",
+      "group": "high",
+      "stage": 6,
+      "feed_directory_batch": 6,
+      "source": "inputs/feed_dir6"
+    },
+    {
+      "id": "comparator_dir6",
+      "role": "comparator",
+      "group": "high",
+      "stage": 5,
+      "feed_directory_batch": 6,
+      "source": "inputs/comparator_dir6"
+    },
+    {
+      "id": "feed_dir7",
+      "role": "feed",
+      "group": "high",
+      "stage": 7,
+      "feed_directory_batch": 7,
+      "source": "inputs/feed_dir7"
+    },
+    {
+      "id": "comparator_dir7",
+      "role": "comparator",
+      "group": "high",
+      "stage": 6,
+      "feed_directory_batch": 7,
+      "source": "inputs/comparator_dir7"
+    },
+    {
+      "id": "feed_stage1_water",
+      "role": "feed",
+      "group": "low",
+      "stage": 1,
+      "feed_directory_batch": null,
+      "source": "inputs/feed_stage1_water",
+      "feed_basis": "Independent pure-water NMR; identity via original DOCX embedded FID; user confirms representation of stage1 feed"
+    },
+    {
+      "id": "feed_stage2_proxy",
+      "role": "feed",
+      "group": "low",
+      "stage": 2,
+      "feed_directory_batch": null,
+      "source": "inputs/feed_stage2_proxy",
+      "feed_basis": "User-confirmed direct transfer of product1; identical NMR reused, not an independent feed measurement"
+    }
+  ],
+  "user_confirmation_stage1_2": {
+    "date": "2026-10-23",
+    "answer": "\u4e24\u9879\u90fd\u786e\u8ba4",
+    "scope": "Pure-water spectrum from NMR-data.docx/stage2/1 represents stage1 feed; stage2 directly receives stage1 product without water addition/reformulation. Stage2 reuses product1 NMR, not an independent measurement."
+  },
+  "non_independent_feed_measurement_stages": [
+    2
+  ]
+}

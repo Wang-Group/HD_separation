@@ -1,0 +1,2381 @@
+{
+  "fingerprint": "bb6db1a4aada38d608684c265b5b7994c72d74045433636d1ec17acc5af6211a",
+  "candidates": [
+    {
+      "strategy": "correlation90",
+      "k": 1,
+      "model": "RF",
+      "config_id": 0,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        -0.059475808985563594,
+        0.14855589200746977,
+        0.2807141105350789
+      ],
+      "mean": 0.12326473118566168,
+      "sd": 0.1714993511581056
+    },
+    {
+      "strategy": "correlation90",
+      "k": 1,
+      "model": "RF",
+      "config_id": 1,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 3,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.20959330391384445,
+        0.2806688582381932,
+        0.3334936860749236
+      ],
+      "mean": 0.2745852827423204,
+      "sd": 0.06217381758446116
+    },
+    {
+      "strategy": "correlation90",
+      "k": 1,
+      "model": "RF",
+      "config_id": 2,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 6,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.27605710021649865,
+        0.4085256755544556,
+        0.32591608621085577
+      ],
+      "mean": 0.3368329539939367,
+      "sd": 0.06690563776440628
+    },
+    {
+      "strategy": "correlation90",
+      "k": 1,
+      "model": "RF",
+      "config_id": 3,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 1,
+        "max_features": 1.0
+      },
+      "scores": [
+        -0.020822243553202613,
+        0.17031827282983303,
+        0.31548038167999604
+      ],
+      "mean": 0.15499213698554215,
+      "sd": 0.16867433641376378
+    },
+    {
+      "strategy": "correlation90",
+      "k": 1,
+      "model": "RF",
+      "config_id": 4,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 3,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.20950712532870985,
+        0.28531656855837106,
+        0.3344298237618175
+      ],
+      "mean": 0.2764178392162995,
+      "sd": 0.06293497186683945
+    },
+    {
+      "strategy": "correlation90",
+      "k": 1,
+      "model": "RF",
+      "config_id": 5,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 6,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.27605710021649865,
+        0.4085256755544556,
+        0.32591608621085577
+      ],
+      "mean": 0.3368329539939367,
+      "sd": 0.06690563776440628
+    },
+    {
+      "strategy": "correlation90",
+      "k": 1,
+      "model": "ET",
+      "config_id": 0,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        -0.4402538016859836,
+        0.09011099921326993,
+        0.24671282831356023
+      ],
+      "mean": -0.03447665805305115,
+      "sd": 0.36003104163469746
+    },
+    {
+      "strategy": "correlation90",
+      "k": 1,
+      "model": "ET",
+      "config_id": 1,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 3,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.3081155143413449,
+        0.33089206751340183,
+        0.31685424270188767
+      ],
+      "mean": 0.3186206081855448,
+      "sd": 0.01149055607297906
+    },
+    {
+      "strategy": "correlation90",
+      "k": 1,
+      "model": "ET",
+      "config_id": 2,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 6,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.15982057089946078,
+        0.25266683521112787,
+        0.20850020735644514
+      ],
+      "mean": 0.20699587115567794,
+      "sd": 0.046441408997915753
+    },
+    {
+      "strategy": "correlation90",
+      "k": 1,
+      "model": "ET",
+      "config_id": 3,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 1,
+        "max_features": 1.0
+      },
+      "scores": [
+        -0.13311430111574984,
+        0.34827624647894995,
+        0.35226952998185046
+      ],
+      "mean": 0.18914382511501684,
+      "sd": 0.2790908660626628
+    },
+    {
+      "strategy": "correlation90",
+      "k": 1,
+      "model": "ET",
+      "config_id": 4,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 3,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.30615937405203153,
+        0.3296441865257681,
+        0.3147643947686882
+      ],
+      "mean": 0.31685598511549595,
+      "sd": 0.01188129483119528
+    },
+    {
+      "strategy": "correlation90",
+      "k": 1,
+      "model": "ET",
+      "config_id": 5,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 6,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.15982057089946078,
+        0.25264815020933606,
+        0.20850020735644514
+      ],
+      "mean": 0.20698964282174734,
+      "sd": 0.046432221829704766
+    },
+    {
+      "strategy": "correlation90",
+      "k": 2,
+      "model": "RF",
+      "config_id": 0,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.5831959469566556,
+        0.6451273760684455,
+        0.6507136238347071
+      ],
+      "mean": 0.6263456489532694,
+      "sd": 0.03747297863559755
+    },
+    {
+      "strategy": "correlation90",
+      "k": 2,
+      "model": "RF",
+      "config_id": 1,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 3,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6070878114381115,
+        0.6985644254733863,
+        0.6839136464539022
+      ],
+      "mean": 0.6631886277884667,
+      "sd": 0.049133873527859
+    },
+    {
+      "strategy": "correlation90",
+      "k": 2,
+      "model": "RF",
+      "config_id": 2,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 6,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.5805141518801156,
+        0.7012971847070133,
+        0.687282556595375
+      ],
+      "mean": 0.6563646310608346,
+      "sd": 0.06606113717031671
+    },
+    {
+      "strategy": "correlation90",
+      "k": 2,
+      "model": "RF",
+      "config_id": 3,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 1,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6053074392697506,
+        0.668088779929339,
+        0.6324855651324135
+      ],
+      "mean": 0.635293928110501,
+      "sd": 0.031484748064997146
+    },
+    {
+      "strategy": "correlation90",
+      "k": 2,
+      "model": "RF",
+      "config_id": 4,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 3,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.5778958804037213,
+        0.6879728123519889,
+        0.7099872096542637
+      ],
+      "mean": 0.658618634136658,
+      "sd": 0.07076920693223045
+    },
+    {
+      "strategy": "correlation90",
+      "k": 2,
+      "model": "RF",
+      "config_id": 5,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 6,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.5832760892445522,
+        0.725529507762748,
+        0.6503691572478881
+      ],
+      "mean": 0.6530582514183961,
+      "sd": 0.07116482411010121
+    },
+    {
+      "strategy": "correlation90",
+      "k": 2,
+      "model": "ET",
+      "config_id": 0,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.5035281135644714,
+        0.5625142918934167,
+        0.5707076640878841
+      ],
+      "mean": 0.5455833565152574,
+      "sd": 0.03665058569404447
+    },
+    {
+      "strategy": "correlation90",
+      "k": 2,
+      "model": "ET",
+      "config_id": 1,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 3,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6015762711905699,
+        0.6749044457263509,
+        0.7236043364457875
+      ],
+      "mean": 0.6666950177875695,
+      "sd": 0.061426852497864844
+    },
+    {
+      "strategy": "correlation90",
+      "k": 2,
+      "model": "ET",
+      "config_id": 2,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 6,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.30486689889031815,
+        0.3821057078852226,
+        0.4100106900409216
+      ],
+      "mean": 0.36566109893882076,
+      "sd": 0.05446671531247766
+    },
+    {
+      "strategy": "correlation90",
+      "k": 2,
+      "model": "ET",
+      "config_id": 3,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 1,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.5871119209199042,
+        0.7028489807016733,
+        0.6888533765869085
+      ],
+      "mean": 0.6596047594028287,
+      "sd": 0.06316943847397917
+    },
+    {
+      "strategy": "correlation90",
+      "k": 2,
+      "model": "ET",
+      "config_id": 4,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 3,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.47714721270896476,
+        0.48921787067398215,
+        0.5283602364270218
+      ],
+      "mean": 0.49824177326998953,
+      "sd": 0.0267724963933743
+    },
+    {
+      "strategy": "correlation90",
+      "k": 2,
+      "model": "ET",
+      "config_id": 5,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 6,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.5698982435313127,
+        0.6461389302748767,
+        0.6763274435574287
+      ],
+      "mean": 0.6307882057878728,
+      "sd": 0.05485004294671683
+    },
+    {
+      "strategy": "correlation90",
+      "k": 3,
+      "model": "RF",
+      "config_id": 0,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.5705472665005877,
+        0.6584152780728709,
+        0.7082253412295858
+      ],
+      "mean": 0.6457292952676815,
+      "sd": 0.06971021220073186
+    },
+    {
+      "strategy": "correlation90",
+      "k": 3,
+      "model": "RF",
+      "config_id": 1,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 3,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6133032773798432,
+        0.6968583826369792,
+        0.7025602084534245
+      ],
+      "mean": 0.6709072894900823,
+      "sd": 0.049967933345373576
+    },
+    {
+      "strategy": "correlation90",
+      "k": 3,
+      "model": "RF",
+      "config_id": 2,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 6,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.5559118875013778,
+        0.680985070807626,
+        0.6793874528690671
+      ],
+      "mean": 0.6387614703926904,
+      "sd": 0.07175429000915381
+    },
+    {
+      "strategy": "correlation90",
+      "k": 3,
+      "model": "RF",
+      "config_id": 3,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 1,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6178599920546376,
+        0.6768154685855386,
+        0.6974910091263313
+      ],
+      "mean": 0.6640554899221692,
+      "sd": 0.041320545877146
+    },
+    {
+      "strategy": "correlation90",
+      "k": 3,
+      "model": "RF",
+      "config_id": 4,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 3,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.576247247684249,
+        0.668308975629019,
+        0.7027726548244939
+      ],
+      "mean": 0.6491096260459207,
+      "sd": 0.06541124468554091
+    },
+    {
+      "strategy": "correlation90",
+      "k": 3,
+      "model": "RF",
+      "config_id": 5,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 6,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.5894766516078054,
+        0.7256456812116405,
+        0.6715732548285307
+      ],
+      "mean": 0.6622318625493255,
+      "sd": 0.06856345501138364
+    },
+    {
+      "strategy": "correlation90",
+      "k": 3,
+      "model": "ET",
+      "config_id": 0,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.47963701870035713,
+        0.5360143387678262,
+        0.7076741671639044
+      ],
+      "mean": 0.5744418415440292,
+      "sd": 0.11877600766593309
+    },
+    {
+      "strategy": "correlation90",
+      "k": 3,
+      "model": "ET",
+      "config_id": 1,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 3,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6141928894249911,
+        0.6767335637294172,
+        0.7325349069286508
+      ],
+      "mean": 0.6744871200276864,
+      "sd": 0.059202982684049874
+    },
+    {
+      "strategy": "correlation90",
+      "k": 3,
+      "model": "ET",
+      "config_id": 2,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 6,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.2823701218855227,
+        0.3197271041139734,
+        0.3877870260546632
+      ],
+      "mean": 0.32996141735138645,
+      "sd": 0.0534484499001847
+    },
+    {
+      "strategy": "correlation90",
+      "k": 3,
+      "model": "ET",
+      "config_id": 3,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 1,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.5973991064829696,
+        0.6876359155789643,
+        0.7493808922652596
+      ],
+      "mean": 0.6781386381090645,
+      "sd": 0.07643470750842628
+    },
+    {
+      "strategy": "correlation90",
+      "k": 3,
+      "model": "ET",
+      "config_id": 4,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 3,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.41755719362804933,
+        0.4420317751372319,
+        0.4808413744576142
+      ],
+      "mean": 0.4468101144076318,
+      "sd": 0.03191153835926045
+    },
+    {
+      "strategy": "correlation90",
+      "k": 3,
+      "model": "ET",
+      "config_id": 5,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 6,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.5801896448366155,
+        0.6615330196889229,
+        0.6825130514793589
+      ],
+      "mean": 0.6414119053349657,
+      "sd": 0.05404779661445803
+    },
+    {
+      "strategy": "correlation90",
+      "k": 5,
+      "model": "RF",
+      "config_id": 0,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.6854389524459841,
+        0.6769157744928676,
+        0.7536736175957353
+      ],
+      "mean": 0.7053427815115288,
+      "sd": 0.042072121744142356
+    },
+    {
+      "strategy": "correlation90",
+      "k": 5,
+      "model": "RF",
+      "config_id": 1,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 3,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6344120284294215,
+        0.6904987777690781,
+        0.7192509656088936
+      ],
+      "mean": 0.681387257269131,
+      "sd": 0.043147145557977766
+    },
+    {
+      "strategy": "correlation90",
+      "k": 5,
+      "model": "RF",
+      "config_id": 2,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 6,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.6282364280131943,
+        0.6536358433685867,
+        0.7040694521993025
+      ],
+      "mean": 0.6619805745270279,
+      "sd": 0.03859906466331419
+    },
+    {
+      "strategy": "correlation90",
+      "k": 5,
+      "model": "RF",
+      "config_id": 3,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 1,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6439719324389741,
+        0.6869202288901846,
+        0.7294184843461994
+      ],
+      "mean": 0.6867702152251193,
+      "sd": 0.04272347348101879
+    },
+    {
+      "strategy": "correlation90",
+      "k": 5,
+      "model": "RF",
+      "config_id": 4,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 3,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.6443964166676446,
+        0.6759309859767673,
+        0.7556487252478501
+      ],
+      "mean": 0.691992042630754,
+      "sd": 0.05733879312244238
+    },
+    {
+      "strategy": "correlation90",
+      "k": 5,
+      "model": "RF",
+      "config_id": 5,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 6,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6085932560485774,
+        0.6975835348506082,
+        0.6852134846486182
+      ],
+      "mean": 0.6637967585159346,
+      "sd": 0.04820606340490346
+    },
+    {
+      "strategy": "correlation90",
+      "k": 5,
+      "model": "ET",
+      "config_id": 0,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.6506618071573378,
+        0.6207727525440108,
+        0.7705712141918616
+      ],
+      "mean": 0.6806685912977367,
+      "sd": 0.079279253899441
+    },
+    {
+      "strategy": "correlation90",
+      "k": 5,
+      "model": "ET",
+      "config_id": 1,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 3,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6438693536792319,
+        0.6538741499890809,
+        0.7448725417958979
+      ],
+      "mean": 0.6808720151547369,
+      "sd": 0.05565136606643058
+    },
+    {
+      "strategy": "correlation90",
+      "k": 5,
+      "model": "ET",
+      "config_id": 2,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 6,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.4717514936027415,
+        0.4782726038885823,
+        0.5882488336919053
+      ],
+      "mean": 0.512757643727743,
+      "sd": 0.06545854444985735
+    },
+    {
+      "strategy": "correlation90",
+      "k": 5,
+      "model": "ET",
+      "config_id": 3,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 1,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6843010535850483,
+        0.6854948849664708,
+        0.7619442250424486
+      ],
+      "mean": 0.7105800545313224,
+      "sd": 0.04448668135030798
+    },
+    {
+      "strategy": "correlation90",
+      "k": 5,
+      "model": "ET",
+      "config_id": 4,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 3,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.5519535192100049,
+        0.5467428398252759,
+        0.6746873182847831
+      ],
+      "mean": 0.5911278924400213,
+      "sd": 0.07241147029678581
+    },
+    {
+      "strategy": "correlation90",
+      "k": 5,
+      "model": "ET",
+      "config_id": 5,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 6,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6184037568733846,
+        0.6257236122419361,
+        0.6935548801021394
+      ],
+      "mean": 0.6458940830724867,
+      "sd": 0.04143740762620707
+    },
+    {
+      "strategy": "correlation90",
+      "k": 8,
+      "model": "RF",
+      "config_id": 0,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.6631081428336549,
+        0.6987728400769919,
+        0.7617468500410891
+      ],
+      "mean": 0.7078759443172453,
+      "sd": 0.049945455448871134
+    },
+    {
+      "strategy": "correlation90",
+      "k": 8,
+      "model": "RF",
+      "config_id": 1,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 3,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.629859376851598,
+        0.7039784090090918,
+        0.7306616589639117
+      ],
+      "mean": 0.6881664816082006,
+      "sd": 0.05222822805591735
+    },
+    {
+      "strategy": "correlation90",
+      "k": 8,
+      "model": "RF",
+      "config_id": 2,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 6,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.5882537489561293,
+        0.6324135495073414,
+        0.7272089832035664
+      ],
+      "mean": 0.6492920938890123,
+      "sd": 0.07099861425776605
+    },
+    {
+      "strategy": "correlation90",
+      "k": 8,
+      "model": "RF",
+      "config_id": 3,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 1,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6387693388763596,
+        0.7190842004906788,
+        0.7291706868349395
+      ],
+      "mean": 0.6956747420673258,
+      "sd": 0.049538903761973514
+    },
+    {
+      "strategy": "correlation90",
+      "k": 8,
+      "model": "RF",
+      "config_id": 4,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 3,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.621938819440413,
+        0.6605184603011944,
+        0.7539449593884462
+      ],
+      "mean": 0.6788007463766844,
+      "sd": 0.06787552382195278
+    },
+    {
+      "strategy": "correlation90",
+      "k": 8,
+      "model": "RF",
+      "config_id": 5,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 6,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6053596331906497,
+        0.706625844770904,
+        0.6903149557863761
+      ],
+      "mean": 0.6674334779159766,
+      "sd": 0.054372630284954905
+    },
+    {
+      "strategy": "correlation90",
+      "k": 8,
+      "model": "ET",
+      "config_id": 0,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.6257727814460884,
+        0.6126085588673511,
+        0.7816414303006729
+      ],
+      "mean": 0.6733409235380375,
+      "sd": 0.0940216677835932
+    },
+    {
+      "strategy": "correlation90",
+      "k": 8,
+      "model": "ET",
+      "config_id": 1,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 3,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.658130722555083,
+        0.680514970108077,
+        0.7779279620956759
+      ],
+      "mean": 0.7055245515862786,
+      "sd": 0.06369422285162647
+    },
+    {
+      "strategy": "correlation90",
+      "k": 8,
+      "model": "ET",
+      "config_id": 2,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 6,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.4063639325343191,
+        0.4900006157383867,
+        0.5976168600907474
+      ],
+      "mean": 0.49799380278781774,
+      "sd": 0.09587668566513706
+    },
+    {
+      "strategy": "correlation90",
+      "k": 8,
+      "model": "ET",
+      "config_id": 3,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 1,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6703420251527764,
+        0.6628362735222233,
+        0.7942435231871339
+      ],
+      "mean": 0.7091406072873778,
+      "sd": 0.07379677362775149
+    },
+    {
+      "strategy": "correlation90",
+      "k": 8,
+      "model": "ET",
+      "config_id": 4,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 3,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.518366156473955,
+        0.5673845702357817,
+        0.6824272292552575
+      ],
+      "mean": 0.5893926519883315,
+      "sd": 0.08421564965823239
+    },
+    {
+      "strategy": "correlation90",
+      "k": 8,
+      "model": "ET",
+      "config_id": 5,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 6,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6041405114678304,
+        0.6729969332863835,
+        0.7499271887349045
+      ],
+      "mean": 0.6756882111630396,
+      "sd": 0.07293059062972503
+    },
+    {
+      "strategy": "correlation90",
+      "k": 10,
+      "model": "RF",
+      "config_id": 0,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.6800169853250737,
+        0.6721947180014516,
+        0.7551315564538338
+      ],
+      "mean": 0.7024477532601198,
+      "sd": 0.045792841206197844
+    },
+    {
+      "strategy": "correlation90",
+      "k": 10,
+      "model": "RF",
+      "config_id": 1,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 3,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6314424024386251,
+        0.6905296014126081,
+        0.7243523583073788
+      ],
+      "mean": 0.6821081207195373,
+      "sd": 0.047023993638155175
+    },
+    {
+      "strategy": "correlation90",
+      "k": 10,
+      "model": "RF",
+      "config_id": 2,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 6,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.6168033984750211,
+        0.6640614142260095,
+        0.7004312522540876
+      ],
+      "mean": 0.6604320216517061,
+      "sd": 0.04193189537532308
+    },
+    {
+      "strategy": "correlation90",
+      "k": 10,
+      "model": "RF",
+      "config_id": 3,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 1,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6295402744563856,
+        0.7030293704981532,
+        0.7261708460448852
+      ],
+      "mean": 0.6862468303331414,
+      "sd": 0.05045400957478716
+    },
+    {
+      "strategy": "correlation90",
+      "k": 10,
+      "model": "RF",
+      "config_id": 4,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 3,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.6520230115616499,
+        0.6803595467567004,
+        0.7443235467743858
+      ],
+      "mean": 0.6922353683642454,
+      "sd": 0.04728238101322787
+    },
+    {
+      "strategy": "correlation90",
+      "k": 10,
+      "model": "RF",
+      "config_id": 5,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 6,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6077498238624706,
+        0.7036652755773918,
+        0.6896793628795846
+      ],
+      "mean": 0.6670314874398157,
+      "sd": 0.051813494051943784
+    },
+    {
+      "strategy": "correlation90",
+      "k": 10,
+      "model": "ET",
+      "config_id": 0,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.6722412198621854,
+        0.6222938011880368,
+        0.7846294628550047
+      ],
+      "mean": 0.693054827968409,
+      "sd": 0.08314518310769817
+    },
+    {
+      "strategy": "correlation90",
+      "k": 10,
+      "model": "ET",
+      "config_id": 1,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 3,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6515335965291699,
+        0.6642339820343303,
+        0.7779859988188054
+      ],
+      "mean": 0.6979178591274352,
+      "sd": 0.06963120847165086
+    },
+    {
+      "strategy": "correlation90",
+      "k": 10,
+      "model": "ET",
+      "config_id": 2,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 6,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.524423187917629,
+        0.5450489665257674,
+        0.6075509161781236
+      ],
+      "mean": 0.5590076902071733,
+      "sd": 0.043286132612512775
+    },
+    {
+      "strategy": "correlation90",
+      "k": 10,
+      "model": "ET",
+      "config_id": 3,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 1,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6817988204009702,
+        0.6693952816123162,
+        0.7944370165910577
+      ],
+      "mean": 0.7152103728681146,
+      "sd": 0.06889200062650248
+    },
+    {
+      "strategy": "correlation90",
+      "k": 10,
+      "model": "ET",
+      "config_id": 4,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 3,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.6052081561108777,
+        0.5756663871725125,
+        0.6967142620609181
+      ],
+      "mean": 0.6258629351147694,
+      "sd": 0.06311190003101222
+    },
+    {
+      "strategy": "correlation90",
+      "k": 10,
+      "model": "ET",
+      "config_id": 5,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 6,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6101097668231741,
+        0.6529391011767448,
+        0.7264247247068186
+      ],
+      "mean": 0.6631578642355792,
+      "sd": 0.05882694702011953
+    },
+    {
+      "strategy": "correlation90",
+      "k": 12,
+      "model": "RF",
+      "config_id": 0,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.6622195079875413,
+        0.6875135948872935,
+        0.7524451426058933
+      ],
+      "mean": 0.7007260818269093,
+      "sd": 0.046541311153836584
+    },
+    {
+      "strategy": "correlation90",
+      "k": 12,
+      "model": "RF",
+      "config_id": 1,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 3,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6283769740491336,
+        0.6899265944149644,
+        0.7168330934506206
+      ],
+      "mean": 0.6783788873049063,
+      "sd": 0.04534460739180898
+    },
+    {
+      "strategy": "correlation90",
+      "k": 12,
+      "model": "RF",
+      "config_id": 2,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 6,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.6209257072377006,
+        0.6611601317086644,
+        0.6891336478198056
+      ],
+      "mean": 0.6570731622553901,
+      "sd": 0.03428714451652381
+    },
+    {
+      "strategy": "correlation90",
+      "k": 12,
+      "model": "RF",
+      "config_id": 3,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 1,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.64413217505411,
+        0.7030852746737727,
+        0.7186784722996842
+      ],
+      "mean": 0.6886319740091889,
+      "sd": 0.03931871098258457
+    },
+    {
+      "strategy": "correlation90",
+      "k": 12,
+      "model": "RF",
+      "config_id": 4,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 3,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.6218575753596158,
+        0.6798060632797023,
+        0.7236229026151852
+      ],
+      "mean": 0.6750955137515011,
+      "sd": 0.05104593436799362
+    },
+    {
+      "strategy": "correlation90",
+      "k": 12,
+      "model": "RF",
+      "config_id": 5,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 6,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6008911653547644,
+        0.702622722996426,
+        0.6912769580658167
+      ],
+      "mean": 0.6649302821390024,
+      "sd": 0.05574888298741163
+    },
+    {
+      "strategy": "correlation90",
+      "k": 12,
+      "model": "ET",
+      "config_id": 0,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.6597816753136047,
+        0.6399615857554602,
+        0.7771855586300381
+      ],
+      "mean": 0.6923096065663676,
+      "sd": 0.07416976753744803
+    },
+    {
+      "strategy": "correlation90",
+      "k": 12,
+      "model": "ET",
+      "config_id": 1,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 3,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6538830540349121,
+        0.6817383063598363,
+        0.7689758694774664
+      ],
+      "mean": 0.7015324099574048,
+      "sd": 0.060045349066742276
+    },
+    {
+      "strategy": "correlation90",
+      "k": 12,
+      "model": "ET",
+      "config_id": 2,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 6,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.4979456913223532,
+        0.543013935541123,
+        0.5822103675494219
+      ],
+      "mean": 0.5410566648042994,
+      "sd": 0.04216642143300873
+    },
+    {
+      "strategy": "correlation90",
+      "k": 12,
+      "model": "ET",
+      "config_id": 3,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 1,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6642900961023848,
+        0.6616270213457389,
+        0.7686876281028525
+      ],
+      "mean": 0.6982015818503253,
+      "sd": 0.061057227492123445
+    },
+    {
+      "strategy": "correlation90",
+      "k": 12,
+      "model": "ET",
+      "config_id": 4,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 3,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.5588503735323327,
+        0.591531429356297,
+        0.6878152719612264
+      ],
+      "mean": 0.6127323582832854,
+      "sd": 0.0670454755909683
+    },
+    {
+      "strategy": "correlation90",
+      "k": 12,
+      "model": "ET",
+      "config_id": 5,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 6,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6072812136825892,
+        0.6544000804373659,
+        0.716455481041637
+      ],
+      "mean": 0.6593789250538641,
+      "sd": 0.05475716239573264
+    },
+    {
+      "strategy": "correlation90",
+      "k": 16,
+      "model": "RF",
+      "config_id": 0,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.6513224423109344,
+        0.6745519415544015,
+        0.7523052922340794
+      ],
+      "mean": 0.692726558699805,
+      "sd": 0.05288782020405649
+    },
+    {
+      "strategy": "correlation90",
+      "k": 16,
+      "model": "RF",
+      "config_id": 1,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 3,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6232090402556141,
+        0.6982121610475054,
+        0.7149272059070041
+      ],
+      "mean": 0.6787828024033745,
+      "sd": 0.04884854614628415
+    },
+    {
+      "strategy": "correlation90",
+      "k": 16,
+      "model": "RF",
+      "config_id": 2,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 6,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.5963133166357067,
+        0.6357103150918115,
+        0.7134649125612051
+      ],
+      "mean": 0.6484961814295744,
+      "sd": 0.05961319392951671
+    },
+    {
+      "strategy": "correlation90",
+      "k": 16,
+      "model": "RF",
+      "config_id": 3,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 1,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6308303637000651,
+        0.7176182429431157,
+        0.714194526514474
+      ],
+      "mean": 0.6875477110525517,
+      "sd": 0.04914848498756494
+    },
+    {
+      "strategy": "correlation90",
+      "k": 16,
+      "model": "RF",
+      "config_id": 4,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 3,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.6280036502440622,
+        0.6641382811216856,
+        0.7499567380488137
+      ],
+      "mean": 0.6806995564715205,
+      "sd": 0.06264060813233012
+    },
+    {
+      "strategy": "correlation90",
+      "k": 16,
+      "model": "RF",
+      "config_id": 5,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 6,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.5943756178656425,
+        0.7034454273009003,
+        0.682778696611122
+      ],
+      "mean": 0.6601999139258883,
+      "sd": 0.05793450529020784
+    },
+    {
+      "strategy": "correlation90",
+      "k": 16,
+      "model": "ET",
+      "config_id": 0,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.621225132155693,
+        0.621238980918282,
+        0.7691676091963618
+      ],
+      "mean": 0.6705439074234456,
+      "sd": 0.08541063143129138
+    },
+    {
+      "strategy": "correlation90",
+      "k": 16,
+      "model": "ET",
+      "config_id": 1,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 3,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6347301752282082,
+        0.656973406422098,
+        0.7781732142712775
+      ],
+      "mean": 0.6899589319738612,
+      "sd": 0.07720110125135778
+    },
+    {
+      "strategy": "correlation90",
+      "k": 16,
+      "model": "ET",
+      "config_id": 2,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 6,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.5058846109430905,
+        0.5224169780357671,
+        0.6272190489015101
+      ],
+      "mean": 0.5518402126267893,
+      "sd": 0.06580126525394583
+    },
+    {
+      "strategy": "correlation90",
+      "k": 16,
+      "model": "ET",
+      "config_id": 3,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 1,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.660905538406094,
+        0.683228817912762,
+        0.7817886009457573
+      ],
+      "mean": 0.7086409857548711,
+      "sd": 0.06432349810192757
+    },
+    {
+      "strategy": "correlation90",
+      "k": 16,
+      "model": "ET",
+      "config_id": 4,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 3,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.5566779098643173,
+        0.5907405245697124,
+        0.7042826685410478
+      ],
+      "mean": 0.6172337009916925,
+      "sd": 0.07728652853957528
+    },
+    {
+      "strategy": "correlation90",
+      "k": 16,
+      "model": "ET",
+      "config_id": 5,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 6,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6037883461398041,
+        0.643128139664205,
+        0.7358640377360668
+      ],
+      "mean": 0.6609268411800253,
+      "sd": 0.06781292214168859
+    },
+    {
+      "strategy": "correlation90",
+      "k": 20,
+      "model": "RF",
+      "config_id": 0,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.6415002625821479,
+        0.6817438521071928,
+        0.7569474868545121
+      ],
+      "mean": 0.6933972005146175,
+      "sd": 0.05859919619650949
+    },
+    {
+      "strategy": "correlation90",
+      "k": 20,
+      "model": "RF",
+      "config_id": 1,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 3,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6200836075009708,
+        0.6924197092520721,
+        0.7168890161885006
+      ],
+      "mean": 0.6764641109805144,
+      "sd": 0.05033644430174243
+    },
+    {
+      "strategy": "correlation90",
+      "k": 20,
+      "model": "RF",
+      "config_id": 2,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 6,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.5692617295332519,
+        0.6240499388338845,
+        0.7002592491642796
+      ],
+      "mean": 0.6311903058438053,
+      "sd": 0.06579001571779448
+    },
+    {
+      "strategy": "correlation90",
+      "k": 20,
+      "model": "RF",
+      "config_id": 3,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 1,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6307097165366342,
+        0.7069971812297768,
+        0.7101856275112165
+      ],
+      "mean": 0.6826308417592092,
+      "sd": 0.04499326594842988
+    },
+    {
+      "strategy": "correlation90",
+      "k": 20,
+      "model": "RF",
+      "config_id": 4,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 3,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.6096279035949277,
+        0.6684601425115891,
+        0.749691737623654
+      ],
+      "mean": 0.6759265945767235,
+      "sd": 0.07032979688963537
+    },
+    {
+      "strategy": "correlation90",
+      "k": 20,
+      "model": "RF",
+      "config_id": 5,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 6,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.592345103579967,
+        0.7002683174943001,
+        0.680643254313732
+      ],
+      "mean": 0.657752225129333,
+      "sd": 0.057487863399507906
+    },
+    {
+      "strategy": "correlation90",
+      "k": 20,
+      "model": "ET",
+      "config_id": 0,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.6403663174877241,
+        0.6476508846939537,
+        0.755222245183778
+      ],
+      "mean": 0.6810798157884852,
+      "sd": 0.06431244908509157
+    },
+    {
+      "strategy": "correlation90",
+      "k": 20,
+      "model": "ET",
+      "config_id": 1,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 3,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.643850274969592,
+        0.6799467671328236,
+        0.7736381349631254
+      ],
+      "mean": 0.699145059021847,
+      "sd": 0.06698994670110851
+    },
+    {
+      "strategy": "correlation90",
+      "k": 20,
+      "model": "ET",
+      "config_id": 2,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 6,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.5141813367109731,
+        0.537656028224043,
+        0.605906240536971
+      ],
+      "mean": 0.5525812018239957,
+      "sd": 0.047649082894780696
+    },
+    {
+      "strategy": "correlation90",
+      "k": 20,
+      "model": "ET",
+      "config_id": 3,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 1,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.679609040131754,
+        0.6993351423790899,
+        0.7878269256784135
+      ],
+      "mean": 0.7222570360630858,
+      "sd": 0.05763538492621335
+    },
+    {
+      "strategy": "correlation90",
+      "k": 20,
+      "model": "ET",
+      "config_id": 4,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 3,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.5657256212521589,
+        0.6247768768504071,
+        0.7029381675701518
+      ],
+      "mean": 0.6311468885575725,
+      "sd": 0.06882770883611418
+    },
+    {
+      "strategy": "correlation90",
+      "k": 20,
+      "model": "ET",
+      "config_id": 5,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 6,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6125796455073411,
+        0.6540362684542904,
+        0.7198581139618331
+      ],
+      "mean": 0.6621580093078215,
+      "sd": 0.05409842376959142
+    },
+    {
+      "strategy": "correlation90",
+      "k": 27,
+      "model": "RF",
+      "config_id": 0,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.6094416256131027,
+        0.6797136435744706,
+        0.7622343316195853
+      ],
+      "mean": 0.6837965336023862,
+      "sd": 0.07647813573454114
+    },
+    {
+      "strategy": "correlation90",
+      "k": 27,
+      "model": "RF",
+      "config_id": 1,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 3,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.5879202915680264,
+        0.7086161724245092,
+        0.7261089960712563
+      ],
+      "mean": 0.6742151533545974,
+      "sd": 0.0752436183198056
+    },
+    {
+      "strategy": "correlation90",
+      "k": 27,
+      "model": "RF",
+      "config_id": 2,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 6,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.5430144546212496,
+        0.6359875119816187,
+        0.694546081634303
+      ],
+      "mean": 0.6245160160790572,
+      "sd": 0.07641436324401091
+    },
+    {
+      "strategy": "correlation90",
+      "k": 27,
+      "model": "RF",
+      "config_id": 3,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 1,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6000825439322331,
+        0.7201471555807851,
+        0.7210301708871092
+      ],
+      "mean": 0.6804199568000424,
+      "sd": 0.06957564127428108
+    },
+    {
+      "strategy": "correlation90",
+      "k": 27,
+      "model": "RF",
+      "config_id": 4,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 3,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.5836529539528048,
+        0.6727704448605079,
+        0.7204431472475361
+      ],
+      "mean": 0.6589555153536163,
+      "sd": 0.06943362624379326
+    },
+    {
+      "strategy": "correlation90",
+      "k": 27,
+      "model": "RF",
+      "config_id": 5,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 6,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.5663172398952041,
+        0.7034262752025805,
+        0.683836544172667
+      ],
+      "mean": 0.6511933530901505,
+      "sd": 0.07415460426546089
+    },
+    {
+      "strategy": "correlation90",
+      "k": 27,
+      "model": "ET",
+      "config_id": 0,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.5804564517008909,
+        0.637303729198015,
+        0.7332251620349209
+      ],
+      "mean": 0.650328447644609,
+      "sd": 0.07721270738835984
+    },
+    {
+      "strategy": "correlation90",
+      "k": 27,
+      "model": "ET",
+      "config_id": 1,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 3,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6270000858435045,
+        0.6625958168818962,
+        0.7708671449779201
+      ],
+      "mean": 0.6868210159011069,
+      "sd": 0.07493048696382956
+    },
+    {
+      "strategy": "correlation90",
+      "k": 27,
+      "model": "ET",
+      "config_id": 2,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 6,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.5081357841794834,
+        0.5172438345174049,
+        0.6053904544574321
+      ],
+      "mean": 0.5435900243847734,
+      "sd": 0.05371414164923152
+    },
+    {
+      "strategy": "correlation90",
+      "k": 27,
+      "model": "ET",
+      "config_id": 3,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 1,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6547521006931338,
+        0.6881371755002409,
+        0.7870862201767823
+      ],
+      "mean": 0.7099918321233858,
+      "sd": 0.06882077670997917
+    },
+    {
+      "strategy": "correlation90",
+      "k": 27,
+      "model": "ET",
+      "config_id": 4,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 3,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.5692100600739678,
+        0.596179133337005,
+        0.6833757374804335
+      ],
+      "mean": 0.616254976963802,
+      "sd": 0.05967185347728862
+    },
+    {
+      "strategy": "correlation90",
+      "k": 27,
+      "model": "ET",
+      "config_id": 5,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 6,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.5796368922655408,
+        0.676308646702149,
+        0.7338143841515609
+      ],
+      "mean": 0.6632533077064169,
+      "sd": 0.07791345299937653
+    },
+    {
+      "strategy": "all_candidates",
+      "k": 30,
+      "model": "RF",
+      "config_id": 0,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.6247522913966161,
+        0.6716833184997735,
+        0.7449271877460786
+      ],
+      "mean": 0.6804542658808227,
+      "sd": 0.060565655008609144
+    },
+    {
+      "strategy": "all_candidates",
+      "k": 30,
+      "model": "RF",
+      "config_id": 1,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 3,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.5932786019280522,
+        0.7041481897950903,
+        0.7239608671674289
+      ],
+      "mean": 0.673795886296857,
+      "sd": 0.07043018073070911
+    },
+    {
+      "strategy": "all_candidates",
+      "k": 30,
+      "model": "RF",
+      "config_id": 2,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 6,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.569025034610505,
+        0.6282374631563008,
+        0.6793276707077684
+      ],
+      "mean": 0.6255300561581915,
+      "sd": 0.05520113605707213
+    },
+    {
+      "strategy": "all_candidates",
+      "k": 30,
+      "model": "RF",
+      "config_id": 3,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 1,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.603284932710015,
+        0.7150988121341708,
+        0.7178718731727922
+      ],
+      "mean": 0.678751872672326,
+      "sd": 0.06537099308819828
+    },
+    {
+      "strategy": "all_candidates",
+      "k": 30,
+      "model": "RF",
+      "config_id": 4,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 3,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.5940044818740671,
+        0.6718160428419846,
+        0.712635976374844
+      ],
+      "mean": 0.6594855003636318,
+      "sd": 0.060269308775112156
+    },
+    {
+      "strategy": "all_candidates",
+      "k": 30,
+      "model": "RF",
+      "config_id": 5,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 6,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.568706876059849,
+        0.7023606912218113,
+        0.683160003948001
+      ],
+      "mean": 0.6514091904098871,
+      "sd": 0.07226286181079498
+    },
+    {
+      "strategy": "all_candidates",
+      "k": 30,
+      "model": "ET",
+      "config_id": 0,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 1,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.5613260942807422,
+        0.6344864216629873,
+        0.7437448625622367
+      ],
+      "mean": 0.6465191261686555,
+      "sd": 0.09180273001727639
+    },
+    {
+      "strategy": "all_candidates",
+      "k": 30,
+      "model": "ET",
+      "config_id": 1,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 3,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6066538215178134,
+        0.6660993222270264,
+        0.7775535085161978
+      ],
+      "mean": 0.6834355507536792,
+      "sd": 0.08675877113400512
+    },
+    {
+      "strategy": "all_candidates",
+      "k": 30,
+      "model": "ET",
+      "config_id": 2,
+      "config": {
+        "max_depth": null,
+        "min_samples_leaf": 6,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.4539571816899922,
+        0.5174440450713178,
+        0.6033846165495494
+      ],
+      "mean": 0.5249286144369532,
+      "sd": 0.07499435749520467
+    },
+    {
+      "strategy": "all_candidates",
+      "k": 30,
+      "model": "ET",
+      "config_id": 3,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 1,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.6241935135171461,
+        0.6733227463335996,
+        0.7661931532584619
+      ],
+      "mean": 0.6879031377030692,
+      "sd": 0.07211390490766012
+    },
+    {
+      "strategy": "all_candidates",
+      "k": 30,
+      "model": "ET",
+      "config_id": 4,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 3,
+        "max_features": "sqrt"
+      },
+      "scores": [
+        0.5050124710788031,
+        0.5856186136469814,
+        0.6861090572834372
+      ],
+      "mean": 0.5922467140030739,
+      "sd": 0.09073005108281898
+    },
+    {
+      "strategy": "all_candidates",
+      "k": 30,
+      "model": "ET",
+      "config_id": 5,
+      "config": {
+        "max_depth": 8,
+        "min_samples_leaf": 6,
+        "max_features": 1.0
+      },
+      "scores": [
+        0.5680833262602922,
+        0.6552562748192424,
+        0.7356948528610991
+      ],
+      "mean": 0.653011484646878,
+      "sd": 0.08382830831259634
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "stock_d_atom_percent": 99.86,
+  "composition_convention": "x = b + (p - b) * nominal_stock_volume_percent / 100. Additive-volume/equal-water-molarity approximation; not an exact gravimetric atom-fraction conversion.",
+  "primary_integration": {
+    "halfwidth_ppm": 0.25,
+    "baseline": "linear"
+  },
+  "sensitivity_halfwidths_ppm": [
+    0.15,
+    0.25,
+    0.4
+  ],
+  "internal_standard_preparation": {
+    "aqueous_sample_ml": 0.95,
+    "internal_standard_ml": 0.05,
+    "low_mid": "50 uL DMSO-d6 in 4.45 mL DMSO-h6; described as 1.1%",
+    "high": "Pure DMSO-d6",
+    "stage_mapping": "Stages 1-2 use low/mid preparation; stages 3-7 use high preparation, following the supplied protocol.",
+    "handling": "Assume matched preparation within each calibration segment. No extra 0.95 multiplier or division; no separate blank subtraction."
+  },
+  "initial_volumes_ml": [
+    900,
+    75,
+    100,
+    80,
+    80,
+    80,
+    50
+  ],
+  "final_volumes_ml": [
+    105,
+    7.5,
+    10,
+    8,
+    8,
+    8,
+    7.5
+  ],
+  "electrolysis_times_h": [
+    259,
+    27,
+    33,
+    26,
+    26,
+    26,
+    15.5
+  ],
+  "calibration": "Two sequential groups: low standards including two water measurements fit background and response; high standards use the fitted background. No fixed natural-abundance subtraction.",
+  "inventory_limitations": "Electrolyte-volume proxy, not recovered-water yield. Stage 2 directly receives product 1; stages 3-7 are separately prepared feeds."
+}

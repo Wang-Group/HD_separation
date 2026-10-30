@@ -1,0 +1,112 @@
+{
+  "properties": [
+    "work_function",
+    "FE_ads_avg",
+    "Frequency_H",
+    "E_std",
+    "pzc",
+    "delta_EOH"
+  ],
+  "n_pairs": 15,
+  "n_panels": 60,
+  "cohort_counts": {
+    "initial": 560,
+    "BO": 111
+  },
+  "weighting": "f1*x1+(1-f1)*x2; precursor f1=V1/(V1+V2), ICP f1=measured metal molar fraction; missing nonzero-weight properties remain missing",
+  "missingness": "Pairwise complete across both representations; same samples for all four views of a pair; no imputation",
+  "background": "36-neighbor inverse-distance mean of original initial H/D outcomes only; fixed pooled initial descriptor-range normalization per pair; no convex hull mask",
+  "display_mask": "nearest initial observation within 0.055 in display-axis-normalized distance; different masks across global/local views",
+  "local_limits_policy": "Full available BO range pooled across precursor/ICP, plus 5.5% padding; same descriptor limits across all pairs; no response-based selection",
+  "global_limits": {
+    "weighted_work_function": [
+      2.43545,
+      5.554550000000001
+    ],
+    "weighted_FE_ads_avg": [
+      -0.9476666666666667,
+      0.7543333333333334
+    ],
+    "weighted_Frequency_H": [
+      1021.2267999999999,
+      2371.2532
+    ],
+    "weighted_E_std": [
+      -3.1536500000000003,
+      1.76365
+    ],
+    "weighted_pzc": [
+      -2.5069999999999997,
+      1.2670000000000001
+    ],
+    "weighted_delta_EOH": [
+      -2.9555,
+      1.5955000000000001
+    ]
+  },
+  "local_limits": {
+    "weighted_work_function": [
+      4.2975325,
+      4.750967500000001
+    ],
+    "weighted_FE_ads_avg": [
+      -0.6739975,
+      -0.3175025
+    ],
+    "weighted_Frequency_H": [
+      1590.0401454358957,
+      1977.1143920932711
+    ],
+    "weighted_E_std": [
+      -1.186205,
+      -0.15279500000000001
+    ],
+    "weighted_pzc": [
+      -0.628537226290253,
+      -0.2846950229778723
+    ],
+    "weighted_delta_EOH": [
+      -2.4041699999999997,
+      0.25317
+    ]
+  },
+  "colors": [
+    "#AE5CFA",
+    "#AAC0FC",
+    "#F1E2AD",
+    "#F19FA0",
+    "#F35656"
+  ],
+  "edges": [
+    2.0,
+    4.0,
+    6.0,
+    8.0,
+    10.0,
+    12.0
+  ],
+  "tests": [
+    "60 panels and 15 pairs",
+    "at least 36 matched initial observations per pair",
+    "no BO in background",
+    "global/local probe predictions identical",
+    "distance normalization invariant to unit conversion"
+  ],
+  "caution": "Descriptive weighted projections, not new SHAP rankings, validated surfaces, optima or mechanistic evidence. Precursor fractions retain the equal-stock-concentration assumption.",
+  "hashes": {
+    "ml_revision/plot_six_weighted_descriptor_pairs.py": "c4702c263c0a479f67a5d9f7a385243b118e7041afd1a40af4ba3658ac022a9a",
+    "ml_revision/weighted_descriptor_helpers.py": "c20dfaad71f253ce875816b26ceec3cb1d885103cf20e3618e09e988d13e63a3",
+    "0-Figures/Figure4/descriptor_joint_panel_helpers.py": "ca88941680952ad95f225f36a031e8363654c0b8873a22a7ea006484076acdce",
+    "ml_revision/workflow/data.py": "3d132a696f7d1079755998cd7df3ae475ae37a024cb103b49dc5e7a8e09993da",
+    "ml_revision/inputs/reference/BO_recipes.csv": "1496dd5acdc88b51929572f45c3d8d6b6f0c8f8d2f4198d58119d0197ead4764",
+    "ml_revision/inputs/reference/CoFe_recipes.json": "b58c79847914da4e2375c68b03a115dd6f584b3e307af9cc127e25b390880866",
+    "ml_revision/inputs/reference/CoFe_targets.csv": "73ce12a62485526399040e0458045f8e9ffc2d3d1bb1528c0a8332671b6d0a62",
+    "ml_revision/inputs/reference/elemental_properties.csv": "625625376c8711ea9d593a482ba3905be66e532dbb0d0643ef37c6b7e3d466e9",
+    "ml_revision/inputs/reference/elemental_properties_source.xlsx": "f26659d92ed989b81445af039440c654ecc3469eb8c84dd864d5f271f2db2735",
+    "ml_revision/inputs/reference/original_targets.csv": "0756d57920573df7b427d5ed810a8ac0231f66749c77d8c1b046ad4d5163a435",
+    "ml_revision/inputs/reference/sample_metadata.csv": "44dadfc285729f61a37f71ddca2dca11b0ab0f26fde09ab7537e88b4bfc0d449",
+    "ml_revision/inputs/icp/CoFe_ICP-OES_received.xlsx": "11e7a006d5418d778cbfe84841a9ae006e142a3a2adf541e54822ac7916e8fe8",
+    "ml_revision/inputs/icp/ICP_raw_and_percentages_EN.xlsx": "112e3917399b55eed0f4ce198e96cfb4f96ceec5dc57a6e039dc7cefca593a1a"
+  },
+  "response_or_SI_modified": false
+}

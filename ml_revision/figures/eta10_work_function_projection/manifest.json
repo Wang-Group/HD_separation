@@ -1,0 +1,54 @@
+{
+  "command": "python plot_eta10_work_function_projection.py",
+  "working_directory": "ml_revision",
+  "model_fit": false,
+  "cohort_n": 298,
+  "plotted_n": 281,
+  "missing_coordinates_n": 17,
+  "unique_observed_coordinates": 176,
+  "missing_coordinate_samples": [
+    "Cd-Nb",
+    "Co-Nb",
+    "Cu-Nb",
+    "Eu-Al",
+    "Eu-Co",
+    "Eu-Cu",
+    "Eu-Fe",
+    "Eu-Ni",
+    "Eu-Pt",
+    "Eu-Ru",
+    "Eu-Sr",
+    "Eu-Zn",
+    "Fe-Nb",
+    "Mn-Nb",
+    "Ni-Nb",
+    "Zn-Eu",
+    "Zn-Nb"
+  ],
+  "coordinate_policy": "Observed element-level work functions; no imputation or jitter. Points with identical coordinates overlap; both panels share sample order.",
+  "target_columns": [
+    "original_only_target_mV",
+    "averaged_target_mV"
+  ],
+  "shared_color_limits_mV": [
+    10,
+    550
+  ],
+  "weighted_work_function": "f_M1 * WF_M1 + (1 - f_M1) * WF_M2; f_M1 is the ICP molar fraction",
+  "target_policy": "Saved crossing-only targets; BO-reference measurements excluded from averages.",
+  "input_sha256": {
+    "results/eta10_target_audit.csv": "a9d3fe7915179086af7d4aae99247eac7d4d4e4f7aa5983bccc1f3a9473ee8d7",
+    "inputs/reference/elemental_properties.csv": "625625376c8711ea9d593a482ba3905be66e532dbb0d0643ef37c6b7e3d466e9",
+    "inputs/icp/ICP_raw_and_percentages_EN.xlsx": "112e3917399b55eed0f4ce198e96cfb4f96ceec5dc57a6e039dc7cefca593a1a",
+    "workflow/data.py": "3d132a696f7d1079755998cd7df3ae475ae37a024cb103b49dc5e7a8e09993da",
+    "plot_style.py": "1662069adcced76b6ca0ec983a2e6c36e9d0bfc2acbc8caccd57277e8916ee1d",
+    "plot_eta10_work_function_projection.py": "27e0e7d5bb75df663b9a448505d3db81b6e8dec5d7293791610d5660af58b883"
+  },
+  "output_sha256": {
+    "eta10_work_function_projection.pdf": "5c3700599dfa5d7b59fdb4655da51950acfaaec202b4a01c9c22adc5d399b8ad",
+    "eta10_work_function_projection.png": "6e3b3b2eb4fcd5027205bf9f2508d15614e195272551b32bf7683d7f91093b24",
+    "eta10_work_function_projection.svg": "447895103ce03356a4bcdea21d52e8fe63801207d5ca79f2e3d883cfda290ff5",
+    "missing_work_function.csv": "b1aad8fecb4e0855b8d94b89a378abe0db0e230e661bb04cf0d6b9dadc06f84a",
+    "sample_coordinates_and_targets.csv": "29cc0b389987f65da7426165b9271f399a5d92d0c2d2e9f0f69723ed8fa6d291"
+  }
+}

@@ -13,3 +13,18 @@ dist/
 *.docx
 *.pdf
 *.log
+
+# Working documents, editor caches and local inspection output.
+/documents/
+.ipynb_checkpoints/
+.venv/
+*.inspect.ndjson
+~$*
+.DS_Store
+Thumbs.db
+
+# Adopted manuscript exports; analysis packages allow their own figure PDFs.
+!/0-Figures/manuscript/*.pdf
+!/0-Figures/Figure1/revision_figure/figure1b_outputs/*.pdf
+!/0-Figures/Figure1/revision_figure/repeatability_review/*.pdf
+!/0-Figures/Figure1/revision_figure/estimate_categories_review/*.pdf

@@ -1,0 +1,22 @@
+{
+  "review_date": "2026-10-25",
+  "scope": "One reviewed curve-specific exception to the uniform automatic rising-point rule.",
+  "exceptions": [
+    {
+      "exception_id": "CoCe_repeat4_noise_20261025",
+      "curve_id": "37fb689e813f32b85353eb73b01f1ab80ba3761ef9a9c6a784584a34187ec221",
+      "sha256": "ea21b02b8294e70e738a72a85f1241819428b1d28fd0c33f772f1890d73babcd",
+      "file": "repeat/Co-Ce/repeat4_Co-Ce.txt",
+      "source_relative_path": "LSV/Co-Ce.txt",
+      "action": "retain_largest_crossing_noise",
+      "reason": "User-reviewed: the later automatic rising-point selection is caused by noise. Retain the measured -10 mA/cm2 crossing for this curve.",
+      "user_instruction": "Co-Ce: current selection is right; for the rest use the automatic proposal. Co-Ce can be explicitly stated as noise causing the wrong automatic selection.",
+      "rejected_automatic_potential_mV": 273.7473375320435,
+      "rejected_automatic_j_mA_cm2": -19.371600821614265,
+      "rejected_automatic_raw_line": 143,
+      "retained_crossing_mV": 135.7661872215634,
+      "retained_raw_line_before": 74,
+      "retained_raw_line_after": 75
+    }
+  ]
+}

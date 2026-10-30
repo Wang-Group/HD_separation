@@ -1,0 +1,95 @@
+# 1 "C:/Bruker/TopSpin3.2/exp/stan/nmr/lists/pp/zg2h.2"
+;zg2h
+;avance-version (12/01/11)
+;1D sequence
+;using 2H lockswitch unit or BSMS 2H-TX board
+;staying in pulse mode for entire experiment
+;
+;$CLASS=HighRes
+;$DIM=1D
+;$TYPE=
+;$SUBTYPE=
+;$COMMENT=
+
+
+# 1 "C:/Bruker/TopSpin3.2/exp/stan/nmr/lists/pp/Avance.incl" 1
+;Avance3.incl
+;   for AV III
+;
+;avance-version (13/06/17)
+;
+;$CLASS=HighRes Incl
+;$COMMENT=
+# 169 "C:/Bruker/TopSpin3.2/exp/stan/nmr/lists/pp/Avance.incl"
+;$Id: Avance3.incl,v 1.9.8.3 2013/08/30 09:44:49 ber Exp $
+# 14 "C:/Bruker/TopSpin3.2/exp/stan/nmr/lists/pp/zg2h.2" 2
+
+# 1 "C:/Bruker/TopSpin3.2/exp/stan/nmr/lists/pp/Sysconf.incl" 1
+;Sysconf.incl
+;
+;version 06/12/18
+;
+;$CLASS=HighRes Incl
+;$COMMENT=
+
+# 14 "C:/Bruker/TopSpin3.2/exp/stan/nmr/lists/pp/Sysconf.incl"
+;$Id: Sysconf.incl,v 1.11.8.1 2012/01/31 17:56:18 ber Exp $
+# 15 "C:/Bruker/TopSpin3.2/exp/stan/nmr/lists/pp/zg2h.2" 2
+
+
+# 18 "C:/Bruker/TopSpin3.2/exp/stan/nmr/lists/pp/zg2h.2"
+"d11=30m"
+
+
+"acqt0=-p1*2/3.1416"
+# 1 "mc_line 24 file C:/Bruker/TopSpin3.2/exp/stan/nmr/lists/pp/zg2h.2 exp. def. part of mc cmd. before ze"
+define delay MCWRK
+define delay MCREST
+"MCREST = d1 - 30m"
+"MCWRK = 0.333333*30m"
+
+    dccorr
+# 24 "C:/Bruker/TopSpin3.2/exp/stan/nmr/lists/pp/zg2h.2"
+# 24 "C:/Bruker/TopSpin3.2/exp/stan/nmr/lists/pp/zg2h.2"
+1 ze
+# 1 "mc_line 24 file C:/Bruker/TopSpin3.2/exp/stan/nmr/lists/pp/zg2h.2 exp. def. of mc cmd. after ze"
+# 25 "C:/Bruker/TopSpin3.2/exp/stan/nmr/lists/pp/zg2h.2"
+  d11 setnmr4|28
+  d11 h2pulse       ;setnmr4|24 or interleave_incr
+
+# 1 "mc_line 28 file C:/Bruker/TopSpin3.2/exp/stan/nmr/lists/pp/zg2h.2 exp. start label for mc cmd."
+2 MCWRK  * 2
+LBLF0, MCWRK
+  MCREST
+# 29 "C:/Bruker/TopSpin3.2/exp/stan/nmr/lists/pp/zg2h.2"
+  p1:f1 ph1
+  go=2 ph31
+# 1 "mc_line 31 file C:/Bruker/TopSpin3.2/exp/stan/nmr/lists/pp/zg2h.2 exp. mc cmd. in line"
+  MCWRK wr #0
+  MCWRK zd
+  lo to LBLF0 times td0
+
+  MCWRK
+# 32 "C:/Bruker/TopSpin3.2/exp/stan/nmr/lists/pp/zg2h.2"
+
+  d11 h2lock         ;setnmr4^24 or interleave_incr
+  d11 setnmr4^28
+exit
+# 38 "C:/Bruker/TopSpin3.2/exp/stan/nmr/lists/pp/zg2h.2"
+ph1=0 2 2 0 1 3 3 1
+ph2=0 2 2 0 1 3 3 1
+ph3=2 0 0 2 3 1 1 3
+ph31=0 2 2 0 1 3 3 1
+
+
+;pl1 : f1 channel - power level for pulse (default)
+;p1 : f1 channel -  90 degree high power pulse
+;d1 : relaxation delay; 1-5 * T1
+;d11: delay for disk I/O                             [30 msec]
+;ns: 1 * n, total number of scans: NS * TD0
+# 50 "C:/Bruker/TopSpin3.2/exp/stan/nmr/lists/pp/zg2h.2"
+;locnuc: off
+
+
+# 54 "C:/Bruker/TopSpin3.2/exp/stan/nmr/lists/pp/zg2h.2"
+;$Id: zg2h.2,v 1.3.8.1 2012/01/31 17:56:41 ber Exp $

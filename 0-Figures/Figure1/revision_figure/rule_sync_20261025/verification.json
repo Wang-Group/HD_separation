@@ -1,0 +1,53 @@
+{
+  "changed_classifications": 50,
+  "all_accepted_eta10_unchanged": true,
+  "all_scan_limits_unchanged": true,
+  "existing_20_rising_points_unchanged": true,
+  "accepted_eta10_sample_means_and_SD_unchanged": true,
+  "reviewed_18_retained_as_scan_limits": true,
+  "known_four_artifacts_not_accepted": true,
+  "curve_ids_and_raw_hashes_unchanged": true,
+  "CoV11_counts": {
+    "nearest_point_estimate": 1,
+    "rising_point": 2,
+    "above_target_no_crossing": 1
+  },
+  "counts": [
+    {
+      "origin": "original",
+      "raw_curves": 707,
+      "accepted_eta10": 423,
+      "approved_rising": 18,
+      "approved_nearest": 0,
+      "approved_estimates": 18,
+      "scan_limits": 256,
+      "no_accepted_crossing_or_estimate": 10,
+      "needs_review": 0
+    },
+    {
+      "origin": "additional",
+      "raw_curves": 876,
+      "accepted_eta10": 683,
+      "approved_rising": 45,
+      "approved_nearest": 7,
+      "approved_estimates": 52,
+      "scan_limits": 126,
+      "no_accepted_crossing_or_estimate": 15,
+      "needs_review": 0
+    },
+    {
+      "origin": "all",
+      "raw_curves": 1583,
+      "accepted_eta10": 1106,
+      "approved_rising": 63,
+      "approved_nearest": 7,
+      "approved_estimates": 70,
+      "scan_limits": 382,
+      "no_accepted_crossing_or_estimate": 25,
+      "needs_review": 0
+    }
+  ],
+  "unapproved_nearest_candidates_within_window": 0,
+  "publication_figures_refreshed": false,
+  "ML_rerun": false
+}

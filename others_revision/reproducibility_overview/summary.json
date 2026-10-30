@@ -1,0 +1,40 @@
+{
+  "total_catalysts": 358,
+  "SD_categories": {
+    "potential_only": 255,
+    "HD_only": 6,
+    "both": 97
+  },
+  "numeric_scatter_points": 358,
+  "marginal_points": [],
+  "input_sha256": {
+    "0-Figures\\Figure1\\revision_figure\\eta10_curves.csv": "7ce9c5c8cb63a0b5320e06f8b472fd05df8a2cd980cb4b14aade94891c01be09",
+    "0-Figures\\Figure1\\revision_figure\\eta10_samples.csv": "1173454be611b951416574b2e14460205901bf6fec23e786a84fc4eaf8618244",
+    "0-Figures\\Figure1\\revision_figure\\extraction_summary.json": "1e62c996fb55a7b3ad5c1179a580c79485acb805971ee46db85eca6f9e1d33ba",
+    "0-Figures\\Figure1\\revision_figure\\lsv_rules.py": "22f22f69d5f5896dbf9106cbae6ee42d55fa5766bd9524550d44885b78e31509",
+    "0-Figures\\Figure1\\revision_figure\\lsv_noise_exceptions.json": "6e95a45f0bb738071c08266d767000abf13139d204fe9373dbd0eabd7f0be2ef",
+    "others_revision\\reproducibility_overview\\recipe_evidence.json": "01c70a9a35ef6469561ca240f018b2c1b0acb7548c5f733359ca8f52e5b8cd0d",
+    "0-Figures\\Figure1\\revision_figure\\lsv_plot_data.py": "4a7d42a294ec91724d6a994305b511da6e4efd58bfecedbc83c69f713f163c67",
+    "HD_statistics": "69f9741f452a3279bc4862eaceea776b23332d8a7ea74dddd54df9a76d919340"
+  },
+  "HD_to_LSV_aliases": {},
+  "display_limits": {
+    "x_limits": [
+      -25.0,
+      650.0
+    ],
+    "y_limits": [
+      2.0,
+      13.0
+    ]
+  },
+  "measured_eta10_SD_catalysts": 349,
+  "estimate_SD_catalysts": 3,
+  "estimate_samples": [
+    "Co-V11",
+    "Eu-Pd",
+    "W-Pd"
+  ],
+  "HD_SD_catalysts": 103,
+  "policy": "Union of catalysts with an eta10 SD, estimate-potential SD, or H/D SD. Crossing means are preferred; estimates are only used without accepted crossings and are labelled separately. Audited same-recipe measurements pooled once using the same LSV aggregation as Figure 1B. H/D repeat means/SDs use adopted individual coefficients; Figure 1B instead uses initial-submission H/D values. Uncapped means and sample SDs. No Pareto analysis or ML."
+}
