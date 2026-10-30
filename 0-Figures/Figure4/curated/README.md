@@ -1,18 +1,13 @@
-# Figure 4 Curated Table
+# Recorded BO Performance Data
 
-This folder keeps the manuscript-facing BO performance table used for
-Figure 4A/B.
+`figure4_bo_complete_112.csv` contains 112 completed experiments: 28 each for
+Co-Mo, Co-V, Co-Ni and Fe-Ni. It supplies the batch-performance panels in
+[Figure 4](../../manuscript/Figure4.svg).
 
-## Current Trusted Table
+The table records platform BO objectives derived from the BO JSON files, with
+H/D coefficients aligned to `hd_separation_ml/data_extraction/separation_coefficient.xlsx`.
+These objectives are kept separate from experimental repeatability means.
 
-- `figure4_bo_complete_112.csv`
-  - Current authoritative BO table.
-  - Count: 112 completed BO datapoints, with 28 each for `Co-Mo`, `Co-V`,
-    `Co-Ni`, and `Fe-Ni`.
-  - Derived from the platform BO JSON files.
-  - Uses the conservative/platform value for non-monotonic LSV traces.
-  - Separation coefficients are aligned to the current
-    `hd_separation_ml/data_extraction/separation_coefficient.xlsx`.
-
-Weighted descriptor projection tables are generated from current sources by
-`../plot_top3_shap_descriptor_bo_overlay.py` and written to `../outputs/`.
+The [BO plotting notebook](../pareto_polygon_enclosure_code.ipynb) reads this
+table directly. Composition-weighted descriptor projections are reproduced by
+[ml_revision](../../../ml_revision/README.md), not by this performance table alone.

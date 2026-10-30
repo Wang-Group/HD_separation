@@ -20,6 +20,32 @@ figure numbers. The current reported ML results are in `ml_revision/results/`.
 Acquisition and BO notebooks elsewhere in the repository support data provenance;
 they are not alternative entry points for the reported nested-validation results.
 
+## Manuscript Figures
+
+Use the assembled files below for the manuscript. The numbered source folders
+under `0-Figures/` contain panel dependencies, not alternative complete figures.
+See the [panel source map](0-Figures/manuscript/README.md) for reproduction.
+
+### Figure 1: Automated Experimental Platform
+
+[Editable SVG](0-Figures/manuscript/Figure1.svg) | [PDF](0-Figures/manuscript/Figure1.pdf)
+
+![Figure 1: automated experimental platform](0-Figures/manuscript/Figure1.png)
+
+### Figure 3: Characterization, SHAP and Global Descriptor Maps
+
+[Editable SVG](0-Figures/manuscript/Figure3.svg) | [PDF](0-Figures/manuscript/Figure3.pdf)
+
+![Figure 3: characterization and descriptor analysis](0-Figures/manuscript/Figure3.png)
+
+### Figure 4: BO Performance and Activity/Separation Comparison
+
+[Editable SVG](0-Figures/manuscript/Figure4.svg) | [PDF](0-Figures/manuscript/Figure4.pdf)
+
+Panel D includes experimental mean and SD for both activity and H/D separation.
+
+![Figure 4: BO performance and repeatability means](0-Figures/manuscript/Figure4.png)
+
 ## Machine Learning
 
 - H/D separation uses 560 initial-screening samples, with random-stratified and

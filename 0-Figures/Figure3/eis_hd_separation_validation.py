@@ -29,13 +29,7 @@ ROOT = FIG3_DIR.parents[1]
 DATA_ROOT = ROOT / "hd_separation_ml" / "data_extraction"
 EIS_DIR = DATA_ROOT / "all_data" / "EIS"
 LABEL_FILE = DATA_ROOT / "separation_coefficient.xlsx"
-ML_FEATURE_FILE = (
-    ROOT
-    / "hd_separation_ml"
-    / "outputs"
-    / "final_model_8features_561_seed17_rs_from_eis"
-    / "feature_matrix_8features.csv"
-)
+INITIAL_SAMPLE_FILE = FIG3_DIR / "data" / "eis_initial_samples.csv"
 
 OUT_DATA = FIG3_DIR / "data" / "eis_hd_validation"
 OUT_FIG = FIG3_DIR / "outputs" / "eis_hd_validation"
@@ -108,9 +102,7 @@ def load_labels() -> pd.DataFrame:
 
 
 def load_initial_samples() -> set[str]:
-    if not ML_FEATURE_FILE.exists():
-        return set()
-    return set(pd.read_csv(ML_FEATURE_FILE, usecols=["sample"])["sample"].astype(str))
+    return set(pd.read_csv(INITIAL_SAMPLE_FILE, usecols=["sample"])["sample"].astype(str))
 
 
 def choose_frequency_grid(parsed: dict[str, pd.DataFrame]) -> np.ndarray:

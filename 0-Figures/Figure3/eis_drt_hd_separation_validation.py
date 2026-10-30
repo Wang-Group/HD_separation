@@ -36,9 +36,8 @@ try:
         from pyDRTtools.runs import EIS_object, simple_run
 except ImportError as exc:  # pragma: no cover - environment guard
     raise SystemExit(
-        "This script requires pyDRTtools. Run it with the conda env created as "
-        "`conda activate DRT` or with "
-        "`C:\\Users\\yibinjiang\\anaconda3\\envs\\DRT\\python.exe`."
+        "This script requires pyDRTtools and cvxopt. Install them in the "
+        "Python environment used for EIS/DRT refitting."
     ) from exc
 
 cvxopt.solvers.options["show_progress"] = False
@@ -49,13 +48,7 @@ ROOT = FIG3_DIR.parents[1]
 DATA_ROOT = ROOT / "hd_separation_ml" / "data_extraction"
 EIS_DIR = DATA_ROOT / "all_data" / "EIS"
 LABEL_FILE = DATA_ROOT / "separation_coefficient.xlsx"
-ML_FEATURE_FILE = (
-    ROOT
-    / "hd_separation_ml"
-    / "outputs"
-    / "final_model_8features_561_seed17_rs_from_eis"
-    / "feature_matrix_8features.csv"
-)
+INITIAL_SAMPLE_FILE = FIG3_DIR / "data" / "eis_initial_samples.csv"
 
 OUT_DATA = FIG3_DIR / "data" / "eis_pydrttools_validation"
 OUT_FIG = FIG3_DIR / "outputs" / "eis_pydrttools_validation"
@@ -132,9 +125,7 @@ def load_labels() -> pd.DataFrame:
 
 
 def load_initial_samples() -> set[str]:
-    if not ML_FEATURE_FILE.exists():
-        return set()
-    return set(pd.read_csv(ML_FEATURE_FILE, usecols=["sample"])["sample"].astype(str))
+    return set(pd.read_csv(INITIAL_SAMPLE_FILE, usecols=["sample"])["sample"].astype(str))
 
 
 def spearman(x: pd.Series, y: pd.Series) -> float:
